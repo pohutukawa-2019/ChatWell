@@ -1,22 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router'
 
-import TopicsList from './TopicsList'
+import TopicListItem from './TopicListItem'
 
 function SponsorTopics (props) {
-   return (
-      <div>
-         <h2>I want to talk about...</h2>
-         {props.topics.map(topic => {
-            return <>
-            <TopicsList
-            key={topic.id}
-            topic={topic}/>
+  return (
+    <div>
+      <h2>I can help with...</h2>
+      {props.topics.map(topic => {
+        return <>
+         <TopicListItem
+           key={topic.id}
+           topic={topic}/>
             </>
-         })}  
-         <Link 
-         className='pure-button'
-         to={'/register'}>Continue</Link>
-      </div>
-   )
-} 
- export default SponsorTopics
+      })}
+      <Link className='pure-button' to={'/register'}>Continue</Link>
+    </div>
+  )
+}
+export default SponsorTopics
