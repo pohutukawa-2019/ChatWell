@@ -6,10 +6,7 @@ const socket = (io) => {
 
     // Send message
     socket.on('send message', (data) => {
-      socket.on('new message', (message) => {
-          console.log(message)
-        })
-      console.log(`message: ${data}`)
+      io.emit('new message', data)
     })
 
     //  Disconnect message

@@ -3,15 +3,22 @@ import io from 'socket.io-client'
 
 const socket = io.connect('http://localhost:3000')
 
-socket.on('new message', (message) => {
-  console.log(`this is the client side message: ${message}`)
-})
-
 export default class ChatRoom extends Component {
+  constructor(props) {
+    super(props)
+    socket.on('new message', (message) => {
+      console.log(`this is the client side message: ${message}`)
+      this.setState({
+        messages: [...this.state.messages, message]
+      })
+    })
+  }
+
   state = {
     message: '',
     socket: null,
-    user: null
+    user: null,
+    messages: ['this is a message']
   }
 
   componentWillMount() {
@@ -52,6 +59,9 @@ export default class ChatRoom extends Component {
     return (
       <>
         <h1>This is the socket component</h1>
+        {this.state.messages.map(message => {
+          return <p>{message}</p>
+        })}
         <textarea name="" id="" cols="30" rows="10"></textarea>
         <br/>
         <input type="text" onChange={this.onChangeHandler}/>
