@@ -9,7 +9,7 @@ class GetHelpButton extends React.Component {
 
   getHelp = (bool) => {
     //This to go getHelp function on api
-    this.setState({ client:true })
+    this.setState({ client: true })
   }
 
   render () {

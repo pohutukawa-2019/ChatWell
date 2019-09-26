@@ -8,8 +8,8 @@ class ToHelpButton extends React.Component {
   }
 
   toHelp = (bool) => {
-    //This to go toHelp function on api
-    this.setState({ sponsor:true })
+//This to go toHelp function on api 
+    this.setState({ sponsor: true })
   }
 
   render () {
