@@ -11,7 +11,12 @@
     "dev": "node server & webpack --watch",
     "server": "node server",
     "start": "webpack && node server",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "knex": "knex --knexfile server/db/knexfile.js",
+    "db:reset": "run-s db:delete db:migrate db:seed",
+    "db:migrate": "npm run knex migrate:latest",
+    "db:seed": "npm run knex seed:run",
+    "db:delete": "rm -f server/db/dev.sqlite3"
   },
   "babel": {
     "presets": [
@@ -30,7 +35,12 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+<<<<<<< HEAD
     "react-redux": "^7.1.1",
+=======
+    "knex": "^0.19.4",
+    "sqlite3": "^4.1.0",
+>>>>>>> 500d667a49d0869e6dd6999f9057edb60a7e62a0
     "react-router-dom": "^5.1.0",
     "redux": "^4.0.4",
     "semantic-ui-react": "^0.88.1",
