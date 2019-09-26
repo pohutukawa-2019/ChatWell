@@ -36,9 +36,12 @@
   "dependencies": {
     "express": "^4.17.1",
     "knex": "^0.19.4",
-    "sqlite3": "^4.1.0",
+    "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.1",
+    "sqlite3": "^4.1.0",
     "superagent": "^5.1.0"
   },
   "devDependencies": {
