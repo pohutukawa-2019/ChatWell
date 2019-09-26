@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Link } from 'react-router'
 
 // import { toHelp } from '../actions'
 import { connect } from 'react-redux'
@@ -11,8 +12,8 @@ class ToHelpButton extends React.Component {
   render () {
     return (
       <>
-        {/* <button onClick={() => { this.onClickHandler(true) }}>I want to help</button> */}
-        <Link className='pure-button' to={'/sponsortopics'}>I want to help</Link>
+        <button onClick={() => { this.onClickHandler(true) }}>I want to help</button>
+        {/* <Link className='pure-button' to={'/sponsortopics'}>I want to help</Link> */}
       </>
     )
   }

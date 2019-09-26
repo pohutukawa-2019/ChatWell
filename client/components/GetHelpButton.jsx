@@ -12,8 +12,8 @@ class GetHelpButton extends React.Component {
   render () {
     return (
       <>
-        {/* <button onClick={() => { this.onClickHandler(true) }}>I want to get help</button> */}
-        <Link className='pure-button' to={'/clienttopics'}>I want to get help</Link>
+        <button onClick={() => { this.onClickHandler(true) }}>I want to get help</button>
+        {/* <Link className='pure-button' to={'/clienttopics'}>I want to get help</Link> */}
       </>
     )
   }
