@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import TopicsList from './TopicsList'
+import TopicListItem from './TopicListItem'
 
 function ClientTopics (props) {
   return (
@@ -9,7 +9,7 @@ function ClientTopics (props) {
       <h2>I want to talk about...</h2>
       {props.topics.map(topic => {
         return <>
-         <TopicsList
+         <TopicListItem
            key={topic.id}
            topic={topic}/>
             </>
