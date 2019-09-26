@@ -4,7 +4,14 @@ const socket = (io) => {
   io.on('connection', (socket) => {
     console.log(`A user has connected: ${socket.id}`)
 
-    socket.on('disconnect', (socket) => {
+    // Send message
+    socket.on('send message', (data) => {
+      io.emit('new message', { message: data })
+      console.log(`message: ${data}`)
+    })
+
+    //  Disconnect message
+    socket.on('disconnect', () => {
       console.log('A user has disconnected')
     })
   })
