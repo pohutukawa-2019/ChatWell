@@ -5,7 +5,7 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  db.getTopics()
+  db.getTopicList()
     .then(topics => res.status(200).json(topics))
     .catch(() => res.status(500).send('Sorry, we have encountered a server error'))
 })
@@ -16,6 +16,10 @@ router.get('/:id', (req, res) => {
     .then(topicName => {
       res.json(topicName)
     })
+})
+
+router.get('list', (req, res) => {
+  
 })
 
 module.exports = router

@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-function getTopics (db = connection) {
+function getTopicList (db = connection) {
   return db('topics')
     .select()
 }
@@ -11,6 +11,6 @@ function getTopicById (id, db = connection) {
 }
 
 module.exports = {
-  getTopics,
+  getTopicList,
   getTopicById
 }
