@@ -34,13 +34,6 @@
     ]
   },
   "dependencies": {
-<<<<<<< HEAD
-    "acorn": "^7.1.0",
-    "express": "^4.17.1",
-    "npm-install-peers": "^1.2.1",
-    "socket.io": "^2.3.0",
-    "socket.io-client": "^2.3.0",
-=======
     "express": "^4.17.1",
     "knex": "^0.19.4",
     "react-redux": "^7.1.1",
@@ -51,7 +44,6 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.1",
     "sqlite3": "^4.1.0",
->>>>>>> d8391527bcc852e610d1412320be2e47f79e34b2
     "superagent": "^5.1.0"
   },
   "devDependencies": {
