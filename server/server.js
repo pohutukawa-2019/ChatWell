@@ -1,9 +1,19 @@
 const path = require('path')
 const express = require('express')
+const socket = require('socket.io')
 
-const server = express()
+const app = express()
+const server = require('http').createServer(app)
+const io = socket(server)
 
-server.use(express.json())
-server.use(express.static(path.join(__dirname, './public')))
+const routes = require('./routes')
+
+const socketIO = require('./socket')
+
+socketIO(io)
+
+app.use(express.json())
+app.use(express.static(path.join(__dirname, './public')))
+app.use('/', routes)
 
 module.exports = server
