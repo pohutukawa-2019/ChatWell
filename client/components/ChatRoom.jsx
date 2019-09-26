@@ -9,7 +9,32 @@ socket.on('new message', (message) => {
 
 export default class ChatRoom extends Component {
   state = {
-    message: ''
+    message: '',
+    socket: null,
+    user: null
+  }
+
+  componentWillMount() {
+      this.initSocket()
+    //   this.setUser()
+  }
+
+  initSocket = () => {
+      socket.on('connect', () => {
+          console.log("Connected to Client")
+      })
+      this.setState({
+          socket
+      })
+  }
+
+  setUser = (user) => {
+    const socket = this.state.socket
+    // const user = socket.id
+    socket.emit('user connected', user)
+    this.setState({
+        user
+    })
   }
 
   onChangeHandler = (evt) => {
