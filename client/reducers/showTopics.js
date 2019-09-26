@@ -1,6 +1,6 @@
 import { RECEIVE_CHOICE } from '../actions'
 
-function topic (state = [], action) {
+function user (state = [], action) {
   switch (action.type) {
     case RECEIVE_CHOICE:
       return action.choice
@@ -10,4 +10,4 @@ function topic (state = [], action) {
   }
 }
 
-export default topic
+export default user
