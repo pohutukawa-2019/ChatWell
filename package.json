@@ -37,6 +37,7 @@
     "express": "^4.17.1",
     "knex": "^0.19.4",
     "nodemon": "^1.19.2",
+    "react-router": "^5.1.0",
     "react-router-dom": "^5.1.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.1",
