@@ -1,23 +1,30 @@
 /* eslint-disable no-console */
 
-let users = 0
-
 const socket = (io) => {
   io.on('connection', (socket) => {
+    let users = io.engine.clientsCount
     console.log(`A user has connected: ${socket.id}`)
-    users++
     console.log(`Users connected: ${users}`)
+
+    console.log(io.engine.clientsCount)
+    console.log(Object.keys(io.engine.clients))
+
     // Join room
-    // socket.join('room1')
-    if (users <= 2) {
-      socket.join('room1')
+    if (users % 2 !== 0) {
+      socket.join(Object.keys(io.engine.clients)[users - 1])
+      console.log('Room name:' + Object.keys(io.engine.clients)[users - 1])
     } else {
-      socket.join('room2')
+      socket.join(Object.keys(io.engine.clients)[users - 2])
+      console.log('Room name:' + Object.keys(io.engine.clients)[users - 2])
     }
 
     // Send message
     socket.on('send message', (data) => {
-      io.to('room1').emit('new message', data)
+      if (users % 2 !== 0) {
+        io.to(Object.keys(io.engine.clients)[users - 1]).emit('new message', data)
+      } else {
+        io.to(Object.keys(io.engine.clients)[users - 2]).emit('new message', data)
+      }
     })
 
     //  Disconnect message
@@ -30,11 +37,6 @@ const socket = (io) => {
 
 module.exports = socket
 
-  //subscribe a socket to an available channel
-  //socket.join('room')
-  //if the channel already has 2 users
-  //create a new channel and subscribe to that
-  //socket.join('room2)
   //leave room
   //socket.leave('room')
   //create new room

@@ -57,6 +57,11 @@ export default class ChatRoom extends Component {
     })
   }
 
+  // disconnectHandler = () => {
+  //   evt.preventDefault()
+  //   socket.leave()
+  // }
+
   render () {
     return (
       <>
@@ -67,6 +72,8 @@ export default class ChatRoom extends Component {
         })}
         <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
         <button type="submit" onClick={this.onClickHandler}>Send</button>
+        <br />
+        {/* <button type="submit" onClick={this.disconnectHandler}>Disconnect</button> */}
       </>
     )
   }
