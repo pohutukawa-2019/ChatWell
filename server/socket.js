@@ -6,8 +6,8 @@ const socket = (io) => {
     console.log(`A user has connected: ${socket.id}`)
     console.log(`Users connected: ${users}`)
 
-    console.log(io.engine.clientsCount)
-    console.log(Object.keys(io.engine.clients))
+    // console.log(io.engine.clientsCount)
+    // console.log(Object.keys(io.engine.clients))
 
     // Join room
     if (users % 2 !== 0) {
