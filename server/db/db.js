@@ -2,12 +2,12 @@ const connection = require('./connection')
 
 function getTopicList (db = connection) {
   return db('topics')
-    .select()
+    .select('topics.id')
 }
 
 function getTopicById (id, db = connection) {
   return db('topics')
-    .where('id', id).first()
+    .where('topics.id', id).first()
 }
 
 module.exports = {
