@@ -14,6 +14,9 @@ function Guidance (props) {
            topic={topic}/>
             </>
       })} */}
+        
+      (Disclaimer goes in here)
+  
       <Link className='pure-button' to='/pair'>Continue</Link>
     </div>
   )
