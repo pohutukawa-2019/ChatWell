@@ -15,7 +15,6 @@ export default class ChatRoom extends Component {
 
   state = {
     message: '',
-    socket: null,
     user: null,
     usertype: 'client',
     messages: []
@@ -67,14 +66,16 @@ export default class ChatRoom extends Component {
   render () {
     return (
       <>
-        <h1>This is the socket component</h1>
+        <h1>This is the chat component</h1>
         <h2>Messages:</h2>
         {this.state.messages.map((message, i) => {
           return <p key={i}>{message}</p>
         })}
-        <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
-        <button type="submit" onClick={this.onClickHandler}>Send</button>
-        <br />
+        <div className='Message-content'>
+          <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
+          <button type="submit" onClick={this.onClickHandler}>Send</button>
+          <br />
+        </div>
         {/* <button type="submit" onClick={this.disconnectHandler}>Disconnect</button> */}
       </>
     )
