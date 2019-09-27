@@ -13,7 +13,7 @@ const socket = (io) => {
       console.log(`the user type is: ${data}`)
     })
 
-    console.log(usertype)
+    // console.log(usertype)
     // console.log(io.engine.clientsCount)
     // console.log(Object.keys(io.engine.clients))
 
