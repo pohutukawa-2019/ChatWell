@@ -32,6 +32,7 @@
     "setupFiles": [
       "./tests/setup.js"
     ]
+    
   },
   "dependencies": {
     "acorn": "^7.1.0",
@@ -47,7 +48,8 @@
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "sqlite3": "^4.1.0",
-    "superagent": "^5.1.0"
+    "superagent": "^5.1.0",
+    "test-environment": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

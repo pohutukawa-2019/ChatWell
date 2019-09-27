@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import Utilities from './Utilities'
+// import UsernameGenerator from './UsernameGenerator'
 
 class Register extends React.Component {
   render () {
@@ -20,7 +20,7 @@ class Register extends React.Component {
        <h2>OR</h2>
        <h3>Auto Generate Username</h3>
  {/* link to Utilities component to autogenerate username: */}
-       {/* <Utilities /> */}
+       {/* <UsernameGenerator /> */}
  {/* This takes you to the user responsibility/guidance page: */}
        <Link className='pure-button' to='/guidance'>Continue</Link>
       </>
