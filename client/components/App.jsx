@@ -1,6 +1,10 @@
 import React from 'react'
 // import ChatRoom from './ChatRoom'
 import { Link } from 'react-router-dom'
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import GetHelpButton from './GetHelpButton'
+// import ToHelpButton from './ToHelpButton'
+// import ChatRoom from './ChatRoom'
 
 class App extends React.Component {
   render () {
