@@ -4,6 +4,6 @@ const topicPath = '/topics'
 
 export default function fetchTopics () {
   return makeRequest(topicPath)
-    .then(res => res.body)
-    .catch(() => { throw new Error('Error accessing categories api.')})
+    .then(topics => topics)
+    .catch(() => { throw new Error('Error accessing topics api.')})
 }
