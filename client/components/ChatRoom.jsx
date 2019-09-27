@@ -28,7 +28,7 @@ export default class ChatRoom extends Component {
 
   initSocket = () => {
       socket.on('connect', () => {
-        console.log("Connected to Client")
+        console.log("Client connected to server")
         socket.emit('usertype', this.state.usertype)
       })
       this.setState({
@@ -59,6 +59,18 @@ export default class ChatRoom extends Component {
     })
   }
 
+  // usertypeHandler = () => {
+  //   if(this.state.usertype === 'client') {
+  //     this.setState({
+  //       usertype: 'sponsor'
+  //     })
+  //   } else {
+  //     this.setState({
+  //       usertype: 'client'
+  //     })
+  //   }
+  // }
+
   // disconnectHandler = () => {
   //   evt.preventDefault()
   //   socket.leave()
@@ -72,6 +84,7 @@ export default class ChatRoom extends Component {
         {this.state.messages.map((message, i) => {
           return <p key={i}>{message}</p>
         })}
+        {/* <button type='button' onClick={this.usertypeHandler}>Change user type</button> */}
         <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
         <button type="submit" onClick={this.onClickHandler}>Send</button>
         <br />
