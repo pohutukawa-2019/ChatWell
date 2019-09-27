@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 // import TopicListItem from './TopicListItem'
 
-function SponsorTopics (props) {
+function ClientTopics (props) {
   return (
     <div>
-      <h2>I can help with...</h2>
+      <h2>User Responsibility</h2>
       {/* {props.topics.map(topic => {
         return <>
          <TopicListItem
@@ -18,4 +18,5 @@ function SponsorTopics (props) {
     </div>
   )
 }
-export default SponsorTopics
+
+export default ClientTopics

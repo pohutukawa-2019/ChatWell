@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('server/node_modules/express')
 
 const router = express.Router()
 

@@ -1,15 +1,27 @@
 import fetchTopics from '../api/fetchTopics'
 
+export const GET_TOPIC_PENDING = 'GET_TOPIC_PENDING'
+export const GET_TOPIC_SUCCESS = 'GET_TOPIC_SUCCESS'
+
 export function getTopicsPending () {
   return {
     type: GET_TOPIC_PENDING
   }
 }
 
-export function getTopicsSuccess
+export function getTopicsSuccess (topics) {
+  return {
+    type: GET_TOPIC_SUCCESS,
+    topics
+  }
+}
 
 export function getTopics () {
   return dispatch => {
-    dispatch
+    dispatch(getTopicsPending())
+    return fetchTopics()
+      .then(topics => {
+        dispatch(getTopicsSuccess(topics))
+      })
   }
 }
