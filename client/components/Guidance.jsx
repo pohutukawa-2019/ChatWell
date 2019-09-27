@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 // import TopicListItem from './TopicListItem'
 
-function ClientTopics (props) {
+function Guidance (props) {
   return (
     <div>
       <h2>User Responsibility</h2>
@@ -14,9 +14,9 @@ function ClientTopics (props) {
            topic={topic}/>
             </>
       })} */}
-      <Link className='pure-button' to='/register'>Continue</Link>
+      <Link className='pure-button' to='/pair'>Continue</Link>
     </div>
   )
 }
 
-export default ClientTopics
+export default Guidance
