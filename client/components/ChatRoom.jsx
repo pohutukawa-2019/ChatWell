@@ -15,9 +15,9 @@ export default class ChatRoom extends Component {
 
   state = {
     message: '',
-    user: null,
     usertype: 'client',
-    messages: []
+    messages: [],
+    user: null
   }
 
   componentDidMount () {
@@ -35,6 +35,14 @@ export default class ChatRoom extends Component {
     })
   }
 
+  onSendMessage = (message) => {
+    const messages = this.state.messagesmessage.push({
+      text: message,
+      usertype: this.state.client
+    })
+    this.setState({ messages: messages })
+  }
+
   // setUser = (user) => {
   //   const socket = this.state.socket
   //   // const user = socket.id
@@ -45,17 +53,18 @@ export default class ChatRoom extends Component {
   // }
 
   onChangeHandler = (evt) => {
+    evt.preventDefault()
     this.setState({
       message: evt.target.value
     })
   }
 
-  onClickHandler = (evt) => {
+  onSubmit = (evt) => {
     evt.preventDefault()
-    socket.emit('send message', this.state.message)
     this.setState({
       message: ''
     })
+    socket.emit('send message', this.state.message)
   }
 
   // disconnectHandler = () => {
@@ -73,7 +82,7 @@ export default class ChatRoom extends Component {
         })}
         <div className='Message-content'>
           <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
-          <button type="submit" onClick={this.onClickHandler}>Send</button>
+          <button type="submit" onClick={this.onSubmit}>Send</button>
           <br />
         </div>
         {/* <button type="submit" onClick={this.disconnectHandler}>Disconnect</button> */}

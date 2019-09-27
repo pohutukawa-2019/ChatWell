@@ -6,8 +6,8 @@ class Pair extends React.Component {
   render () {
     return (
       <>
-      <h2>Pair with someone</h2>
-      <ChatRoom />
+        <h2>Pair with someone</h2>
+          <ChatRoom />
       </>
     )
   }
