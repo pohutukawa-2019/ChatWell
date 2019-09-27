@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-export function getTopicsList (bool) {
+export function getTopicsList (topics) {
   return request.get('/', topics)
     .then(res => {
       const list = res.body
@@ -11,3 +11,4 @@ export function getTopicsList (bool) {
     })
 }
 
+//to check with Don!!

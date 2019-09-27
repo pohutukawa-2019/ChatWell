@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 // import { actionGoesHere } from '../actions/actionFile'
 
-class TopicList extends React.Component {
+class TopicsList extends React.Component {
   // componentDidMount () {
   //   this.props.
   // }
