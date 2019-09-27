@@ -2,10 +2,18 @@
 
 const socket = (io) => {
   io.on('connection', (socket) => {
+    // console.log(socket)
     let users = io.engine.clientsCount
+    let usertype = null
     console.log(`A user has connected: ${socket.id}`)
     console.log(`Users connected: ${users}`)
 
+    socket.on('usertype', (data) => {
+      usertype = data
+      console.log(`the user type is: ${data}`)
+    })
+
+    console.log(usertype)
     // console.log(io.engine.clientsCount)
     // console.log(Object.keys(io.engine.clients))
 

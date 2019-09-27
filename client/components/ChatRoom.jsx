@@ -17,17 +17,19 @@ export default class ChatRoom extends Component {
     message: '',
     socket: null,
     user: null,
+    usertype: 'client',
     messages: []
   }
 
-  componentWillMount() {
+  componentDidMount() {
       this.initSocket()
     //   this.setUser()
   }
 
   initSocket = () => {
       socket.on('connect', () => {
-          console.log("Connected to Client")
+        console.log("Connected to Client")
+        socket.emit('usertype', this.state.usertype)
       })
       this.setState({
           socket
