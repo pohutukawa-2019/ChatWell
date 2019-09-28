@@ -1,21 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+// import { fetchTopics } from '../actions'
 
 import Checkbox from './Checkbox'
 
 // import TopicListItem from './TopicListItem'
-const topics = ['Depression', 'Anxiety', 'OCD', 'PTSD']
+
+const topics = ['Depression', 'Anxiety', 'Bipolar', 'Body image/eating', 'Addiction', 'PTSD', 'OCD', 'Dissociative episodes', 'Dysphoria', 'Tics', 'Psychosis', 'Paranoia']
+
+// Not sure how to do it, but I need to get the info from db into this line!
+// ^^ This dynamically renders a checklist of topics, which
+// will need to be connected up to the database.
 
 class ClientTopics extends React.Component {
   state={
+    topics: [],
     checkboxes: topics.reduce(
       (options, option) => ({
         ...options,
         [option]: false
       })
-    ),
-    topics: []
+    )
   }
 
 selectAllCheckboxes = isSelected => {
@@ -34,7 +40,7 @@ selectAll = () => this.selectAllCheckboxes(true)
 deselectAll = () => this.selectAllCheckboxes(false)
 
 handleCheckboxChange = changeEvent => {
-  const { name } = changeEvent.target;
+  const { name } = changeEvent.target
 
   this.setState(prevState => ({
     checkboxes: {
@@ -45,12 +51,11 @@ handleCheckboxChange = changeEvent => {
 }
 
 handleFormSubmit = formSubmitEvent => {
-  formSubmitEvent.preventDefault();
+  formSubmitEvent.preventDefault()
 
   Object.keys(this.state.checkboxes)
     .filter(checkbox => this.state.checkboxes[checkbox])
     .forEach(checkbox => {
-      console.log(checkbox, "is selected.")
     })
 }
 
@@ -69,7 +74,7 @@ render () {
   return (
     <div>
       <h2>I want to talk about...</h2>
-      {/* Using a checklist component for now, until the TopicListItem is ready to go. */}
+      {/* Using a checklist for now, until the TopicListItem is ready to go. */}
       <div className="container">
         <div className="row mt-5">
           <div className="col-sm-12">
@@ -91,7 +96,7 @@ render () {
                 >
                   Deselect All
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" onClick={() => this.props.dispatch(fetchTopics(this.state.isSelected))}>
                   Save
                 </button>
               </div>
@@ -112,4 +117,10 @@ render () {
 }
 }
 
-export default connect()(ClientTopics)
+const mapStateToProps = state => {
+  return {
+    topics: state.topics
+  }
+}
+
+export default connect(mapStateToProps)(ClientTopics)
