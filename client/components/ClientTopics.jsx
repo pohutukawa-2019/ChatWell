@@ -24,19 +24,6 @@ class ClientTopics extends React.Component {
     )
   }
 
-selectAllCheckboxes = isSelected => {
-  Object.keys(this.state.checkboxes).forEach(checkbox => {
-    this.setState(prevState => ({
-      checkboxes: {
-        ...prevState.checkboxes,
-        [checkbox]: isSelected
-      }
-    }))
-  })
-}
-
-selectAll = () => this.selectAllCheckboxes(true)
-
 deselectAll = () => this.selectAllCheckboxes(false)
 
 handleCheckboxChange = changeEvent => {
@@ -80,26 +67,16 @@ render () {
           <div className="col-sm-12">
             <form onSubmit={this.handleFormSubmit}>
               {this.createCheckboxes()}
-
-              <div className="form-group mt-2">
-                <button
-                  type="button"
-                  className="btn btn-outline-primary mr-2"
-                  onClick={this.selectAll}
-                >
-                  Select All
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-primary mr-2"
-                  onClick={this.deselectAll}
-                >
-                  Deselect All
-                </button>
-                <button type="submit" className="btn btn-primary" onClick={() => this.props.dispatch(fetchTopics(this.state.isSelected))}>
-                  Save
-                </button>
-              </div>
+              <button
+                type="button"
+                className="btn btn-outline-primary mr-2"
+                onClick={this.deselectAll}
+              >
+                Deselect All
+              </button>
+              <button type="submit" className="btn btn-primary" onClick={() => this.props.dispatch(fetchTopics(this.state.isSelected))}>
+                Save
+              </button>
             </form>
           </div>
         </div>
