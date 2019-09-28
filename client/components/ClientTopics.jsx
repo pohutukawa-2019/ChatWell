@@ -24,6 +24,17 @@ class ClientTopics extends React.Component {
     )
   }
 
+selectAllCheckboxes = isSelected => {
+  Object.keys(this.state.checkboxes).forEach(checkbox => {
+    this.setState(prevState => ({
+      checkboxes: {
+        ...prevState.checkboxes,
+        [checkbox]: isSelected
+      }
+    }))
+  })
+}
+
 deselectAll = () => this.selectAllCheckboxes(false)
 
 handleCheckboxChange = changeEvent => {
