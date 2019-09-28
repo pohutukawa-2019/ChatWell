@@ -10,7 +10,11 @@ export default class ChatRoom extends Component {
     username: this.props.username || 'anonymous',
     usertype: this.props.usertype || 'client',
     messages: [],
-    isConnected: false
+    isConnected: false,
+    topics: this.props.topics || [
+      'Depression',
+      'Anxiety'
+    ]
   }
 
   componentDidMount() {
@@ -27,6 +31,13 @@ export default class ChatRoom extends Component {
       socket.on('new message', (message) => {
         this.setState({
           messages: [...this.state.messages, message]
+      })
+      socket.on('confirm disconnect', () => {
+        socket.emit('unsubscribe')
+        this.setState({
+          isConnected: false,
+          messages: []
+        })
       })
     })
   }
@@ -46,7 +57,12 @@ export default class ChatRoom extends Component {
   }
 
   connectHandler = () => {
-    socket.emit('subscribe', this.state.usertype)
+    const userData = {
+      username: this.state.username,
+      usertype: this.state.usertype,
+      topics: this.state.topics
+    }
+    socket.emit('subscribe', userData)
     this.setState({
       isConnected: true
     })

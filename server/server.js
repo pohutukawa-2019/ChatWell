@@ -7,7 +7,6 @@ const io = socket(server)
 
 const topics = require('./routes/topics')
 const socketIO = require('./socket')
-// const routes = require('./routes')
 
 socketIO(io)
 
