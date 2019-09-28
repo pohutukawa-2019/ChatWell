@@ -4,54 +4,40 @@ import io from 'socket.io-client'
 const socket = io.connect('http://localhost:3000')
 
 export default class ChatRoom extends Component {
-  constructor(props) {
-    super(props)
-    socket.on('new message', (message) => {
-      this.setState({
-        messages: [...this.state.messages, message]
-      })
-    })
-  }
 
   state = {
     message: '',
-    socket: null,
-    user: null,
-    usertype: 'client',
-    messages: []
+    username: this.props.username || 'anonymous',
+    usertype: this.props.usertype || 'client',
+    messages: [],
+    isConnected: false
   }
 
   componentDidMount() {
       this.initSocket()
-    //   this.setUser()
   }
 
   initSocket = () => {
       socket.on('connect', () => {
         console.log("Client connected to server")
-        socket.emit('usertype', this.state.usertype)
       })
-      this.setState({
-          socket
+      // if not connected, append something like 'theres no one here right now!'
+      // also change message to be an object containing the sender
+      // and time the message was sent, and display these alongside the message
+      socket.on('new message', (message) => {
+        this.setState({
+          messages: [...this.state.messages, message]
       })
+    })
   }
 
-  // setUser = (user) => {
-  //   const socket = this.state.socket
-  //   // const user = socket.id
-  //   socket.emit('user connected', user)
-  //   this.setState({
-  //       user
-  //   })
-  // }
-
-  onChangeHandler = (evt) => {
+  messageInputHandler = (evt) => {
     this.setState({
       message: evt.target.value
     })
   }
 
-  onClickHandler = (evt) => {
+  messageSendHandler = (evt) => {
     evt.preventDefault()
     socket.emit('send message', this.state.message)
     this.setState({
@@ -59,36 +45,36 @@ export default class ChatRoom extends Component {
     })
   }
 
-  // usertypeHandler = () => {
-  //   if(this.state.usertype === 'client') {
-  //     this.setState({
-  //       usertype: 'sponsor'
-  //     })
-  //   } else {
-  //     this.setState({
-  //       usertype: 'client'
-  //     })
-  //   }
-  // }
+  connectHandler = () => {
+    socket.emit('subscribe', this.state.usertype)
+    this.setState({
+      isConnected: true
+    })
+  }
 
-  // disconnectHandler = () => {
-  //   evt.preventDefault()
-  //   socket.leave()
-  // }
+  disconnectHandler = () => {
+    socket.emit('unsubscribe')
+    this.setState({
+      isConnected: false,
+      messages: []
+    })
+  }
 
   render () {
     return (
       <>
-        <h1>This is the socket component</h1>
+        <h1>This is the chat component</h1>
         <h2>Messages:</h2>
         {this.state.messages.map((message, i) => {
           return <p key={i}>{message}</p>
         })}
-        {/* <button type='button' onClick={this.usertypeHandler}>Change user type</button> */}
-        <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
-        <button type="submit" onClick={this.onClickHandler}>Send</button>
+        <form onSubmit={this.messageSendHandler}>
+          <input type="text" value={this.state.message} onChange={this.messageInputHandler}/>
+          <button type="submit">Send</button>
+        </form>
         <br />
-        {/* <button type="submit" onClick={this.disconnectHandler}>Disconnect</button> */}
+        {!this.state.isConnected && <button type="button" onClick={this.connectHandler}>Connnect</button>}
+        {this.state.isConnected && <button type="button" onClick={this.disconnectHandler}>Disconnect</button>}
       </>
     )
   }
