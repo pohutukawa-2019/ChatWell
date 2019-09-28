@@ -3,11 +3,11 @@
 const matchTopics = require('./algo')
 
 let availableClients = [
-  // { room: 'clientnocFS0zZg6DjOOKjAAAA',
+  // {  room: 'clientnocFS0zZg6DjOOKjAAAA',
   //    username: 'anonymous',
   //    usertype: 'sponsor',
   //    topics: [ 'Depression' ] },
-  //      { room: 'clientdasdfasdfasdfA',
+  // { room: 'clientdasdfasdfasdfA',
   //   username: 'anonymous',
   //   usertype: 'sponsor',
   //   topics: [ 'Depression', 'Anxiety' ] }
@@ -17,7 +17,7 @@ let availableSponsors = [
   //   username: 'anonymous',
   //   usertype: 'sponsor',
   //   topics: [ 'Depression' ] },
-  //   { room: 'sponsordasdfasdfasdfA',
+  // { room: 'sponsordasdfasdfasdfA',
   //   username: 'anonymous',
   //   usertype: 'sponsor',
   //   topics: [ 'Depression', 'Anxiety' ] }
@@ -159,46 +159,3 @@ const removeIfAvailable = (room) => {
     console.log(`User ${room} removed from availableSponsors`)
   }
 }
-
-// ### Old Code For Reference ###
-
-  // ### Join room ###
-  // if (users % 2 !== 0) {
-  //   socket.join(Object.keys(io.engine.clients)[users - 1])
-  //   console.log('Room name:' + Object.keys(io.engine.clients)[users - 1])
-  // } else {
-  //   socket.join(Object.keys(io.engine.clients)[users - 2])
-  //   console.log('Room name:' + Object.keys(io.engine.clients)[users - 2])
-  // }
-
-  // ### Send message ###
-  // socket.on('send message', (data) => {
-  //   if (users % 2 !== 0) {
-  //     io.to(Object.keys(io.engine.clients)[users - 1]).emit('new message', data)
-  //   } else {
-  //     io.to(Object.keys(io.engine.clients)[users - 2]).emit('new message', data)
-  //   }
-  // })
-
-  // ### Getting user socket id ###
-  // room = usertype + Object.keys(io.engine.clients)[users - 1]
-
-  // ### Pattern for matching clients and sponsors ###
-  // if an available client room exists
-  // if (availableClients.length > 0) {
-  //   // join the first available client room
-  //   socket.join(availableClients[0])
-  //   console.log(`Joined Client room: ${availableClients[0]}`)
-  //   // change room to be available clients' room
-  //   room = availableClients[0]
-  //   // then remove that client room from the list of available clients
-  //   availableClients.splice(0, 1)
-  //   console.log(`Remaining available Clients: ${availableClients}`)
-  // } else {
-  //   // otherwise, create an available sponsor room
-  //   socket.join(room)
-  //   console.log(`Created new Sponsor room: ${room}`)
-  //   // add this room to the list of available sponsors
-  //   availableSponsors.push(room)
-  //   console.log(`Available Sponsors: ${availableSponsors}`)
-  // }

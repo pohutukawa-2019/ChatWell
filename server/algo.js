@@ -1,84 +1,3 @@
-// const client = {
-//     user: 'user1',
-//     topics: [
-//         'Depression',
-//         'Anxiety'
-//     ]
-// }
-
-// const sponsor = {
-//     user: 'sponsor1',
-//     topics: [
-//         'Depression',
-//         'Bipolar',
-//         'Schizophrenia'
-//     ]
-// }
-
-// const availableSponsors = [
-//     {
-//         user: 'sponsor',
-//         topics: [
-//         'Depression',
-//         'Bipolar',
-//         'Schizophrenia'
-//         ]
-//     },
-//     {
-//         user: 'sponsor2',
-//         topics: [
-//             'Bipolar',
-//             'Schizophrenia'
-//         ]
-//     },
-//     {
-//         user: 'sponsor3',
-//         topics: [
-//             'Depression',
-//             'Anxiety'
-//         ]
-//     },
-//     {
-//         user: 'sponsor4',
-//         topics: [
-//             'Depression',
-//             'Anxiety'
-//         ]
-//     }
-// ]
-
-// const availableClients = [
-//     {
-//         user: 'client',
-//         topics: [
-//         'Depression',
-//         'Bipolar',
-//         'Schizophrenia'
-//         ]
-//     },
-//     {
-//         user: 'client2',
-//         topics: [
-//             'Bipolar',
-//             'Schizophrenia'
-//         ]
-//     },
-//     {
-//         user: 'client3',
-//         topics: [
-//             'Depression',
-//             'Anxiety'
-//         ]
-//     },
-//     {
-//         user: 'client4',
-//         topics: [
-//             'Depression',
-//             'Anxiety'
-//         ]
-//     }
-// ]
-
 // maps through the list of available users (sponsors or clients), comparing their topics with the user's topics
 // returns the available user with the most matching topics
 // if there are multiple available users that score the same highest score, returns the first one
@@ -105,11 +24,6 @@ const matchTopics = (user, availableUsers) => {
     })
     return bestMatch
 }
-
-// const testMatchClientToSponsor = matchTopics(client, availableSponsors)
-// const testMatchSponsorToClient = matchTopics(sponsor, availableClients)
-// console.log(testMatchClientToSponsor)
-// console.log(testMatchSponsorToClient)
 
 module.exports = matchTopics
 
