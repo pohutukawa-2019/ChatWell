@@ -76,6 +76,18 @@ export default class ChatRoom extends Component {
     })
   }
 
+  switchUsertype = () => {
+    if (this.state.usertype === 'client') {
+      this.setState({
+        usertype: 'sponsor'
+      })
+    } else {
+      this.setState({
+        usertype: 'client'
+      })
+    }
+  }
+
   render () {
     return (
       <>
@@ -91,6 +103,7 @@ export default class ChatRoom extends Component {
         <br />
         {!this.state.isConnected && <button type="button" onClick={this.connectHandler}>Connnect</button>}
         {this.state.isConnected && <button type="button" onClick={this.disconnectHandler}>Disconnect</button>}
+        <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
       </>
     )
   }

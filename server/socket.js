@@ -61,9 +61,9 @@ const socket = (io) => {
           console.log(`Created new Client Room: ${room}`)
           // add this room to the list of available clients
           // along with the user data
-          newAvailableClient = {
+          const newAvailableClient = {
             room: room,
-            ...userData,
+            ...userData
           }
           availableClients.push(newAvailableClient)
           console.log('Available Clients:')
@@ -95,9 +95,9 @@ const socket = (io) => {
           console.log(`Created new Sponsor room: ${room}`)
           // add this room to the list of available clients
           // along with the user data
-          newAvailableSponsor = {
+          const newAvailableSponsor = {
             room: room,
-            ...userData,
+            ...userData
           }
           availableSponsors.push(newAvailableSponsor)
           console.log('Available Sponsors:')
