@@ -24,7 +24,7 @@ class SponsorRegister extends React.Component {
  {/* This takes you to the user responsibility/guidance page: */}
      {' '}
     <Link className='pure-button' to='/'>Back to main</Link>
-       <Link className='pure-button' to='/guidance'>Continue</Link>
+       <Link className='pure-button' to='/sponsor/guidance'>Continue</Link>
        {' '}
         <Link className='pure-button' to='/'>Back to main</Link>
       </>

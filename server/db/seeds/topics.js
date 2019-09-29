@@ -15,7 +15,9 @@ exports.seed = knex => {
         { id: 9, topic: 'Dysphoria' },
         { id: 10, topic: 'Tics' },
         { id: 11, topic: 'Psychosis' },
-        { id: 12, topic: 'Paranoia' }
+        { id: 12, topic: 'Paranoia' },
+        { id: 13, topic: 'Stress' },
+        { id: 14, topic: 'Phobia' }
       ])
     })
 }
