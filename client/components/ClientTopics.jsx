@@ -5,13 +5,30 @@ import { Link } from 'react-router-dom'
 import { getTopics } from '../actions/topics'
 import Topic from './Topic'
 
-class ClientTopics extends React.Component {
+class SponsorTopics extends React.Component {
+  state = {
+    selectedTopics: []
+  }
+
   componentDidMount () {
     this.props.getTopics()
   }
+
+  toggleTopic = id => {
+    let selection = []
+
+    if (this.state.selectedTopics.includes(id)) {
+      selection = this.state.selectedTopics.filter(topicId => topicId !== id)
+    } else {
+      selection = [...this.state.selectedTopics]
+      selection.push(id)
+    }
+
+    this.setState({ selectedTopics: selection })
+  }
+
   render () {
     const { topics, pending, error } = this.props
-    console.log(this.props)
     if (pending) {
       return <div>LOADING...</div>
     }
@@ -22,16 +39,22 @@ class ClientTopics extends React.Component {
         <h2>I need help with...</h2>
         <ul>
           {topics.map(topic =>
-            <Topic key={`${topic.id}`} id={topic.id} topic={topic} />)}
+            <Topic
+              key={topic.id}
+              topic={topic.topic}
+              id={topic.id}
+              toggleTopic={this.toggleTopic} />
+          )}
         </ul>
         <Link className='pure-button' to='/register'>Continue</Link>
         {' '}
-        
         <Link className='pure-button' to='/'>Back to main</Link>
       </div>
     )
   }
 }
+
+// this.props.history.push('/register')
 
 const mapStateToProps = state => {
   return {
@@ -47,4 +70,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClientTopics)
+export default connect(mapStateToProps, mapDispatchToProps)(SponsorTopics)
