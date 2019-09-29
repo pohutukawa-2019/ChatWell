@@ -5,8 +5,10 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
+  console.log('helllooooooo')
   db.getTopicList()
-    .then(topics => res.status(200).json(topics))
+    // .then((topic) => console.log(topic))
+    .then(topics => res.send(topics))
     .catch(() => res.status(500).send('Sorry, we have encountered a server error'))
 })
 
