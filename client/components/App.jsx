@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 // import GetHelpButton from './GetHelpButton'
@@ -42,5 +42,17 @@ class App extends React.Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    userType: state.userType
+  }
+}
 
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    getUserType: id => dispatch(getUserType(this.state))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+// export default App
