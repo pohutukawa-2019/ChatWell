@@ -1,3 +1,4 @@
+
 .App {
   display: flex;
   flex-direction: coloumn;
@@ -160,4 +161,3 @@ background: ${props => (props.primary ? 'red' : 'green')}; */
 /* ${(props) => props.color && css` background: ${props => props.theme[props.color]};
 `}
 ` */
-
