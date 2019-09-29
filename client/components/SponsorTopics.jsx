@@ -46,6 +46,7 @@ class SponsorTopics extends React.Component {
               toggleTopic={this.toggleTopic} />
           )}
         </ul>
+        <button>Register</button>
         <Link className='pure-button' to='/register'>Continue</Link>
         <br/>
         <Link className='pure-button' to='/'>Back to main</Link>
@@ -53,8 +54,7 @@ class SponsorTopics extends React.Component {
     )
   }
 }
-
-// this.props.history.push('/register')
+//  onClick={this.props.history.push('/register')}
 
 const mapStateToProps = state => {
   return {
