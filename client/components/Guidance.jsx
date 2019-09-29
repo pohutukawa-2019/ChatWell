@@ -9,9 +9,9 @@ function Guidance (props) {
         This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice…… Please seek the advice of healthcare professionals if you are in need. (Provide helpline numbers and contacts)
       </p>
       {' '}
-      <Link className='pure-button' to='/pair'>Continue</Link>
-      {' '}
       <Link className='pure-button' to='/'>Back to main</Link>
+      {' '}
+      <Link className='pure-button' to='/pair'>Continue</Link>
     </div>
   )
 }
