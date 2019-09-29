@@ -23,6 +23,8 @@ class Register extends React.Component {
        {/* <Utilities /> */}
  {/* This takes you to the user responsibility/guidance page: */}
        <Link className='pure-button' to='/guidance'>Continue</Link>
+       <br/>
+      <Link className='pure-button' to='/'>Back to main</Link>
       </>
     )
   }

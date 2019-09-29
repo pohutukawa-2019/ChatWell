@@ -5,7 +5,6 @@ const db = require('../db/db')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  console.log('helllooooooo')
   db.getTopicList()
     // .then((topic) => console.log(topic))
     .then(topics => res.send(topics))

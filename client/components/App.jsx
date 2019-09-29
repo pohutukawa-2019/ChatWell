@@ -12,7 +12,7 @@ class App extends React.Component {
         <>
           <h1>Chat Well</h1>
           <Link className='pure-button' to='/topics'>I want to get help </Link>
-          <br></br>
+          <br/>
           <Link className='pure-button' to='/sponsor/topics'>I want to help</Link>
           {/* <ChatRoom /> */}
         </>

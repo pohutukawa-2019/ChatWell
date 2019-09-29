@@ -6,7 +6,11 @@ function Guidance (props) {
     <div>
       <h2>User Responsibility</h2>
       This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice…… Please seek the advice of healthcare professionals if you are in need. (Provide helpline numbers and contacts)
+      <br/>
+      <br/>
       <Link className='pure-button' to='/pair'>Continue</Link>
+      <br/>
+      <Link className='pure-button' to='/'>Back to main</Link>
     </div>
   )
 }
