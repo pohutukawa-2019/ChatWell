@@ -14,17 +14,21 @@ class SponsorTopics extends React.Component {
     this.props.getTopics()
   }
 
-  toggleTopic = (id, topic) => {
+  toggleTopic = (topic) => {
     let selection = []
 
-    if (this.state.selectedTopics.includes(id)) {
-      selection = this.state.selectedTopics.filter(topicId => topicId !== id)
+    if (this.state.selectedTopics.includes(topic)) {
+      selection = this.state.selectedTopics.filter(t => t !== topic)
     } else {
       selection = [...this.state.selectedTopics]
       selection.push(topic)
     }
 
     this.setState({ selectedTopics: selection })
+  }
+
+  handleContinue = () => {
+    this.props.history.push('/register')
   }
 
   render () {
@@ -46,16 +50,14 @@ class SponsorTopics extends React.Component {
               toggleTopic={this.toggleTopic} />
           )}
         </ul>
-        <button onClick={this.props.history.push('/register')}></button>
-        <Link className='pure-button' to='/register'>Continue</Link>
-        {' '}
+        {/* <Link className='pure-button' to='/register'>Continue</Link> */}
         <Link className='pure-button' to='/'>Back to main</Link>
+        {' '}
+        <button className='pure-button' onClick={this.handleContinue}>Continue</button>
       </div>
     )
   }
 }
-
-// this.props.history.push('/register')
 
 const mapStateToProps = state => {
   return {
