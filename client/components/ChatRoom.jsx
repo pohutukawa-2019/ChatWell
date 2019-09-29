@@ -153,7 +153,7 @@ export default class ChatRoom extends Component {
                         : {textAlign: 'right', padding: '5px 30px', margin: '0px'}
                   }
                 >
-                  <p style={(message.username !== 'System') ? {marginTop: '0px'} : null }>({message.timestamp})<strong> {message.username}:</strong></p>
+                  <p style={(message.username !== 'System') ? {marginTop: '0px'} : null }>[{message.timestamp}]<strong> {message.username}</strong></p>
                   <Message user={message.username !== 'System'}>
                     {(message.username === 'System') ? <i>{message.message}</i> : message.message}
                   </Message>
@@ -199,3 +199,5 @@ const createTimeStamp = () => {
   }
   return `${fixedHours}:${fixedMinutes}:${fixedSeconds}`
 }
+
+document.body.style.margin = '0px'

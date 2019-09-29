@@ -2,6 +2,10 @@ import styled, { css } from 'styled-components'
 
 export const FlexContainer = styled.div`
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  overflow: hidden;
   flex-direction: column;
   justify-content: center;
   align-items: center;
