@@ -6,17 +6,19 @@
 const matchTopics = (user, availableUsers) => {
   const scores = availableUsers.map((userMatch) => {
     let score = 0
+    let sharedTopics = []
     userMatch.topics.forEach((userMatchTopic) => {
       user.topics.forEach((topic) => {
-        (topic === userMatchTopic) ? score++ : score
+        if (topic === userMatchTopic) {
+          score++
+          sharedTopics.push(topic)
+        }
       })
     })
     return {
       room: userMatch.room,
-      username: userMatch.username,
-      usertype: userMatch.usertype,
-      topics: userMatch.topics,
-      score: score
+      sharedTopics,
+      score
     }
   })
   const bestMatch = scores.reduce((accumulator, currentValue) => {
