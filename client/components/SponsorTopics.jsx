@@ -15,7 +15,6 @@ class SponsorTopics extends React.Component {
   
   render () {
     const { topics, pending, error } = this.props
-
     if (pending) {
       return <div>LOADING...</div>
     }
@@ -30,6 +29,8 @@ class SponsorTopics extends React.Component {
             
         </ul>
         <Link className='pure-button' to='/register'>Continue</Link>
+        <br/>
+        <Link className='pure-button' to='/'>Back to main</Link>
       </div>
     )
   }
