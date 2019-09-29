@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getTopics } from '../actions/topics'
+import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 
 class SponsorTopics extends React.Component {
@@ -11,7 +11,7 @@ class SponsorTopics extends React.Component {
   }
 
   componentDidMount () {
-    this.props.getTopics()
+    this.props.dispatch(getTopics())
   }
 
   toggleTopic = (topic) => {
@@ -28,6 +28,7 @@ class SponsorTopics extends React.Component {
   }
 
   handleContinue = () => {
+    this.props.dispatch(saveTopics(this.state.selectedTopics))
     this.props.history.push('/register')
   }
 
@@ -67,10 +68,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getTopics: () => dispatch(getTopics())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SponsorTopics)
+export default connect(mapStateToProps)(SponsorTopics)
