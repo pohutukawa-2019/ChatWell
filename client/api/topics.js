@@ -1,16 +1,10 @@
-// import makeRequest from './requestor'
-import request from 'superagent'
+import makeRequest from './requestor'
 
-const topicPath = '/api/topics'
+const topicPath = '/topics'
 
 export default function fetchTopics () {
-  console.log('hi')
-  // return makeRequest(topicPath)
-    // .then((topic) => console.log(`test ${topic}`))
-    return request
-    .get(topicPath)
-    // .then((topic) => console.log(topic.body))
-    .then(res => res.body)
+  return makeRequest(topicPath)
+    .then(topics => topics)
     .catch(() => { throw new Error('Error accessing topics api.') }
     )
 }

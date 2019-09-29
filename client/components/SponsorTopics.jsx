@@ -6,12 +6,29 @@ import { getTopics } from '../actions/topics'
 import Topic from './Topic'
 
 class SponsorTopics extends React.Component {
+  state = {
+    selectedTopics: []
+  }
+
   componentDidMount () {
     this.props.getTopics()
   }
+
+  toggleTopic = id => {
+    let selection = []
+
+    if (this.state.selectedTopics.includes(id)) {
+      selection = this.state.selectedTopics.filter(topicId => topicId !== id)
+    } else {
+      selection = [...this.state.selectedTopics]
+      selection.push(id)
+    }
+
+    this.setState({ selectedTopics: selection })
+  }
+
   render () {
     const { topics, pending, error } = this.props
-    console.log(this.props)
     if (pending) {
       return <div>LOADING...</div>
     }
@@ -22,7 +39,12 @@ class SponsorTopics extends React.Component {
         <h2>I can help with...</h2>
         <ul>
           {topics.map(topic =>
-            <Topic key={`${topic.id}`} id={topic.id} topic={topic} />)}
+            <Topic
+              key={topic.id}
+              topic={topic.topic}
+              id={topic.id}
+              toggleTopic={this.toggleTopic} />
+          )}
         </ul>
         <Link className='pure-button' to='/register'>Continue</Link>
         {' '}
@@ -31,6 +53,8 @@ class SponsorTopics extends React.Component {
     )
   }
 }
+
+// this.props.history.push('/register')
 
 const mapStateToProps = state => {
   return {

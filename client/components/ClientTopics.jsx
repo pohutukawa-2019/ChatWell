@@ -11,7 +11,6 @@ class ClientTopics extends React.Component {
   }
   render () {
     const { topics, pending, error } = this.props
-    console.log(this.props)
     if (pending) {
       return <div>LOADING...</div>
     }
