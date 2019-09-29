@@ -1,91 +1,126 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 
-const socket = io.connect('http://localhost:3000')
+const socket = io.connect()
 
 export default class ChatRoom extends Component {
-  constructor (props) {
-    super(props)
-    socket.on('new message', (message) => {
-      this.setState({
-        messages: [...this.state.messages, message]
-      })
-    })
-  }
 
   state = {
     message: '',
-    usertype: 'client',
-    messages: [],
-    user: null
+    username: this.props.username || 'anonymous',
+    usertype: this.props.usertype || 'client',
+    messages: ['System: Hit the connect button to find a pair!'],
+    isConnected: false,
+    topics: this.props.topics || [
+      'Depression',
+      'Anxiety'
+    ]
   }
 
   componentDidMount () {
     this.initSocket()
-    //   this.setUser()
   }
 
   initSocket = () => {
     socket.on('connect', () => {
-      console.log('Connected to Client')
-      socket.emit('usertype', this.state.usertype)
+      console.log('Client connected to server')
     })
-    this.setState({
-      socket
+    socket.on('new message', (messagePackage) => {
+      this.setState({
+        messages: [
+          ...this.state.messages,
+          `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
+        ]
+      })
+    })
+    socket.on('system message', (message) => {
+      message = `System: ${message}`
+      this.setState({
+        messages: [...this.state.messages, message]
+      })
+    })
+    socket.on('confirm disconnect', () => {
+      socket.emit('unsubscribe')
+      this.setState({
+        isConnected: false,
+        messages: [
+          'System: A user has left the session. Session ended.',
+          'System: Hit the connect button to find new pair!'
+        ]
+      })
     })
   }
 
-  onSendMessage = (message) => {
-    const messages = this.state.messagesmessage.push({
-      text: message,
-      usertype: this.state.client
-    })
-    this.setState({ messages: messages })
-  }
-
-  // setUser = (user) => {
-  //   const socket = this.state.socket
-  //   // const user = socket.id
-  //   socket.emit('user connected', user)
-  //   this.setState({
-  //       user
-  //   })
-  // }
-
-  onChangeHandler = (evt) => {
-    evt.preventDefault()
+  messageInputHandler = (evt) => {
     this.setState({
       message: evt.target.value
     })
   }
 
-  onSubmit = (evt) => {
+  messageSendHandler = (evt) => {
     evt.preventDefault()
+    const time = new Date()
+    const hours = time.getHours()
+    const minutes = time.getMinutes()
+    const messagePackage = {
+      message: this.state.message,
+      username: this.state.username,
+      time: `${hours}:${minutes}`
+    }
+    socket.emit('send message', messagePackage)
     this.setState({
       message: ''
     })
     socket.emit('send message', this.state.message)
   }
 
-  // disconnectHandler = () => {
-  //   evt.preventDefault()
-  //   socket.leave()
-  // }
+  connectHandler = () => {
+    const userData = {
+      username: this.state.username,
+      usertype: this.state.usertype,
+      topics: this.state.topics
+    }
+    socket.emit('subscribe', userData)
+    this.setState({
+      isConnected: true
+    })
+  }
+
+  disconnectHandler = () => {
+    socket.emit('unsubscribe')
+    this.setState({
+      isConnected: false,
+      messages: []
+    })
+  }
+
+  switchUsertype = () => {
+    if (this.state.usertype === 'client') {
+      this.setState({
+        usertype: 'sponsor'
+      })
+    } else {
+      this.setState({
+        usertype: 'client'
+      })
+    }
+  }
 
   render () {
     return (
       <>
-        <h1>This is the chat component</h1>
         <h2>Messages:</h2>
         {this.state.messages.map((message, i) => {
           return <p key={i}>{message}</p>
         })}
-        <div className='Message-content'>
-          <input type="text" value={this.state.message} onChange={this.onChangeHandler}/>
-          <button type="submit" onClick={this.onSubmit}>Send</button>
-          <br />
-        </div>
-        {/* <button type="submit" onClick={this.disconnectHandler}>Disconnect</button> */}
+        <form onSubmit={this.messageSendHandler}>
+          <input type="text" value={this.state.message} onChange={this.messageInputHandler}/>
+          <button type="submit">Send</button>
+        </form>
+        <br />
+        {!this.state.isConnected && <button type="button" onClick={this.connectHandler}>Connnect</button>}
+        {this.state.isConnected && <button type="button" onClick={this.disconnectHandler}>Disconnect</button>}
+        <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
       </>
     )
   }

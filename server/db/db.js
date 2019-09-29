@@ -2,7 +2,7 @@ const connection = require('./connection')
 
 function getTopicList (db = connection) {
   return db('topics')
-    .select('topics.id')
+    .select()
 }
 
 function getTopicById (id, db = connection) {
