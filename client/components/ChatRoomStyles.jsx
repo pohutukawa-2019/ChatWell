@@ -9,7 +9,7 @@ export const FlexContainer = styled.div`
 export const MessagesContainer = styled.div`
   width: 50vw;
   height: 50vh;
-  background: #FAFAFA;
+  background: #FAFAFA;  
   overflow-y: auto;
 `
 export const SendMessageForm = styled.form`

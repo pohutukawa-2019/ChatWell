@@ -45,6 +45,7 @@ export default class ChatRoom extends Component {
             messagePackage
           ]
         })
+      //scroll to bottom https://www.freecodecamp.org/news/building-a-modern-chat-application-with-react-js-558896622194/
       })
       socket.on('system message', (message) => {
         message = {
@@ -138,10 +139,10 @@ export default class ChatRoom extends Component {
                 <div key={i} 
                   style={
                     (message.username === 'System') 
-                      ? {textAlign: 'center', padding: '10px'} 
+                      ? {textAlign: 'center', padding: '5px 10px', margin: '0px'} 
                       : (message.username === this.state.username) 
-                        ? {textAlign: 'left', padding: '10px'} 
-                        : {textAlign: 'right', padding: '10px'}
+                        ? {textAlign: 'left', padding: '5px 10px', margin: '0px'} 
+                        : {textAlign: 'right', padding: '5px 10px', margin: '0px'}
                   }
                 >
                   <p>({message.timestamp})<strong> {message.username}:</strong></p>
