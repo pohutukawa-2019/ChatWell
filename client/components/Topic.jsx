@@ -6,7 +6,7 @@ export default function Topic ({ id, topic, toggleTopic }) {
     <li style={{ listStyleType: 'none' }}>
       <Checkbox
         value={id}
-        onChange={() => toggleTopic(id)}
+        onChange={() => toggleTopic(topic)}
         inputProps={{ 'aria-label': topic }}/>
       {topic}
     </li>

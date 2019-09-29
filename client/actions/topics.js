@@ -3,6 +3,7 @@ import fetchTopics from '../api/topics'
 
 export const GET_TOPIC_PENDING = 'GET_TOPIC_PENDING'
 export const GET_TOPIC_SUCCESS = 'GET_TOPIC_SUCCESS'
+export const SELECTED_TOPICS = 'SELECTED_TOPICS'
 
 export function getTopicsPending () {
   return {
@@ -27,5 +28,12 @@ export function getTopics () {
       .catch(err => {
         dispatch(error(err.message))
       })
+  }
+}
+
+export function saveTopics (selectedTopics) {
+  return {
+    type: SELECTED_TOPICS,
+    selectedTopics
   }
 }

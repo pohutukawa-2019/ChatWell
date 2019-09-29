@@ -25,7 +25,6 @@ const socket = (io) => {
           socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableSponsors)
-          socket.emit('system message', 'Found a match!')
           // change room to be available sponsors' room
           room = bestMatch.room
           // join the room with the best match
@@ -65,7 +64,6 @@ const socket = (io) => {
           socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableClients)
-          socket.emit('system message', 'Found a match!')
           // change room to be available clients' room
           room = bestMatch.room
           // join the room with the best match

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getTopics } from '../actions/topics'
+import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 
 class SponsorTopics extends React.Component {
@@ -11,20 +11,25 @@ class SponsorTopics extends React.Component {
   }
 
   componentDidMount () {
-    this.props.getTopics()
+    this.props.dispatch(getTopics())
   }
 
-  toggleTopic = id => {
+  toggleTopic = (topic) => {
     let selection = []
 
-    if (this.state.selectedTopics.includes(id)) {
-      selection = this.state.selectedTopics.filter(topicId => topicId !== id)
+    if (this.state.selectedTopics.includes(topic)) {
+      selection = this.state.selectedTopics.filter(t => t !== topic)
     } else {
       selection = [...this.state.selectedTopics]
-      selection.push(id)
+      selection.push(topic)
     }
 
     this.setState({ selectedTopics: selection })
+  }
+
+  handleContinue = () => {
+    this.props.dispatch(saveTopics(this.state.selectedTopics))
+    this.props.history.push('/register')
   }
 
   render () {
@@ -46,15 +51,14 @@ class SponsorTopics extends React.Component {
               toggleTopic={this.toggleTopic} />
           )}
         </ul>
+        {/* <Link className='pure-button' to='/register'>Continue</Link> */}
         <Link className='pure-button' to='/'>Back to main</Link>
         {' '}
-        <Link className='pure-button' to='/sponsor/register'>Continue</Link>
+        <button className='pure-button' onClick={this.handleContinue}>Continue</button>
       </div>
     )
   }
 }
-
-// this.props.history.push('/register')
 
 const mapStateToProps = state => {
   return {
@@ -64,10 +68,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getTopics: () => dispatch(getTopics())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SponsorTopics)
+export default connect(mapStateToProps)(SponsorTopics)
