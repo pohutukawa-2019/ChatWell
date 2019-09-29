@@ -72,6 +72,7 @@ const socket = (io) => {
           socket.join(room)
           console.log(`Joined Client Room: ${room}`)
           io.in(room).emit('system message', `${userData.username} joined the room!`)
+          io.in(room).emit('system message', `You matched on the following topics: ${bestMatch.sharedTopics}`)
           // find the index of the room in the available sponsors array
           const indexOfClient = availableClients.findIndex((client) => {
             return client.room === room
