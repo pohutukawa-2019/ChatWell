@@ -47,6 +47,8 @@ class Register extends React.Component {
           onClick={ (e) => { this.onSubmit(e) }}></input>
         {/* This takes you to the user responsibility/guidance page: */}
         <Link className='pure-button' to='/guidance'>Guest</Link>
+        {' '}
+        <Link className='pure-button' to='/'>Back to main</Link>
       </GridForm>
       </>
       )

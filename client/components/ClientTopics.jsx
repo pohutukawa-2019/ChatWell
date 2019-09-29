@@ -25,7 +25,8 @@ class ClientTopics extends React.Component {
             <Topic key={`${topic.id}`} id={topic.id} topic={topic} />)}
         </ul>
         <Link className='pure-button' to='/register'>Continue</Link>
-        <br/>
+        {' '}
+        
         <Link className='pure-button' to='/'>Back to main</Link>
       </div>
     )
