@@ -1,21 +1,48 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-// import TopicListItem from './TopicListItem'
+import { getTopics } from '../actions/topics'
+import Topic from './Topic'
 
-function SponsorTopics (props) {
-  return (
-    <div>
-      <h2>I want to talk about...</h2>
-      {/* {props.topics.map(topic => {
-            return <>
-            <TopicListItem
-            key={topic.id}
-            topic={topic}/>
-            </>
-      })} */}
-      <Link className='pure-button' to='/register'>Continue</Link>
-    </div>
-  )
+class SponsorTopics extends React.Component {
+  componentDidMount () {
+    this.props.getTopics()
+  }
+  render () {
+    const { topics, pending, error } = this.props
+    console.log(this.props)
+
+    if (pending) {
+      return <div>LOADING...</div>
+    }
+
+    return (
+      <div>
+        {error && <div>{error}</div>}
+        <h2>I can help with...</h2>
+        <ul>
+          {topics.map(topic =>
+            <Topic key={`${topic.id}`} id={topic.id} topic={topic} />)}
+        </ul>
+        <Link className='pure-button' to='/register'>Continue</Link>
+      </div>
+    )
+  }
 }
-export default SponsorTopics
+
+const mapStateToProps = state => {
+  return {
+    topics: state.topics,
+    pending: state.pending,
+    error: state.error
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getTopics: () => dispatch(getTopics())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SponsorTopics)
