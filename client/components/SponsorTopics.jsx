@@ -14,14 +14,14 @@ class SponsorTopics extends React.Component {
     this.props.getTopics()
   }
 
-  toggleTopic = id => {
+  toggleTopic = (id, topic) => {
     let selection = []
 
     if (this.state.selectedTopics.includes(id)) {
       selection = this.state.selectedTopics.filter(topicId => topicId !== id)
     } else {
       selection = [...this.state.selectedTopics]
-      selection.push(id)
+      selection.push(topic)
     }
 
     this.setState({ selectedTopics: selection })
