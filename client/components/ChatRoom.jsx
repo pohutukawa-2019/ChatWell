@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import Button from './elements/Button'
 
 const socket = io.connect()
 
 export default class ChatRoom extends Component {
-
   state = {
     message: '',
     username: this.props.username || 'anonymous',
@@ -22,33 +22,33 @@ export default class ChatRoom extends Component {
   }
 
   initSocket = () => {
-    socket.on('connect', () => {
-      console.log('Client connected to server')
-    })
-    socket.on('new message', (messagePackage) => {
-      this.setState({
-        messages: [
-          ...this.state.messages,
-          `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
-        ]
+      socket.on('connect', () => {
+        console.log("Client connected to server")
       })
-    })
-    socket.on('system message', (message) => {
-      message = `System: ${message}`
-      this.setState({
-        messages: [...this.state.messages, message]
+      socket.on('new message', (messagePackage) => {
+        this.setState({
+          messages: [
+            ...this.state.messages, 
+            `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
+          ]
+        })
       })
-    })
-    socket.on('confirm disconnect', () => {
-      socket.emit('unsubscribe')
-      this.setState({
-        isConnected: false,
-        messages: [
-          'System: A user has left the session. Session ended.',
-          'System: Hit the connect button to find new pair!'
-        ]
+      socket.on('system message', (message) => {
+        message = `System: ${message}`
+        this.setState({
+          messages: [...this.state.messages, message]
+        })
       })
-    })
+      socket.on('confirm disconnect', () => {
+        socket.emit('unsubscribe')
+        this.setState({
+          isConnected: false,
+          messages: [
+            'System: A user has left the session. Session ended.',
+            'System: Hit the connect button to find new pair!'
+          ]
+        })
+      })
   }
 
   messageInputHandler = (evt) => {
@@ -71,7 +71,6 @@ export default class ChatRoom extends Component {
     this.setState({
       message: ''
     })
-    socket.emit('send message', this.state.message)
   }
 
   connectHandler = () => {
@@ -115,12 +114,13 @@ export default class ChatRoom extends Component {
         })}
         <form onSubmit={this.messageSendHandler}>
           <input type="text" value={this.state.message} onChange={this.messageInputHandler}/>
-          <button type="submit">Send</button>
+          <Button type="submit">Send</Button>
         </form>
         <br />
-        {!this.state.isConnected && <button type="button" onClick={this.connectHandler}>Connnect</button>}
-        {this.state.isConnected && <button type="button" onClick={this.disconnectHandler}>Disconnect</button>}
-        <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
+        {!this.state.isConnected && <Button type="button" onClick={this.connectHandler}>Connnect</Button>}
+        <br />
+        {this.state.isConnected && <Button type="button" onClick={this.disconnectHandler}>Disconnect</Button>}
+        <Button onClick={this.switchUsertype}>Current State: {this.state.usertype}</Button>
       </>
     )
   }

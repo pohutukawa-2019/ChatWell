@@ -12,8 +12,8 @@ import SponsorTopics from './components/SponsorTopics'
 import Register from './components/Register'
 import SponsorRegister from './components/SponsorRegister'
 import Guidance from './components/Guidance'
+import SponsorGuidance from './components/SponsorGuidance'
 import Pair from './components/Pair'
-import ChatRoom from './components/ChatRoom'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path='/register' component={Register} />
           <Route path='/sponsor/register' component={SponsorRegister} />
           <Route path='/guidance' component={Guidance} />
-          <Route path="/pair" component={Pair} />
-          <Route path='/ChatRoom' component={ChatRoom} />
+          <Route path='/sponsor/guidance' component={SponsorGuidance} />
+          <Route path='/pair' component={Pair} />
         </Provider>
       </Switch>
     </HashRouter>,
