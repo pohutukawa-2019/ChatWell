@@ -29,25 +29,29 @@ class Register extends React.Component {
     render () {
       return (
       <>
-      <ColOne>Create a username and password</ColOne>
       <GridForm>
-        <ColOne>Username</ColOne>
+        <ColOne>Enter Nickname</ColOne>
         {/* add username input field below: */}
-        <ColTwo name = "username"
+        {/* <ColTwo name = "username"
           value = 'username'
-          onChange={ (e) => { this.handleChange(e) }} />
-        <ColOne>Password</ColOne>
-        <ColTwo name = 'password'
+          onChange={ (e) => { this.handleChange(e) }} /> */}
+        <input type="text"/>
+        {/* <ColOne>Password</ColOne> */}
+        {/* <ColTwo name = 'password'
           value = 'password'
-          onChange={ (e) => { this.handleChange(e) }} />
-        <Button onClick={ (e) => { this.onSubmit(e) }}>Register</Button>
+          onChange={ (e) => { this.handleChange(e) }} /> */}
+        {/* <Button onClick={ (e) => { this.onSubmit(e) }}>Register</Button> */}
         <h2>OR</h2>
-        <h3>Auto Generate Username</h3>
-        <input type="submit" name="guestLogin" value="Guest User "
-          onClick={ (e) => { this.onSubmit(e) }}></input>
+        <h3>Auto Generate Nickname</h3>
+        {/* <input type="submit" name="guestLogin" value="Guest User "
+          onClick={ (e) => { this.onSubmit(e) }}></input> */}
+        <button type="submit" name="guestLogin" value="Guest User "
+          onClick={ (e) => { this.onSubmit(e) }}>Random Nickname</button>
         {/* This takes you to the user responsibility/guidance page: */}
-        <Link className='pure-button' to='/guidance'>Guest</Link>
         {' '}
+        <span>{this.state.avatar}{this.state.username}</span>
+        <Link className='pure-button' to='/guidance'>Accept</Link>
+        
         <Link className='pure-button' to='/'>Back to main</Link>
       </GridForm>
       </>
