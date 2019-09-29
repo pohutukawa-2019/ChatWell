@@ -47,7 +47,7 @@ class SponsorTopics extends React.Component {
           )}
         </ul>
         <Link className='pure-button' to='/register'>Continue</Link>
-        <br/>
+        {' '}
         <Link className='pure-button' to='/'>Back to main</Link>
       </div>
     )
