@@ -11,7 +11,7 @@ class App extends React.Component {
       <div className='App'>
         <div className='App-header'>
           <h1>Chat Well</h1>
-          <Link className='pure-button' to='/topics'>I want to get help </Link>
+          <Link className='pure-button' to='/topics'>I need help </Link>
           {' '}
           <Link className='pure-button' to='/sponsor/topics'>I want to help</Link>
         </div>
