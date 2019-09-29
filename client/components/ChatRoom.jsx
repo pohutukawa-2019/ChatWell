@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import io from 'socket.io-client'
 
 import { 
@@ -14,7 +15,7 @@ import {
 
 const socket = io.connect()
 
-export default class ChatRoom extends Component {
+class ChatRoom extends Component {
 
   state = {
     message: '',
@@ -41,7 +42,6 @@ export default class ChatRoom extends Component {
         console.log("Client connected to server")
     })
     socket.on('new message', (messagePackage) => {
-      console.log(messagePackage)
       this.setState({
         messages: [
           ...this.state.messages, 
@@ -95,15 +95,21 @@ export default class ChatRoom extends Component {
 
   messageSendHandler = (evt) => {
     evt.preventDefault()
-    const messagePackage = {
-      message: this.state.message,
-      username: this.state.username,
-      timestamp: createTimeStamp()
+    if (/\S/.test(this.state.message)) {
+      const messagePackage = {
+        message: this.state.message,
+        username: this.state.username,
+        timestamp: createTimeStamp()
+      }
+      socket.emit('send message', messagePackage)
+      this.setState({
+        message: ''
+      })
+    } else {
+      this.setState({
+        message: ''
+      })
     }
-    socket.emit('send message', messagePackage)
-    this.setState({
-      message: ''
-    })
   }
 
   connectHandler = () => {
@@ -170,12 +176,20 @@ export default class ChatRoom extends Component {
           {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >Connect</ConnectionButton>}
           {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
           <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
-          <Link className='pure-button' to='/'>Back to main</Link>
+          <Link onClick={this.disconnectHandler} className='pure-button' to='/'>Back to main</Link>
         </FlexContainer>
       </>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    topics: state.topics
+  }
+}
+
+export default connect(mapStateToProps)(ChatRoom)
 
 const createTimeStamp = () => {
   const time = new Date()

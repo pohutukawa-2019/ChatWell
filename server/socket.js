@@ -22,7 +22,6 @@ const socket = (io) => {
       if (usertype === 'client') {
         // if an available sponsor exists
         if (availableSponsors.length > 0) {
-          socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableSponsors)
           // change room to be available sponsors' room
@@ -31,7 +30,10 @@ const socket = (io) => {
           socket.join(room)
           console.log(`Joined Sponsor Room: ${room}`)
           io.in(room).emit('system message', `${userData.username} joined the room!`)
-          io.in(room).emit('system message', `You matched on the following topics: ${bestMatch.sharedTopics}`)
+          const stringifiedTopics = bestMatch.sharedTopics.map((topic) => {
+            return ` ${topic}`
+          })
+          io.in(room).emit('system message', `You matched on the following topics: ${stringifiedTopics}`)
           // find the index of the room in the available sponsors array
           const indexOfSponsor = availableSponsors.findIndex((sponsor) => {
             return sponsor.room === room
@@ -61,7 +63,6 @@ const socket = (io) => {
       else {
         // if an available client exists
         if (availableClients.length > 0) {
-          socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableClients)
           // change room to be available clients' room
@@ -70,7 +71,10 @@ const socket = (io) => {
           socket.join(room)
           console.log(`Joined Client Room: ${room}`)
           io.in(room).emit('system message', `${userData.username} joined the room!`)
-          io.in(room).emit('system message', `You matched on the following topics: ${bestMatch.sharedTopics}`)
+          const stringifiedTopics = bestMatch.sharedTopics.map((topic) => {
+            return ` ${topic}`
+          })
+          io.in(room).emit('system message', `You matched on the following topics: ${stringifiedTopics}`)
           // find the index of the room in the available sponsors array
           const indexOfClient = availableClients.findIndex((client) => {
             return client.room === room
@@ -151,23 +155,3 @@ const removeIfAvailable = (room) => {
     console.log(`User ${room} removed from availableSponsors`)
   }
 }
-
-// Available Clients Dummy Data
-// {  room: 'clientnocFS0zZg6DjOOKjAAAA',
-//    username: 'anonymous',
-//    usertype: 'sponsor',
-//    topics: [ 'Depression' ] },
-// { room: 'clientdasdfasdfasdfA',
-//   username: 'anonymous',
-//   usertype: 'sponsor',
-//   topics: [ 'Depression', 'Anxiety' ] }
-
-// Available Sponsors Dummy Data
-// { room: 'sponsornocFS0zZg6DjOOKjAAAA',
-//   username: 'anonymous',
-//   usertype: 'sponsor',
-//   topics: [ 'Depression' ] },
-// { room: 'sponsordasdfasdfasdfA',
-//   username: 'anonymous',
-//   usertype: 'sponsor',
-//   topics: [ 'Depression', 'Anxiety' ] }
