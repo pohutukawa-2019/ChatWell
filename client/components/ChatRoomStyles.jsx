@@ -20,7 +20,6 @@ export const MessagesContainer = styled.div`
 export const SendMessageForm = styled.form`
   width: 50vw;
   height: 5vh;
-  background: purple;
   flex-wrap: wrap;
 `
 export const MessageInput = styled.input`
@@ -29,6 +28,7 @@ export const MessageInput = styled.input`
   width: 85%;
   padding: 0px;
   border: none;
+  border-radius: 0px;
   background: #ECECEC;
   font-size: 25px;
 `

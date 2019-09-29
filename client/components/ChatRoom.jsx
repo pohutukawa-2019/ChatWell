@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import io from 'socket.io-client'
 
 import { 
@@ -17,7 +18,7 @@ export default class ChatRoom extends Component {
 
   state = {
     message: '',
-    username: this.props.username || 'Anonymous',
+    username: this.props.username || 'Anon',
     usertype: this.props.usertype || 'client',
     messages: [{
       username: 'System',
@@ -38,46 +39,46 @@ export default class ChatRoom extends Component {
   initSocket = () => {
     socket.on('connect', () => {
         console.log("Client connected to server")
+    })
+    socket.on('new message', (messagePackage) => {
+      console.log(messagePackage)
+      this.setState({
+        messages: [
+          ...this.state.messages, 
+          messagePackage
+        ]
       })
-      socket.on('new message', (messagePackage) => {
-        this.setState({
-          messages: [
-            ...this.state.messages, 
-            messagePackage
-          ]
-        })
-        this.scroll()
+      this.scroll()
+    })
+    socket.on('system message', (message) => {
+      message = {
+        username: 'System',
+        message: message,
+        timestamp: createTimeStamp()
+      }
+      this.setState({
+        messages: [...this.state.messages, message]
       })
-      socket.on('system message', (message) => {
-        message = {
-          username: 'System',
-          message: message,
-          timestamp: createTimeStamp()
-        }
-        this.setState({
-          messages: [...this.state.messages, message]
-        })
-        this.scroll()
+      this.scroll()
+    })
+    socket.on('confirm disconnect', () => {
+      socket.emit('unsubscribe')
+      this.setState({
+        isConnected: false,
+        messages: [
+          {
+            username: 'System',
+            message: 'A user has left the session. Session ended.',
+            timestamp: createTimeStamp()
+          },
+          {
+            username: 'System',
+            message: 'Hit the connect button to find a new pair!',
+            timestamp: createTimeStamp()
+          }
+        ]
       })
-      socket.on('confirm disconnect', () => {
-        socket.emit('unsubscribe')
-        this.setState({
-          isConnected: false,
-          messages: [
-            {
-              username: 'System',
-              message: 'A user has left the session. Session ended.',
-              timestamp: createTimeStamp()
-            },
-            {
-              username: 'System',
-              message: 'Hit the connect button to find a new pair!',
-              timestamp: createTimeStamp()
-            }
-          ]
-        })
-        this.scroll()
-      })
+      this.scroll()
     })
   }
 
@@ -103,7 +104,6 @@ export default class ChatRoom extends Component {
     this.setState({
       message: ''
     })
-    socket.emit('send message', this.state.message)
   }
 
   connectHandler = () => {
@@ -170,6 +170,7 @@ export default class ChatRoom extends Component {
           {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >Connect</ConnectionButton>}
           {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
           <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
+          <Link className='pure-button' to='/'>Back to main</Link>
         </FlexContainer>
       </>
     )
