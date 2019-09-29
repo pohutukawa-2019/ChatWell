@@ -11,7 +11,6 @@ class ClientTopics extends React.Component {
   }
   render () {
     const { topics, pending, error } = this.props
-    console.log(this.props)
     if (pending) {
       return <div>LOADING...</div>
     }
@@ -28,10 +27,8 @@ class ClientTopics extends React.Component {
         <br/>
         <Link className='pure-button' to='/'>Back to main</Link>
       </div>
-      <Link className='pure-button' to='/register'>Continue</Link>
-    </div>
-  )
-}
+    )
+  }
 }
 
 const mapStateToProps = state => {
