@@ -28,8 +28,10 @@ const matchTopics = (user, availableUsers) => {
 module.exports = matchTopics
 
 // This is O(n^3) - really inefficient
-// To improve, could make it stop when it finds an exact match or:
-// to make this more efficient, reverse it
+// To improve, could make it stop when it finds an exact match
+// eg: if score === user.topics.length, return that match
+// or:
+// to make this even more efficient, reverse it
 // store all topics as arrays in an object and add the sponsor to the topic
 // that way only the topics are being looped through on multiple levels
 // rather than looping through the pool of available users on multiple levels, which can grow exponentially

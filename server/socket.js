@@ -2,26 +2,8 @@
 
 const matchTopics = require('./algo')
 
-let availableClients = [
-  // {  room: 'clientnocFS0zZg6DjOOKjAAAA',
-  //    username: 'anonymous',
-  //    usertype: 'sponsor',
-  //    topics: [ 'Depression' ] },
-  // { room: 'clientdasdfasdfasdfA',
-  //   username: 'anonymous',
-  //   usertype: 'sponsor',
-  //   topics: [ 'Depression', 'Anxiety' ] }
-]
-let availableSponsors = [
-  // { room: 'sponsornocFS0zZg6DjOOKjAAAA',
-  //   username: 'anonymous',
-  //   usertype: 'sponsor',
-  //   topics: [ 'Depression' ] },
-  // { room: 'sponsordasdfasdfasdfA',
-  //   username: 'anonymous',
-  //   usertype: 'sponsor',
-  //   topics: [ 'Depression', 'Anxiety' ] }
-]
+let availableClients = []
+let availableSponsors = []
 
 const socket = (io) => {
   // Connect on page load
@@ -40,13 +22,16 @@ const socket = (io) => {
       if (usertype === 'client') {
         // if an available sponsor exists
         if (availableSponsors.length > 0) {
+          socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableSponsors)
+          socket.emit('system message', 'Found a match!')
           // change room to be available sponsors' room
           room = bestMatch.room
           // join the room with the best match
           socket.join(room)
           console.log(`Joined Sponsor Room: ${room}`)
+          io.in(room).emit('system message', `${userData.username} joined the room!`)
           // find the index of the room in the available sponsors array
           const indexOfSponsor = availableSponsors.findIndex((sponsor) => {
             return sponsor.room === room
@@ -56,6 +41,7 @@ const socket = (io) => {
           console.log('Remaining available Sponsors:')
           console.log(availableSponsors)
         } else {
+          socket.emit('system message', 'No current available users!')
           // otherwise, create an available client room
           socket.join(room)
           console.log(`Created new Client Room: ${room}`)
@@ -68,19 +54,23 @@ const socket = (io) => {
           availableClients.push(newAvailableClient)
           console.log('Available Clients:')
           console.log(availableClients)
+          socket.emit('system message', 'Waiting for a user to connect...')
         }
       }
       // as a sponsor:
       else {
         // if an available client exists
         if (availableClients.length > 0) {
+          socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableClients)
+          socket.emit('system message', 'Found a match!')
           // change room to be available clients' room
           room = bestMatch.room
           // join the room with the best match
           socket.join(room)
           console.log(`Joined Client Room: ${room}`)
+          io.in(room).emit('system message', `${userData.username} joined the room!`)
           // find the index of the room in the available sponsors array
           const indexOfClient = availableClients.findIndex((client) => {
             return client.room === room
@@ -90,6 +80,7 @@ const socket = (io) => {
           console.log('Remaining available Clients:')
           console.log(availableClients)
         } else {
+          socket.emit('system message', 'No current available users!')
           // otherwise, create an available sponsor room
           socket.join(room)
           console.log(`Created new Sponsor room: ${room}`)
@@ -102,6 +93,7 @@ const socket = (io) => {
           availableSponsors.push(newAvailableSponsor)
           console.log('Available Sponsors:')
           console.log(availableSponsors)
+          socket.emit('system message', 'Waiting for a user to connect...')
         }
       }
     })
@@ -159,3 +151,23 @@ const removeIfAvailable = (room) => {
     console.log(`User ${room} removed from availableSponsors`)
   }
 }
+
+// Available Clients Dummy Data
+// {  room: 'clientnocFS0zZg6DjOOKjAAAA',
+//    username: 'anonymous',
+//    usertype: 'sponsor',
+//    topics: [ 'Depression' ] },
+// { room: 'clientdasdfasdfasdfA',
+//   username: 'anonymous',
+//   usertype: 'sponsor',
+//   topics: [ 'Depression', 'Anxiety' ] }
+
+// Available Sponsors Dummy Data
+// { room: 'sponsornocFS0zZg6DjOOKjAAAA',
+//   username: 'anonymous',
+//   usertype: 'sponsor',
+//   topics: [ 'Depression' ] },
+// { room: 'sponsordasdfasdfasdfA',
+//   username: 'anonymous',
+//   usertype: 'sponsor',
+//   topics: [ 'Depression', 'Anxiety' ] }
