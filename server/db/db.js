@@ -7,7 +7,7 @@ function getTopicList (db = connection) {
 
 function getTopicById (id, db = connection) {
   return db('topics')
-    .where('id', id).first()
+    .where('topics.id', id).first()
 }
 
 module.exports = {
