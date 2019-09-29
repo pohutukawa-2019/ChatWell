@@ -18,7 +18,11 @@ export default class ChatRoom extends Component {
     message: '',
     username: this.props.username || 'Anonymous',
     usertype: this.props.usertype || 'client',
-    messages: ['System: Hit the connect button to find a pair!'],
+    messages: [{
+      username: 'System',
+      message: 'Hit the connect button to find a pair!',
+      timestamp: createTimeStamp()
+    }],
     isConnected: false,
     topics: this.props.topics || [
       'Depression',
@@ -38,12 +42,16 @@ export default class ChatRoom extends Component {
         this.setState({
           messages: [
             ...this.state.messages, 
-            `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
+            messagePackage
           ]
         })
       })
       socket.on('system message', (message) => {
-        message = `System: ${message}`
+        message = {
+          username: 'System',
+          message: message,
+          timestamp: createTimeStamp()
+        }
         this.setState({
           messages: [...this.state.messages, message]
         })
@@ -53,8 +61,16 @@ export default class ChatRoom extends Component {
         this.setState({
           isConnected: false,
           messages: [
-            'System: A user has left the session. Session ended.',
-            'System: Hit the connect button to find new pair!'
+            {
+              username: 'System',
+              message: 'A user has left the session. Session ended.',
+              timestamp: createTimeStamp()
+            },
+            {
+              username: 'System',
+              message: 'Hit the connect button to find a new pair!',
+              timestamp: createTimeStamp()
+            }
           ]
         })
       })
@@ -68,32 +84,10 @@ export default class ChatRoom extends Component {
 
   messageSendHandler = (evt) => {
     evt.preventDefault()
-    const time = new Date()
-    const hours = time.getHours()
-    let fixedHours = ''
-    if (hours < 10) {
-      fixedHours = `0${hours}`
-    } else {
-      fixedHours = String(hours)
-    }
-    const minutes = time.getMinutes()
-    let fixedMinutes = ''
-    if (minutes < 10) {
-      fixedMinutes = `0${minutes}`
-    } else {
-      fixedMinutes = String(minutes)
-    }
-    const seconds = time.getSeconds()
-    let fixedSeconds = ''
-    if (seconds < 10) {
-      fixedSeconds = `0${seconds}`
-    } else {
-      fixedSeconds = String(seconds)
-    }
     const messagePackage = {
       message: this.state.message,
       username: this.state.username,
-      time: `${fixedHours}:${fixedMinutes}:${fixedSeconds}`
+      timestamp: createTimeStamp()
     }
     socket.emit('send message', messagePackage)
     this.setState({
@@ -140,7 +134,22 @@ export default class ChatRoom extends Component {
           <h2>Chat Well</h2>
           <MessagesContainer>
             {this.state.messages.map((message, i) => {
-              return <p key={i}>{message}</p>
+              return (
+                <div key={i} 
+                  style={
+                    (message.username === 'System') 
+                      ? {textAlign: 'center', padding: '10px'} 
+                      : (message.username === this.state.username) 
+                        ? {textAlign: 'left', padding: '10px'} 
+                        : {textAlign: 'right', padding: '10px'}
+                  }
+                >
+                  <p>({message.timestamp})<strong> {message.username}:</strong></p>
+                  <p>
+                    {(message.username === 'System') ? <i>{message.message}</i> : message.message}
+                  </p>
+                </div>
+              )
             })}
           </MessagesContainer>
           <SendMessageForm onSubmit={this.messageSendHandler}>
@@ -154,4 +163,30 @@ export default class ChatRoom extends Component {
       </>
     )
   }
+}
+
+const createTimeStamp = () => {
+  const time = new Date()
+  const hours = time.getHours()
+  let fixedHours = ''
+  if (hours < 10) {
+    fixedHours = `0${hours}`
+  } else {
+    fixedHours = String(hours)
+  }
+  const minutes = time.getMinutes()
+  let fixedMinutes = ''
+  if (minutes < 10) {
+    fixedMinutes = `0${minutes}`
+  } else {
+    fixedMinutes = String(minutes)
+  }
+  const seconds = time.getSeconds()
+  let fixedSeconds = ''
+  if (seconds < 10) {
+    fixedSeconds = `0${seconds}`
+  } else {
+    fixedSeconds = String(seconds)
+  }
+  return `${fixedHours}:${fixedMinutes}:${fixedSeconds}`
 }
