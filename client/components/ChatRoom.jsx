@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import Button from './elements/Button'
 
 const socket = io.connect('http://localhost:3000')
-
 export default class ChatRoom extends Component {
-
   state = {
     message: '',
     username: this.props.username || 'anonymous',
@@ -17,20 +16,20 @@ export default class ChatRoom extends Component {
     ]
   }
 
-  componentDidMount() {
-      this.initSocket()
+  componentDidMount () {
+    this.initSocket()
   }
 
   initSocket = () => {
-      socket.on('connect', () => {
-        console.log("Client connected to server")
-      })
-      // if not connected, append something like 'theres no one here right now!'
-      // also change message to be an object containing the sender
-      // and time the message was sent, and display these alongside the message
-      socket.on('new message', (message) => {
-        this.setState({
-          messages: [...this.state.messages, message]
+    socket.on('connect', () => {
+      console.log('Client connected to server')
+    })
+    // if not connected, append something like 'theres no one here right now!'
+    // also change message to be an object containing the sender
+    // and time the message was sent, and display these alongside the message
+    socket.on('new message', (message) => {
+      this.setState({
+        messages: [...this.state.messages, message]
       })
       socket.on('confirm disconnect', () => {
         socket.emit('unsubscribe')
@@ -92,18 +91,19 @@ export default class ChatRoom extends Component {
     return (
       <>
         <h1>This is the chat component</h1>
-        <h2>Messages:</h2>
+        <h3>Messages:</h3>
         {this.state.messages.map((message, i) => {
           return <p key={i}>{message}</p>
         })}
         <form onSubmit={this.messageSendHandler}>
           <input type="text" value={this.state.message} onChange={this.messageInputHandler}/>
-          <button type="submit">Send</button>
+          <Button type="submit">Send</Button>
         </form>
         <br />
-        {!this.state.isConnected && <button type="button" onClick={this.connectHandler}>Connnect</button>}
-        {this.state.isConnected && <button type="button" onClick={this.disconnectHandler}>Disconnect</button>}
-        <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
+        {!this.state.isConnected && <Button type="button" onClick={this.connectHandler}>Connnect</Button>}
+        <br />
+        {this.state.isConnected && <Button type="button" onClick={this.disconnectHandler}>Disconnect</Button>}
+        <Button onClick={this.switchUsertype}>Current State: {this.state.usertype}</Button>
       </>
     )
   }

@@ -1,29 +1,40 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
+import Button from './elements/Button'
+import H2 from './elements/H2'
 // import Utilities from './Utilities'
+
+const theme = {
+  primary: '#1B668C',
+  secondary: '#5CB0D9',
+  margin: 'auto',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
+}
 
 class SponsorRegister extends React.Component {
   render () {
     return (
-      <>
-      <h2>Create a username and password</h2>
-       <label>Username</label>
-  {/* add username input field below: */}
+      <ThemeProvider theme={theme}>
+        <H2>Create Account</H2>
+        <h3>Create a username and password</h3>
+        <label>Username</label>
+        {/* add username input field below: */}
         <input type = "text"
-          id = "sponsor-username"
+          id = "client-username"
           value = "your username" />
-       <label>Password</label>
+        <label>Password</label>
         <input type = "password"
-          id = "sponsor-password"
+          id = "client-password"
           value = "your secret password" />
-       <h2>OR</h2>
-       <h3>Auto Generate Username</h3>
- {/* link to Utilities component to autogenerate username: */}
-       {/* <Utilities /> */}
- {/* This takes you to the user responsibility/guidance page: */}
-       <Link className='pure-button' to='/guidance'>Continue</Link>
-      </>
+        <h3>OR</h3>
+        <h3>Auto Generate Username</h3>
+        {/* link to Utilities component to autogenerate username: */}
+        {/* <Utilities /> */}
+        {/* This takes you to the user responsibility/guidance page: */}
+        <Link to='/sponsor/guidance'><Button color="primary">CONTINUE</Button></Link>
+      </ThemeProvider>
     )
   }
 }

@@ -1,13 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import ChatRoom from './ChatRoom'
+import H2 from './elements/H2'
 
 class Pair extends React.Component {
   render () {
     return (
       <>
-      <h2>Pair with someone</h2>
-      {/* the chat room goes here */}
+      <H2>Pair with someone</H2>
+      <ChatRoom />
       </>
     )
   }
