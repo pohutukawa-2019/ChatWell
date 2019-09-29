@@ -1,8 +1,10 @@
 import React from 'react'
+import Topic from './Topic'
 
 const Checkbox = ({ label, isSelected, onCheckboxChange }) => (
   <div className="form-check">
     <label>
+      <Topic />
       <input
         type="checkbox"
         name={label}

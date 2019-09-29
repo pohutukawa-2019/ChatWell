@@ -92,13 +92,6 @@ render () {
           </div>
         </div>
       </div>
-      {/* {props.topics.map(topic => {
-              return <>
-              <TopicListItem
-              key={topic.id}
-              topic={topic}/>
-              </>
-        })} */}
       <Link className='pure-button' to='/register'>Continue</Link>
     </div>
   )

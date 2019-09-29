@@ -4,7 +4,6 @@ import request from 'superagent'
 const topicPath = '/api/topics'
 
 export default function fetchTopics () {
-  console.log('hi')
   // return makeRequest(topicPath)
     // .then((topic) => console.log(`test ${topic}`))
     return request
