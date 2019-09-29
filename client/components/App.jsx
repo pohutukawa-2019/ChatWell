@@ -4,26 +4,26 @@ import { Link } from 'react-router-dom'
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 // import GetHelpButton from './GetHelpButton'
 // import ToHelpButton from './ToHelpButton'
-import { getUserType } from '../actions/typeOfUser'
+import { userTypeSelected } from '../actions/typeOfUser'
 
 class App extends React.Component {
   state = {
-    userType: ''
+    userType: []
   }
 
   componentDidMount () {
-    this.props.getUserType()
+    this.props.dispatch(userTypeSelected())
   }
 
   handleClient = () => {
-    this.props.getUserType(this.state)
+    this.props.dispatch(userTypeSelected(this.state))
     this.setState({
       userType: 'client'
     })
   }
 
   handleSponsor = () => {
-    this.props.getUserType(this.state)
+    this.props.dispatch(userTypeSelected(this.state))
     this.setState({
       userType: 'sponsor'
     })
@@ -48,11 +48,11 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUserType: id => dispatch(getUserType(this.state))
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getUserType: id => dispatch(getUserType(this.state))
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)
 // export default App

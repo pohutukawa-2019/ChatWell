@@ -4,7 +4,7 @@ import fetchUser from '../api/userType'
 export const GET_USERTYPE_PENDING = 'GET_USERTYPE_PENDING'
 export const GET_USERTYPE_SUCCESS = 'GET_USERTYPE_SUCCESS'
 
-export function getUserTypePending () {
+export function userTypeSelected () {
   return {
     type: GET_USERTYPE_PENDING
   }
@@ -19,7 +19,7 @@ export function getUserSuccess (userType) {
 
 export function getUserType () {
   return dispatch => {
-    dispatch(getUserTypePending())
+    dispatch(userTypeSelected())
     return fetchUser()
       .then(userType => {
         dispatch(getUserSuccess(userType))
