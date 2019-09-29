@@ -25,7 +25,6 @@ const socket = (io) => {
           socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableSponsors)
-          socket.emit('system message', 'Found a match!')
           // change room to be available sponsors' room
           room = bestMatch.room
           // join the room with the best match
@@ -65,13 +64,13 @@ const socket = (io) => {
           socket.emit('system message', 'Searching for the best match...')
           // scan for best match
           const bestMatch = matchTopics(userData, availableClients)
-          socket.emit('system message', 'Found a match!')
           // change room to be available clients' room
           room = bestMatch.room
           // join the room with the best match
           socket.join(room)
           console.log(`Joined Client Room: ${room}`)
           io.in(room).emit('system message', `${userData.username} joined the room!`)
+          io.in(room).emit('system message', `You matched on the following topics: ${bestMatch.sharedTopics}`)
           // find the index of the room in the available sponsors array
           const indexOfClient = availableClients.findIndex((client) => {
             return client.room === room

@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 
+import { 
+  MessagesContainer,
+  FlexContainer,
+  SendMessageForm,
+  SendButton,
+  MessageInput,
+  ConnectionButton
+} from './ChatRoomStyles'
+
 const socket = io.connect()
 
 export default class ChatRoom extends Component {
 
   state = {
     message: '',
-    username: this.props.username || 'anonymous',
+    username: this.props.username || 'Anonymous',
     usertype: this.props.usertype || 'client',
     messages: ['System: Hit the connect button to find a pair!'],
     isConnected: false,
@@ -61,11 +70,30 @@ export default class ChatRoom extends Component {
     evt.preventDefault()
     const time = new Date()
     const hours = time.getHours()
+    let fixedHours = ''
+    if (hours < 10) {
+      fixedHours = `0${hours}`
+    } else {
+      fixedHours = String(hours)
+    }
     const minutes = time.getMinutes()
+    let fixedMinutes = ''
+    if (minutes < 10) {
+      fixedMinutes = `0${minutes}`
+    } else {
+      fixedMinutes = String(minutes)
+    }
+    const seconds = time.getSeconds()
+    let fixedSeconds = ''
+    if (seconds < 10) {
+      fixedSeconds = `0${seconds}`
+    } else {
+      fixedSeconds = String(seconds)
+    }
     const messagePackage = {
       message: this.state.message,
       username: this.state.username,
-      time: `${hours}:${minutes}`
+      time: `${fixedHours}:${fixedMinutes}:${fixedSeconds}`
     }
     socket.emit('send message', messagePackage)
     this.setState({
@@ -108,18 +136,21 @@ export default class ChatRoom extends Component {
   render () {
     return (
       <>
-        <h2>Messages:</h2>
-        {this.state.messages.map((message, i) => {
-          return <p key={i}>{message}</p>
-        })}
-        <form onSubmit={this.messageSendHandler}>
-          <input type="text" value={this.state.message} onChange={this.messageInputHandler}/>
-          <button type="submit">Send</button>
-        </form>
-        <br />
-        {!this.state.isConnected && <button type="button" onClick={this.connectHandler}>Connnect</button>}
-        {this.state.isConnected && <button type="button" onClick={this.disconnectHandler}>Disconnect</button>}
-        <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
+        <FlexContainer>
+          <h2>Chat Well</h2>
+          <MessagesContainer>
+            {this.state.messages.map((message, i) => {
+              return <p key={i}>{message}</p>
+            })}
+          </MessagesContainer>
+          <SendMessageForm onSubmit={this.messageSendHandler}>
+            <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} />
+            <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
+          </SendMessageForm>
+          {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >Connect</ConnectionButton>}
+          {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
+          <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
+        </FlexContainer>
       </>
     )
   }
