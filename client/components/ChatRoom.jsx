@@ -7,7 +7,8 @@ import {
   SendMessageForm,
   SendButton,
   MessageInput,
-  ConnectionButton
+  ConnectionButton,
+  Message
 } from './ChatRoomStyles'
 
 const socket = io.connect()
@@ -45,7 +46,7 @@ export default class ChatRoom extends Component {
             messagePackage
           ]
         })
-      //scroll to bottom https://www.freecodecamp.org/news/building-a-modern-chat-application-with-react-js-558896622194/
+        this.scroll()
       })
       socket.on('system message', (message) => {
         message = {
@@ -56,6 +57,7 @@ export default class ChatRoom extends Component {
         this.setState({
           messages: [...this.state.messages, message]
         })
+        this.scroll()
       })
       socket.on('confirm disconnect', () => {
         socket.emit('unsubscribe')
@@ -74,7 +76,13 @@ export default class ChatRoom extends Component {
             }
           ]
         })
+        this.scroll()
       })
+  }
+
+  scroll = () => {
+    const messageContainer = document.getElementById('scroll-container')
+    messageContainer.scrollTop = messageContainer.scrollHeight
   }
 
   messageInputHandler = (evt) => {
@@ -133,7 +141,7 @@ export default class ChatRoom extends Component {
       <>
         <FlexContainer>
           <h2>Chat Well</h2>
-          <MessagesContainer>
+          <MessagesContainer id='scroll-container'>
             {this.state.messages.map((message, i) => {
               return (
                 <div key={i} 
@@ -141,14 +149,14 @@ export default class ChatRoom extends Component {
                     (message.username === 'System') 
                       ? {textAlign: 'center', padding: '5px 10px', margin: '0px'} 
                       : (message.username === this.state.username) 
-                        ? {textAlign: 'left', padding: '5px 10px', margin: '0px'} 
-                        : {textAlign: 'right', padding: '5px 10px', margin: '0px'}
+                        ? {textAlign: 'left', padding: '5px 30px', margin: '0px'} 
+                        : {textAlign: 'right', padding: '5px 30px', margin: '0px'}
                   }
                 >
-                  <p>({message.timestamp})<strong> {message.username}:</strong></p>
-                  <p>
+                  <p style={(message.username !== 'System') ? {marginTop: '0px'} : null }>({message.timestamp})<strong> {message.username}:</strong></p>
+                  <Message user={message.username !== 'System'}>
                     {(message.username === 'System') ? <i>{message.message}</i> : message.message}
-                  </p>
+                  </Message>
                 </div>
               )
             })}
