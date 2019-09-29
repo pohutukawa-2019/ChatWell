@@ -5,5 +5,6 @@ const topicPath = '/topics'
 export default function fetchTopics () {
   return makeRequest(topicPath)
     .then(topics => topics)
-    .catch(() => { throw new Error('Error accessing topics api.')})
+    .catch(() => { throw new Error('Error accessing topics api.') }
+    )
 }

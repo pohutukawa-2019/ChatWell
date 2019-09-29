@@ -7,6 +7,5 @@ export default function topicReducer (state = [], action) {
 
     default:
       return state
-
   }
 }

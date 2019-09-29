@@ -31,12 +31,12 @@ export default class ChatRoom extends Component {
     ]
   }
 
-  componentDidMount() {
-      this.initSocket()
+  componentDidMount () {
+    this.initSocket()
   }
 
   initSocket = () => {
-      socket.on('connect', () => {
+    socket.on('connect', () => {
         console.log("Client connected to server")
       })
       socket.on('new message', (messagePackage) => {
@@ -78,6 +78,7 @@ export default class ChatRoom extends Component {
         })
         this.scroll()
       })
+    })
   }
 
   scroll = () => {
@@ -102,6 +103,7 @@ export default class ChatRoom extends Component {
     this.setState({
       message: ''
     })
+    socket.emit('send message', this.state.message)
   }
 
   connectHandler = () => {
