@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 
-const socket = io.connect('http://localhost:3000')
+const socket = io.connect()
 
 export default class ChatRoom extends Component {
 
@@ -9,7 +9,7 @@ export default class ChatRoom extends Component {
     message: '',
     username: this.props.username || 'anonymous',
     usertype: this.props.usertype || 'client',
-    messages: [],
+    messages: ['System: Hit the connect button to find a pair!'],
     isConnected: false,
     topics: this.props.topics || [
       'Depression',
@@ -25,21 +25,30 @@ export default class ChatRoom extends Component {
       socket.on('connect', () => {
         console.log("Client connected to server")
       })
-      // if not connected, append something like 'theres no one here right now!'
-      // also change message to be an object containing the sender
-      // and time the message was sent, and display these alongside the message
-      socket.on('new message', (message) => {
+      socket.on('new message', (messagePackage) => {
+        this.setState({
+          messages: [
+            ...this.state.messages, 
+            `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
+          ]
+        })
+      })
+      socket.on('system message', (message) => {
+        message = `System: ${message}`
         this.setState({
           messages: [...this.state.messages, message]
+        })
       })
       socket.on('confirm disconnect', () => {
         socket.emit('unsubscribe')
         this.setState({
           isConnected: false,
-          messages: []
+          messages: [
+            'System: A user has left the session. Session ended.',
+            'System: Hit the connect button to find new pair!'
+          ]
         })
       })
-    })
   }
 
   messageInputHandler = (evt) => {
@@ -50,7 +59,15 @@ export default class ChatRoom extends Component {
 
   messageSendHandler = (evt) => {
     evt.preventDefault()
-    socket.emit('send message', this.state.message)
+    const time = new Date()
+    const hours = time.getHours()
+    const minutes = time.getMinutes()
+    const messagePackage = {
+      message: this.state.message,
+      username: this.state.username,
+      time: `${hours}:${minutes}`
+    }
+    socket.emit('send message', messagePackage)
     this.setState({
       message: ''
     })
@@ -91,7 +108,6 @@ export default class ChatRoom extends Component {
   render () {
     return (
       <>
-        <h1>This is the chat component</h1>
         <h2>Messages:</h2>
         {this.state.messages.map((message, i) => {
           return <p key={i}>{message}</p>
