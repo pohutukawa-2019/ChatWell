@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ChatRoom from './ChatRoom'
 import H2 from './elements/H2'

@@ -7,7 +7,7 @@ import H2 from './elements/H2'
 const theme = {
   primary: '#1B668C',
   secondary: '#5CB0D9',
-  margin: 'auto',
+  alert: 'yellow',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
