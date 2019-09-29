@@ -17,38 +17,38 @@ export default class ChatRoom extends Component {
     ]
   }
 
-  componentDidMount() {
-      this.initSocket()
+  componentDidMount () {
+    this.initSocket()
   }
 
   initSocket = () => {
-      socket.on('connect', () => {
-        console.log("Client connected to server")
+    socket.on('connect', () => {
+      console.log('Client connected to server')
+    })
+    socket.on('new message', (messagePackage) => {
+      this.setState({
+        messages: [
+          ...this.state.messages,
+          `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
+        ]
       })
-      socket.on('new message', (messagePackage) => {
-        this.setState({
-          messages: [
-            ...this.state.messages, 
-            `${messagePackage.username} (${messagePackage.time}): ${messagePackage.message}`
-          ]
-        })
+    })
+    socket.on('system message', (message) => {
+      message = `System: ${message}`
+      this.setState({
+        messages: [...this.state.messages, message]
       })
-      socket.on('system message', (message) => {
-        message = `System: ${message}`
-        this.setState({
-          messages: [...this.state.messages, message]
-        })
+    })
+    socket.on('confirm disconnect', () => {
+      socket.emit('unsubscribe')
+      this.setState({
+        isConnected: false,
+        messages: [
+          'System: A user has left the session. Session ended.',
+          'System: Hit the connect button to find new pair!'
+        ]
       })
-      socket.on('confirm disconnect', () => {
-        socket.emit('unsubscribe')
-        this.setState({
-          isConnected: false,
-          messages: [
-            'System: A user has left the session. Session ended.',
-            'System: Hit the connect button to find new pair!'
-          ]
-        })
-      })
+    })
   }
 
   messageInputHandler = (evt) => {
@@ -71,6 +71,7 @@ export default class ChatRoom extends Component {
     this.setState({
       message: ''
     })
+    socket.emit('send message', this.state.message)
   }
 
   connectHandler = () => {
