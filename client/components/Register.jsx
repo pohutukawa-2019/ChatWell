@@ -35,7 +35,7 @@ class Register extends React.Component {
 
   handleContinue = () => {
     this.props.dispatch(setUsername(this.state.username))
-    this.props.history.push('/guidance')
+    // this.props.history.push('/guidance')
   }
 
   generateUsername = () => {
@@ -56,16 +56,16 @@ class Register extends React.Component {
           onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
         <br />
         <div className="input">
-          <input type="text" value={this.state.username} onChange={this.handleChange}/>
+          <input type="text" value={this.state.username} onChange={this.handleChange} />
         </div>
+        {(this.state.username === '') ? <p>If this field is left empty username defaults to 'Anonymous'</p> : null}
         <br />
-        <Link style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+        <Link to='/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
         <br />
         <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
         <br />
         <Footer />
       </ThemeProvider>
-
     )
   }
 }
