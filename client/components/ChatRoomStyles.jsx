@@ -19,6 +19,7 @@ export const MessagesContainer = styled.div`
 `
 export const SendMessageForm = styled.form`
   width: 50vw;
+  max-width: 50vw;
   height: 5vh;
   flex-wrap: wrap;
 `
