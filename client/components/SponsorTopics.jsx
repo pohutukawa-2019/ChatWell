@@ -29,7 +29,7 @@ class SponsorTopics extends React.Component {
 
   handleContinue = () => {
     this.props.dispatch(saveTopics(this.state.selectedTopics))
-    this.props.history.push('/register')
+    this.props.history.push('/sponsor/register')
   }
 
   render () {

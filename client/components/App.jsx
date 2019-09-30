@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 // import GetHelpButton from './GetHelpButton'
 // import ToHelpButton from './ToHelpButton'
-import { getUserType, userTypeSelected } from '../actions/typeOfUser'
+import { getUserType } from '../actions/typeOfUser'
 
 class App extends React.Component {
   state = {
