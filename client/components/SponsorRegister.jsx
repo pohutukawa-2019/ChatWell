@@ -2,12 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
-<<<<<<< HEAD
-import Button from './elements/Button'
+// import Button from './elements/Button'
 import { isAuthenticated, register } from 'authenticare/client'
 // import Utilities from './Utilities'
-=======
->>>>>>> a729de54ca1998b59af488af106b2ecd38791c53
 import { randomName, randomAvatar } from '../utilities'
 import { setUsername } from '../actions/username'
 // import { GridForm, ColOne, ColTwo } from './Styled'
