@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 export default styled.div`
 background-image: url('https://static.photocdn.pt/images/articles/2017/04/28/iStock-593306910.jpg');
-/* opacity: 0.5; */
+/* transaparentise?? opacity: 0.5; */
 height: 1109px;
 
 /* background: ${props => (props.primary ? 'red' : 'green')}; */
