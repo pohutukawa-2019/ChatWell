@@ -6,23 +6,25 @@ import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
 class Register extends React.Component {
   state = {
-    user: {
-      avatar: '',
-      username: ''
-    }
+    username: ''
+  }
+
+  componentDidMount () {
+    this.setState({
+      username: randomAvatar() + ' ' + randomName()
+    })
   }
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      username: e.target.value
     })
   }
 
   onSubmit (e) {
     e.preventDefault()
     this.setState({
-      username: randomName(),
-      avatar: randomAvatar()
+      username: randomAvatar() + ' ' + randomName()
     })
   }
 
@@ -30,41 +32,24 @@ class Register extends React.Component {
     return (
     <>
     <GridForm>
-      <ColOne>Enter Nickname</ColOne>
-      {/* add username input field below: */}
-      {/* <ColTwo name = "username"
-        value = 'username'
-        onChange={ (e) => { this.handleChange(e) }} /> */}
-      
-      {/* <ColOne>Password</ColOne> */}
-      {/* <ColTwo name = 'password'
-        value = 'password'
-        onChange={ (e) => { this.handleChange(e) }} /> */}
-      {/* <Button onClick={ (e) => { this.onSubmit(e) }}>Register</Button> */}
-      <h2>OR</h2>
-      <h3>Auto Generate Nickname</h3>
-      {/* <input type="submit" name="guestLogin" value="Guest User "
-        onClick={ (e) => { this.onSubmit(e) }}></input> */}
-      <span>
+      <h3>Write a nickname for yourself or click the button below to randomise one:</h3>
+
+      {' '}
       <button type="submit" name="guestLogin" value="Guest User "
         onClick={ (e) => { this.onSubmit(e) }}>Random Nickname</button>
-        <input type="text"/>
-        </span>
-      {/* This takes you to the user responsibility/guidance page: */}
+      <input type="text" value={this.state.username} onChange={this.handleChange}/>
       {' '}
-      <span>{this.state.avatar}{this.state.username}</span>
       <Link className='pure-button' to='/'>Back to main</Link>
       <Link className='pure-button' to='/guidance'>Accept</Link>
     </GridForm>
-    </>
+      </>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    username: () => dispatch({ randomName }),
-    avatar: () => dispatch({ randomAvatar })
+    username: () => dispatch({ randomName })  
   }
 }
 
