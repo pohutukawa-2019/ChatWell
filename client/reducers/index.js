@@ -2,10 +2,12 @@ import { combineReducers } from 'redux'
 
 import topics from './topics'
 import error from './error'
-import usernameReducer from './username'
+import username from './username'
+import userType from './userTypes'
 
 export default combineReducers({
   topics,
-  usernameReducer,
+  username,
+  userType,
   error
 })
