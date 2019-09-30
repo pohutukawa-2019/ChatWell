@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import io from 'socket.io-client'
 
 import { 
@@ -14,7 +15,11 @@ import {
 
 const socket = io.connect()
 
-export default class ChatRoom extends Component {
+class ChatRoom extends Component {
+  constructor(props){
+    super(props)
+    this.textInput = React.createRef()
+  }
 
   state = {
     message: '',
@@ -39,9 +44,11 @@ export default class ChatRoom extends Component {
   initSocket = () => {
     socket.on('connect', () => {
         console.log("Client connected to server")
+        this.setState({
+          id: socket.id
+        })
     })
     socket.on('new message', (messagePackage) => {
-      console.log(messagePackage)
       this.setState({
         messages: [
           ...this.state.messages, 
@@ -95,15 +102,22 @@ export default class ChatRoom extends Component {
 
   messageSendHandler = (evt) => {
     evt.preventDefault()
-    const messagePackage = {
-      message: this.state.message,
-      username: this.state.username,
-      timestamp: createTimeStamp()
+    if (/\S/.test(this.state.message)) {
+      const messagePackage = {
+        message: this.state.message,
+        username: this.state.username,
+        timestamp: createTimeStamp(),
+        id: this.state.id
+      }
+      socket.emit('send message', messagePackage)
+      this.setState({
+        message: ''
+      })
+    } else {
+      this.setState({
+        message: ''
+      })
     }
-    socket.emit('send message', messagePackage)
-    this.setState({
-      message: ''
-    })
   }
 
   connectHandler = () => {
@@ -115,6 +129,8 @@ export default class ChatRoom extends Component {
     socket.emit('subscribe', userData)
     this.setState({
       isConnected: true
+    }, () => {
+      this.textInput.current.focus()
     })
   }
 
@@ -150,7 +166,7 @@ export default class ChatRoom extends Component {
                   style={
                     (message.username === 'System') 
                       ? {textAlign: 'center', padding: '5px 10px', margin: '0px'} 
-                      : (message.username === this.state.username) 
+                      : (message.id === this.state.id)
                         ? {textAlign: 'left', padding: '5px 30px', margin: '0px'} 
                         : {textAlign: 'right', padding: '5px 30px', margin: '0px'}
                   }
@@ -164,18 +180,28 @@ export default class ChatRoom extends Component {
             })}
           </MessagesContainer>
           <SendMessageForm onSubmit={this.messageSendHandler}>
-            <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} />
+            <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} ref={this.textInput} />
             <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
           </SendMessageForm>
           {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >Connect</ConnectionButton>}
           {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
           <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
-          <Link className='pure-button' to='/'>Back to main</Link>
+          <Link onClick={this.disconnectHandler} className='pure-button' to='/'>Back to main</Link>
         </FlexContainer>
       </>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    topics: state.topics
+    // username: state.username,
+    // usertype: state.usertype
+  }
+}
+
+export default connect(mapStateToProps)(ChatRoom)
 
 const createTimeStamp = () => {
   const time = new Date()
