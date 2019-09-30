@@ -54,7 +54,7 @@ class Homepage extends React.Component {
 
           <br></br>
           <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
-
+          <Link to='/signin' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
           <div><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/></div>
           {/* <ChatRoom /> */}
 
