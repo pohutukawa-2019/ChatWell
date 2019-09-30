@@ -27,14 +27,16 @@ class SponsorRegister extends React.Component {
         <input type = "password"
           id = "client-password"
           value = "your secret password" />
-        <h3>OR</h3>
+        <h2>OR</h2>
         <h3>Auto Generate Username</h3>
         {/* link to Utilities component to autogenerate username: */}
         {/* <Utilities /> */}
         {/* This takes you to the user responsibility/guidance page: */}
-        <Link to='/sponsor/guidance'><Button color="primary">CONTINUE</Button></Link>
-        <br />
-        <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
+        {' '}
+        <Link className='pure-button' to='/'>Back to main</Link>
+        <Link className='pure-button' to='/sponsor/pair'>Continue</Link>
+        {' '}
+        {/* <Link className='pure-button' to='/guidance'>Accept</Link> */}
       </ThemeProvider>
     )
   }

@@ -6,7 +6,6 @@ import { ThemeProvider } from 'styled-components'
 import Button from './elements/Button'
 import Checkbox from './Checkbox'
 
-// import TopicListItem from './TopicListItem'
 const theme = {
   primary: '#1B668C',
   secondary: '#5CB0D9',
@@ -14,55 +13,64 @@ const theme = {
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
-const topics = ['Depression', 'Anxiety', 'Bipolar', 'Body image/eating', 'Addiction', 'PTSD', 'OCD', 'Dissociative episodes', 'Dysphoria', 'Tics', 'Psychosis', 'Paranoia']
-
-// Not sure how to do it, but I need to get the info from db into this line!
-// ^^ This dynamically renders a checklist of topics, which
-// will need to be connected up to the database.
+import { getTopics, saveTopics } from '../actions/topics'
+import Topic from './Topic'
 
 class ClientTopics extends React.Component {
-  state={
-    topics: [],
-    checkboxes: topics.reduce(
-      (options, option) => ({
-        ...options,
-        [option]: false
-      })
-    )
+  state = {
+    selectedTopics: []
   }
 
-selectAllCheckboxes = isSelected => {
-  Object.keys(this.state.checkboxes).forEach(checkbox => {
-    this.setState(prevState => ({
-      checkboxes: {
-        ...prevState.checkboxes,
-        [checkbox]: isSelected
-      }
-    }))
-  })
-}
+  componentDidMount () {
+    this.props.dispatch(getTopics())
+  }
 
-deselectAll = () => this.selectAllCheckboxes(false)
+  toggleTopic = (topic) => {
+    let selection = []
 
-handleCheckboxChange = changeEvent => {
-  const { name } = changeEvent.target
-
-  this.setState(prevState => ({
-    checkboxes: {
-      ...prevState.checkboxes,
-      [name]: !prevState.checkboxes[name]
+    if (this.state.selectedTopics.includes(topic)) {
+      selection = this.state.selectedTopics.filter(t => t !== topic)
+    } else {
+      selection = [...this.state.selectedTopics]
+      selection.push(topic)
     }
-  }))
+
+    this.setState({ selectedTopics: selection })
+  }
+
+  handleContinue = () => {
+    this.props.dispatch(saveTopics(this.state.selectedTopics))
+    this.props.history.push('/register')
+  }
+
+  render () {
+    const { topics, pending, error } = this.props
+    if (pending) {
+      return <div>LOADING...</div>
+    }
+  }
 }
 
-handleFormSubmit = formSubmitEvent => {
-  formSubmitEvent.preventDefault()
 
-  Object.keys(this.state.checkboxes)
-    .filter(checkbox => this.state.checkboxes[checkbox])
-    .forEach(checkbox => {
-    })
-}
+    return (
+      <div>
+        {error && <div>{error}</div>}
+        <h2>I need help with...</h2>
+        <ul>
+          {topics.map(topic =>
+            <Topic
+              key={topic.id}
+              topic={topic.topic}
+              id={topic.id}
+              toggleTopic={this.toggleTopic} />
+          )}
+        </ul>
+        <Link className='pure-button' to='/'>Back to main</Link>
+        {' '}
+        <button className='pure-button' onClick={this.handleContinue}>Continue</button>
+      </div>
+    )
+
 
 createCheckbox = option => (
   <Checkbox
@@ -112,7 +120,7 @@ render () {
     </ThemeProvider>
   )
 }
-}
+
 
 const mapStateToProps = state => {
   return {

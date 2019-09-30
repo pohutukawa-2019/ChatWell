@@ -1,42 +1,57 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { ThemeProvider } from 'styled-components'
-import Button from './elements/Button'
-// import Utilities from './Utilities'
-
-const theme = {
-  primary: '#1B668C',
-  secondary: '#5CB0D9',
-  margin: 'auto',
-  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
-}
+import { randomName, randomAvatar } from '../utilities'
+import { setUsername } from '../actions/username'
+import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
 class Register extends React.Component {
+  state = {
+    username: ''
+  }
+
+  componentDidMount () {
+    this.setState({
+      username: randomAvatar() + ' ' + randomName()
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      username: e.target.value
+    })
+  }
+
+  handleContinue = () => {
+    this.props.dispatch(setUsername(this.state.username))
+    this.props.history.push('/guidance')
+  }
+
+  generateUsername = () => {
+    this.setState({
+      username: randomAvatar() + ' ' + randomName()
+    })
+  }
+
   render () {
     return (
-      <ThemeProvider theme={theme}>
-        <h3>Create Account</h3>
-        <h3>Create a username and password</h3>
-        <label>Username</label>
-        {/* add username input field below: */}
-        <input type = "text"
-          id = "client-username"
-          value = "your username" />
-        <label>Password</label>
-        <input type = "password"
-          id = "client-password"
-          value = "your secret password" />
-        <h3>OR</h3>
-        <h3>Auto Generate Username</h3>
-        {/* link to Utilities component to autogenerate username: */}
-        {/* <Utilities /> */}
-        {/* This takes you to the user responsibility/guidance page: */}
-        <Link to='/guidance'><Button color="primary">CONTINUE</Button></Link>
-        <br />
-        <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
-      </ThemeProvider>
+    <>
+    <GridForm>
+      <h3>Write a nickname for yourself or click the button below to randomise one:</h3>
+      <button type="submit" name="generateUsername" value="generateUsername"
+        onClick={ (e) => { this.generateUsername() }}>Random Nickname</button>
+      <input type="text" value={this.state.username} onChange={this.handleChange}/>
+      <Link className='pure-button' to='/'>Back to main</Link>
+      <button className='pure-button' onClick={this.handleContinue}>Continue</button>
+    </GridForm>
+      </>
     )
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    username: () => dispatch({ randomName })
   }
 }
 

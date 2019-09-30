@@ -13,15 +13,16 @@ const theme = {
 
 function Guidance (props) {
   return (
-    <ThemeProvider theme={theme}>
-      <h3>User Responsibility</h3>
-
-      (Disclaimer goes in here)
-
-      <Link to='/pair'><Button color="primary">CONTINUE</Button></Link>
-      <br />
-      <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
-    </ThemeProvider>
+    <div>
+      <h2>User Responsibility</h2>
+      <p>
+        This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice…… Please seek the advice of healthcare professionals if you are in need. (Provide helpline numbers and contacts)
+      </p>
+      {' '}
+      <Link className='pure-button' to='/'>Back to main</Link>
+      {' '}
+      <Link className='pure-button' to='/pair'>Continue</Link>
+    </div>
   )
 }
 

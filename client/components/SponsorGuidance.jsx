@@ -11,15 +11,15 @@ const theme = {
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
-function SponsorGuidance (props) {
+function SponsorGuidance () {
   return (
     <ThemeProvider theme={theme}>
       <h3>User Responsibility</h3>
-      Thank you for offering to provide some support and guidance to a fellow human being! With luck, you'll make someone's day a little easier.
-      (Disclaimer goes in here)
-      <Link to='/pair'><Button color="primary">CONTINUE</Button></Link>
-      <br />
-      <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
+      TThank you for offering to provide some support and guidance to a fellow human being! With luck, you'll make someone's day a little easier.
+      {' '}
+      <Link className='pure-button' to='/'>Back to main</Link>
+      {' '}
+      <Link className='pure-button' to='/sponsor/register'>Accept</Link>
     </ThemeProvider>
   )
 }

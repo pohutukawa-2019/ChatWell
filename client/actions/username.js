@@ -1,8 +1,9 @@
-import { error } from './error'
-import fetchUsername from '../api/fetchUsername'
+// import { error } from './error'
+// import fetchUsername from '../api/fetchUsername'
 
 export const GET_USERNAME_PENDING = 'GET_USERNAME_PENDING'
 export const GET_USERNAME_SUCCESS = 'GET_USERNAME_SUCCESS'
+export const SELECTED_USERNAME = 'SELECTED_USERNAME'
 
 export function getUsernamePending () {
   return {
@@ -17,15 +18,9 @@ export function getUsernameSuccess (userName) {
   }
 }
 
-export function getUsername () {
-  return dispatch => {
-    dispatch(getUsernamePending())
-    return fetchUsername()
-      .then(userName => {
-        dispatch(getUsernameSuccess(userName))
-      })
-      .catch(err => {
-        dispatch(error(err.message))
-      })
+export function setUsername (selectedUsername) {
+  return {
+    type: SELECTED_USERNAME,
+    selectedUsername
   }
 }

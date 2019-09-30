@@ -32,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path='/sponsor/register' component={SponsorRegister} />
           <Route path='/guidance' component={Guidance} />
           <Route path='/sponsor/guidance' component={SponsorGuidance} />
-          <Route path='/pair' component={Pair} />
+          <Route path="/pair" component={Pair} />
+          <Route path="/sponsor/pair" component={Pair} />
+          <Route path='/ChatRoom' component={ChatRoom} />
         </Provider>
       </Switch>
     </HashRouter>,
