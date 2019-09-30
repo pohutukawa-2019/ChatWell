@@ -1,8 +1,8 @@
 import makeRequest from './requestor'
 
-const userTypePath = '/topics'
+const userTypePath = '/'
 
-export default function fetchUser () {
+export default function fetchUserType () {
   return makeRequest(userTypePath)
     .then(user => user)
     .catch(() => { throw new Error('Error accessing user type api.') }

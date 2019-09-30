@@ -1,8 +1,9 @@
-import { error } from './error'
-import fetchUser from '../api/userType'
+// import { error } from './error'
+// import fetchUser from '../api/userType'
 
 export const GET_USERTYPE_PENDING = 'GET_USERTYPE_PENDING'
 export const GET_USERTYPE_SUCCESS = 'GET_USERTYPE_SUCCESS'
+export const SELECTED_USERTYPES = 'SELECTED_USERTYPES'
 
 export function userTypeSelected () {
   return {
@@ -17,15 +18,9 @@ export function getUserSuccess (userType) {
   }
 }
 
-export function getUserType () {
-  return dispatch => {
-    dispatch(userTypeSelected())
-    return fetchUser()
-      .then(userType => {
-        dispatch(getUserSuccess(userType))
-      })
-      .catch(err => {
-        dispatch(error(err.message))
-      })
+export function getUserType (selectedUserType) {
+  return {
+    type: SELECTED_USERTYPES,
+    selectedUserType
   }
 }
