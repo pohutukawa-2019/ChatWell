@@ -83,6 +83,7 @@ class SponsorRegister extends React.Component {
           <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
         </div>
         <br />
+        <Link to='/signin' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
         <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
         <br />
         <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
