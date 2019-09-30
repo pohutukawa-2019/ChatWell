@@ -1,6 +1,6 @@
-import { SELECTED_USERTYPES } from '../actions/topics'
+import { SELECTED_USERTYPES } from '../actions/typeOfUser'
 
-export default function userTypeReducer (state = [], action) {
+export default function userType (state = [], action) {
   switch (action.type) {
     case SELECTED_USERTYPES:
       return action.selectedUserType
