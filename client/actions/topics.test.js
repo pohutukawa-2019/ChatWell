@@ -7,7 +7,7 @@ import {
   GET_TOPIC_SUCCESS,
   SELECTED_TOPICS
 } from './topics'
-
+//test
 jest.mock('../api/requestor', () => {
   return (endpoint, method, payload) => {
     const id = Number(endpoint.split('/').pop())
