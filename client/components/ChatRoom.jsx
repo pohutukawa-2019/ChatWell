@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import io from 'socket.io-client'
+import Button from './elements/Button'
 
 import {
   MessagesContainer,

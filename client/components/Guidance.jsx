@@ -1,5 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import Button from './elements/Button'
+
+// import TopicListItem from './TopicListItem'
+const theme = {
+  primary: '#1B668C',
+  secondary: '#5CB0D9',
+  alert: 'yellow',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
+}
 
 function Guidance (props) {
   return (

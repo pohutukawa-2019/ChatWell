@@ -38,7 +38,7 @@ class Register extends React.Component {
     <>
     <GridForm>
       <h3>Write a nickname for yourself or click the button below to randomise one:</h3>
-      <button type="button" name="generateUsername" value="generateUsername"
+      <button type="submit" name="generateUsername" value="generateUsername"
         onClick={ (e) => { this.generateUsername() }}>Random Nickname</button>
       <input type="text" value={this.state.username} onChange={this.handleChange}/>
       <Link className='pure-button' to='/'>Back to main</Link>

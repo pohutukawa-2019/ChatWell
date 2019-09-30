@@ -1,9 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
+import Button from './elements/Button'
+// import Utilities from './Utilities'
 import { randomName, randomAvatar } from '../utilities'
 import { setUsername } from '../actions/username'
-import { GridForm, ColOne, ColTwo, Button } from './Styled'
+import { GridForm, ColOne, ColTwo, Button2 } from './Styled'
+
+const theme = {
+  primary: '#1B668C',
+  secondary: '#5CB0D9',
+  margin: 'auto',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
+}
 
 class SponsorRegister extends React.Component {
   state = {
