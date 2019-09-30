@@ -19,9 +19,9 @@ function Guidance (props) {
         This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice - remember you are speaking to another human who has been through a lot, so be kind. If you are at risk in any way, please seek the advice of healthcare professionals. (Provide helpline numbers and contacts)
       </p>
       {' '}
-      <Link className='pure-button' to='/'>Back to main</Link>
+      <Link style={{ textDecoration: 'none' }} to='/'>Back to main</Link>
       {' '}
-      <Link className='pure-button' to='/pair'>Continue</Link>
+      <Link to='/pair'><Button>Continue</Button></Link>
     </div>
   )
 }

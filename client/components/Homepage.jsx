@@ -46,14 +46,6 @@ class Homepage extends React.Component {
         <Header />
         <TitleArea />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <div style={{ textAlign: 'center', fontSize: '20px' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</div>
         <br />
         <Div>
