@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import Button from './elements/Button'
+import Footer from './Footer'
+import Header from './Header'
+import TitleArea from './elements/TitleArea'
 
 // import TopicListItem from './TopicListItem'
 const theme = {
@@ -13,16 +16,21 @@ const theme = {
 
 function Guidance (props) {
   return (
-    <div>
-      <h2>User Responsibility</h2>
-      <p>
+    <ThemeProvider theme={theme}>
+      <Header />
+      <TitleArea />
+      <br />
+      <h2 style={{ textAlign: 'center' }}>User Responsibility</h2>
+      <p style={{ textAlign: 'center' }}>
         This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice - remember you are speaking to another human who has been through a lot, so be kind. If you are at risk in any way, please seek the advice of healthcare professionals. (Provide helpline numbers and contacts)
       </p>
       {' '}
-      <Link style={{ textDecoration: 'none' }} to='/'>Back to main</Link>
-      {' '}
-      <Link to='/pair'><Button>Continue</Button></Link>
-    </div>
+      <Link to='/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+      <br />
+      <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+      <br />
+      <Footer />
+    </ThemeProvider>
   )
 }
 
