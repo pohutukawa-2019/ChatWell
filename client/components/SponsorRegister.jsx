@@ -17,7 +17,8 @@ const theme = {
 
 class SponsorRegister extends React.Component {
   state = {
-    username: ''
+    username: '',
+    password: ''
   }
 
   componentDidMount () {
@@ -32,7 +33,13 @@ class SponsorRegister extends React.Component {
     })
   }
 
-  handleContinue = () => {
+  handlePasswordChange = (e) => {
+    this.setState({
+      password: e.target.value
+    })
+  }
+
+  handleRegister = () => {
     this.props.dispatch(setUsername(this.state.username))
     this.props.history.push('/guidance')
   }
@@ -50,9 +57,14 @@ class SponsorRegister extends React.Component {
       <h3>Write a nickname for yourself or click the button below to randomise one:</h3>
       <button type="button" name="generateUsername" value="generateUsername"
         onClick={ (e) => { this.generateUsername() }}>Random Nickname</button>
+
       <input type="text" value={this.state.username} onChange={this.handleChange}/>
+
+      <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
+
       <Link className='pure-button' to='/'>Back to main</Link>
-      <button className='pure-button' onClick={this.handleContinue}>Continue</button>
+
+      <button className='pure-button' onClick={this.handleRegister}>Register</button>
     </GridForm>
       </>
     )
