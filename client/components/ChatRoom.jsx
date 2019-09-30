@@ -33,7 +33,7 @@ class ChatRoom extends Component {
   state = {
     message: '',
     username: this.props.username,
-    usertype: this.props.usertype || 'client',
+    usertype: this.props.usertype,
     messages: [{
       username: 'System',
       message: 'Hit the connect button to find a pair!',
@@ -135,12 +135,28 @@ class ChatRoom extends Component {
         username: 'Anonymous'
       })
     }
-    const userData = {
-      username: this.state.username,
-      usertype: this.state.usertype,
-      topics: this.state.topics
+    if (this.state.usertype[0] === undefined) {
+      this.setState({
+        messages: [...this.state.messages, {
+          username: 'System',
+          message: 'It looks like you have refreshed the page. Please return to the main menu to pick your user type and topics again.',
+          timestamp: createTimeStamp()
+        }]
+      }, () => {
+        socket.emit('unsubscribe')
+        this.setState({
+          isConnected: false
+        })
+        this.scroll()
+      })
+    } else {
+      const userData = {
+        username: this.state.username,
+        usertype: this.state.usertype,
+        topics: this.state.topics
+      }
+      socket.emit('subscribe', userData)
     }
-    socket.emit('subscribe', userData)
     this.setState({
       isConnected: true
     }, () => {
@@ -157,17 +173,17 @@ class ChatRoom extends Component {
     })
   }
 
-  switchUsertype = () => {
-    if (this.state.usertype === 'client') {
-      this.setState({
-        usertype: 'sponsor'
-      })
-    } else {
-      this.setState({
-        usertype: 'client'
-      })
-    }
-  }
+  // switchUsertype = () => {
+  //   if (this.state.usertype === 'client') {
+  //     this.setState({
+  //       usertype: 'sponsor'
+  //     })
+  //   } else {
+  //     this.setState({
+  //       usertype: 'client'
+  //     })
+  //   }
+  // }
 
   render() {
     return (
@@ -204,7 +220,7 @@ class ChatRoom extends Component {
           {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>}
           {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
           {/* <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button> */}
-          <Link onClick={this.disconnectHandler} className='pure-button' to='/'>Back to the main menu</Link>
+          <Link onClick={this.disconnectHandler} className='pure-button' to='/'><ConnectionButton main>BACK TO MAIN</ConnectionButton></Link>
         </FlexContainer>
       </>
     )

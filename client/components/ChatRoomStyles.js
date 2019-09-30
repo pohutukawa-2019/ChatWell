@@ -46,12 +46,14 @@ export const SendButton = styled.button`
 `
 export const ConnectionButton = styled.button`
   font-family: Avantgarde, TeX Gyre Adventor, URQW Gothic L, sans-serif;
-  margin: 20px;
+  margin-top: 15px;
+  margin-bottom: 5px
   height: 40px;
   width: 400px;
   border: none;
   border-radius: 20px
   color: white;
+  // font-weight: bold;
   ${props => props.connect && css`
     background: #5CB0D9;
     &:hover {
@@ -62,6 +64,12 @@ export const ConnectionButton = styled.button`
     background: #F66767;
     &:hover {
       background: #d93745;
+    }
+  `}
+  ${props => props.main && css`
+    background: #25769E;
+    &:hover {
+      #5CB0D9;
     }
   `}
 `
