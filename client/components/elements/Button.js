@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 export default styled.button`
 font-family: ${(props) => props.theme.font};
 font-size: 1rem;
+font-weight: bold;
 color: '#5CB0D9';
 border: none;
 width: 400px;
