@@ -5,13 +5,16 @@ font-family: ${(props) => props.theme.font};
 font-size: 1rem;
 color: '#5CB0D9';
 border: none;
-width: 300px;
+width: 400px;
+height: 40px;
 text-align: center;
 border-radius: 20px;
-padding: 14px 40px;
+padding: 12px 40px;
 display: block;
-max-width: 300px;
+max-width: 600px;
 margin: auto;
+${(props) => props.font && css` background: ${props => props.theme[props.font]};
+`}
 /* background: ${props => (props.primary ? 'red' : 'green')}; */
 ${(props) => props.color && css` background: ${props => props.theme[props.color]};
 `}

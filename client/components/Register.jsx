@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 import Button from './elements/Button'
-import H2 from './elements/H2'
 // import Utilities from './Utilities'
 
 const theme = {
@@ -17,7 +16,7 @@ class Register extends React.Component {
   render () {
     return (
       <ThemeProvider theme={theme}>
-        <H2>Create Account</H2>
+        <h3>Create Account</h3>
         <h3>Create a username and password</h3>
         <label>Username</label>
         {/* add username input field below: */}
@@ -35,7 +34,7 @@ class Register extends React.Component {
         {/* This takes you to the user responsibility/guidance page: */}
         <Link to='/guidance'><Button color="primary">CONTINUE</Button></Link>
         <br />
-      <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
+        <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
       </ThemeProvider>
     )
   }

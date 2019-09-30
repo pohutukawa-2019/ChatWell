@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import Button from './elements/Button'
-import H2 from './elements/H2'
 import { getTopics } from '../actions/topics'
 import Topic from './Topic'
 // import TopicListItem from './TopicListItem'
@@ -29,14 +28,14 @@ class SponsorTopics extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         {error && <div>{error}</div>}
-        <H2>I can help with...</H2>
+        <h3>I can help with...</h3>
         <ul>
           {topics.map(topic =>
             <Topic key={`${topic.id}`} id={topic.id} topic={topic} />)}
         </ul>
         <Link className='pure-button' to='/register'><Button color="primary">CONTINUE</Button></Link>
         <br />
-      <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
+        <Link to='/'><Button color="secondary">BACK TO MAIN</Button></Link>
       </ThemeProvider>
     )
   }

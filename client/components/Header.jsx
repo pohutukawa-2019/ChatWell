@@ -1,22 +1,24 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
 // import { connect } from 'react-redux'
-import styled, { ThemeProvider } from 'styled-components'
-import H2 from './elements/H2'
-
-const theme = {
-  primary: '#1B668C',
-  secondary: '#5CB0D9',
-  alert: 'yellow',
-  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
-}
+import HeaderTag from './elements/HeaderTag'
 
 class Header extends React.Component {
   render () {
     return (
-      <ThemeProvider theme={theme}>
-        <H2>Chat Well</H2>
-      </ThemeProvider>
+      <div className="w3-top">
+        <div className="w3-bar" id="myNavbar">
+          <a className="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onClick="toggleFunction()" title="Toggle Navigation Menu">
+            <i className="fa fa-bars"></i>
+          </a>
+          <a href="#home" className="w3-bar-item w3-button">HOME</a>
+          <a href="#about" className="w3-bar-item w3-button w3-hide-small"><i className="fa fa-user"></i> ABOUT</a>
+          <a href="#" className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+            <i className="fa fa-search"></i>
+          </a>
+        </div>
+        <HeaderTag>ChatWell</HeaderTag>
+      </div>
     )
   }
 }
