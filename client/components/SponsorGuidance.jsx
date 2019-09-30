@@ -8,7 +8,7 @@ const SponsorGuidance = () => (
 
     <Link className='pure-button' to='/'>Back to main</Link>
     {' '}
-    <Link className='pure-button' to='/sponsor/register'>Accept</Link>
+    <Link className='pure-button' to='/sponsor/pair'>Accept</Link>
   </div>
 )
 
