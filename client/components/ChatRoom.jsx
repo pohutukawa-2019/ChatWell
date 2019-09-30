@@ -24,7 +24,7 @@ class ChatRoom extends Component {
 
   state = {
     message: '',
-    username: this.props.username || 'Anon',
+    username: this.props.username || 'Anonymous',
     usertype: this.props.usertype || 'client',
     messages: [{
       username: 'System',
@@ -32,10 +32,7 @@ class ChatRoom extends Component {
       timestamp: createTimeStamp()
     }],
     isConnected: false,
-    topics: this.props.topics || [
-      'Depression',
-      'Anxiety'
-    ]
+    topics: this.props.topics
   }
 
   componentDidMount () {
@@ -43,6 +40,9 @@ class ChatRoom extends Component {
   }
 
   initSocket = () => {
+    this.setState({
+      id: socket.id
+    })
     socket.on('connect', () => {
       console.log('Client connected to server')
       this.setState({
@@ -198,7 +198,7 @@ const mapStateToProps = (state) => {
   return {
     topics: state.topics,
     username: state.username,
-    usertype: state.usertype
+    usertype: state.userType
   }
 }
 
