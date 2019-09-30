@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
@@ -26,7 +27,7 @@ export default function SignIn (props) {
     })
       .then((token) => {
         if (isAuthenticated()) {
-          props.history.push('/sponsor/guidance')
+          props.history.push('/sponsor/topics')
         }
       })
   }
@@ -45,8 +46,9 @@ export default function SignIn (props) {
       type='password'
       value={form.password}
       onChange={handleChange} />
+    
+    <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={handleClick} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
 
-    <Button type='button' onClick={handleClick}>Sign in</Button>
   </GridForm>
   </>
   )
