@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <Route path='/guidance' component={Guidance} />
           <Route path='/sponsor/guidance' component={SponsorGuidance} />
           <Route path="/pair" component={Pair} />
+          <Route path="/sponsor/pair" component={Pair} />
           <Route path='/ChatRoom' component={ChatRoom} />
         </Provider>
       </Switch>
