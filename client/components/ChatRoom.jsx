@@ -16,6 +16,10 @@ import {
 const socket = io.connect()
 
 class ChatRoom extends Component {
+  constructor(props){
+    super(props)
+    this.textInput = React.createRef()
+  }
 
   state = {
     message: '',
@@ -40,6 +44,9 @@ class ChatRoom extends Component {
   initSocket = () => {
     socket.on('connect', () => {
         console.log("Client connected to server")
+        this.setState({
+          id: socket.id
+        })
     })
     socket.on('new message', (messagePackage) => {
       this.setState({
@@ -99,7 +106,8 @@ class ChatRoom extends Component {
       const messagePackage = {
         message: this.state.message,
         username: this.state.username,
-        timestamp: createTimeStamp()
+        timestamp: createTimeStamp(),
+        id: this.state.id
       }
       socket.emit('send message', messagePackage)
       this.setState({
@@ -121,6 +129,8 @@ class ChatRoom extends Component {
     socket.emit('subscribe', userData)
     this.setState({
       isConnected: true
+    }, () => {
+      this.textInput.current.focus()
     })
   }
 
@@ -156,7 +166,7 @@ class ChatRoom extends Component {
                   style={
                     (message.username === 'System') 
                       ? {textAlign: 'center', padding: '5px 10px', margin: '0px'} 
-                      : (message.username === this.state.username) 
+                      : (message.id === this.state.id)
                         ? {textAlign: 'left', padding: '5px 30px', margin: '0px'} 
                         : {textAlign: 'right', padding: '5px 30px', margin: '0px'}
                   }
@@ -170,7 +180,7 @@ class ChatRoom extends Component {
             })}
           </MessagesContainer>
           <SendMessageForm onSubmit={this.messageSendHandler}>
-            <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} />
+            <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} ref={this.textInput} />
             <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
           </SendMessageForm>
           {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >Connect</ConnectionButton>}
@@ -186,6 +196,8 @@ class ChatRoom extends Component {
 const mapStateToProps = (state) => {
   return {
     topics: state.topics
+    // username: state.username,
+    // usertype: state.usertype
   }
 }
 
