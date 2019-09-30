@@ -36,7 +36,7 @@ class SponsorRegister extends React.Component {
 
   handleContinue = () => {
     this.props.dispatch(setUsername(this.state.username))
-    this.props.history.push('/guidance')
+    // this.props.history.push('/guidance')
   }
 
   generateUsername = () => {
@@ -60,6 +60,7 @@ class SponsorRegister extends React.Component {
         <div className="input">
           <input type="text" value={this.state.username} onChange={this.handleChange}/>
         </div>
+        {(this.state.username === '') ? <p>If this field is left empty username defaults to 'Anonymous'</p> : null}
         <br />
         <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
         <br />
@@ -68,7 +69,6 @@ class SponsorRegister extends React.Component {
         <Footer />
       </ThemeProvider>
       // </GridForm>
-
     )
   }
 }
