@@ -1,35 +1,58 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import Utilities from './Utilities'
+import { randomName, randomAvatar } from '../utilities'
+import { setUsername } from '../actions/username'
+import { GridForm, ColOne, ColTwo, Button } from './Styled'
 
 class SponsorRegister extends React.Component {
+  state = {
+    username: ''
+  }
+
+  componentDidMount () {
+    this.setState({
+      username: randomAvatar() + ' ' + randomName()
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      username: e.target.value
+    })
+  }
+
+  handleContinue = () => {
+    this.props.dispatch(setUsername(this.state.username))
+    this.props.history.push('/guidance')
+  }
+
+  generateUsername = () => {
+    this.setState({
+      username: randomAvatar() + ' ' + randomName()
+    })
+  }
+
   render () {
     return (
-      <>
-      <h2>Create a username and password</h2>
-       <label>Username</label>
-  {/* add username input field below: */}
-        <input type = "text"
-          id = "sponsor-username"
-          value = "your username" />
-       <label>Password</label>
-        <input type = "password"
-          id = "sponsor-password"
-          value = "your secret password" />
-       <h2>OR</h2>
-       <h3>Auto Generate Username</h3>
- {/* link to Utilities component to autogenerate username: */}
-       {/* <Utilities /> */}
- {/* This takes you to the user responsibility/guidance page: */}
-     {' '}
-    <Link className='pure-button' to='/'>Back to main</Link>
-       <Link className='pure-button' to='/sponsor/guidance'>Continue</Link>
-       {' '}
-        <Link className='pure-button' to='/'>Back to main</Link>
+    <>
+    <GridForm>
+      <h3>Write a nickname for yourself or click the button below to randomise one:</h3>
+      <button type="button" name="generateUsername" value="generateUsername"
+        onClick={ (e) => { this.generateUsername() }}>Random Nickname</button>
+      <input type="text" value={this.state.username} onChange={this.handleChange}/>
+      <Link className='pure-button' to='/'>Back to main</Link>
+      <button className='pure-button' onClick={this.handleContinue}>Continue</button>
+    </GridForm>
       </>
     )
   }
 }
 
-export default connect()(SponsorRegister)
+const mapDispatchToProps = dispatch => {
+  return {
+    username: () => dispatch({ randomName })
+  }
+}
+
+export default connect(mapDispatchToProps)(SponsorRegister)
