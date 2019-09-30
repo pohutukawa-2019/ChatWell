@@ -64,7 +64,6 @@ class ClientTopics extends React.Component {
               toggleTopic={this.toggleTopic} />
           )}
         </ul>
-
         <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
         {' '}
         <br />
