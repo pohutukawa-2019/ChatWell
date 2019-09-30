@@ -21,12 +21,12 @@ function SponsorGuidance () {
       <br />
       <h3 style={{ textAlign: 'center' }}>Sponsor Guidance</h3>
       <p style={{ textAlign: 'center' }}>Thank you for offering to provide some support and guidance to a fellow human being! With luck, you'll make someone's day a little easier.</p>
+      {' '} 
+      <br />
+      <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
       {' '}
       <br />
       <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-      {' '}
-      <br />
-      <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
       <br />
       <Footer />
     </ThemeProvider>
