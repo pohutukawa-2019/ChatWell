@@ -1,10 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import Button from './elements/Button'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
+import { ThemeProvider } from 'styled-components'
+import Footer from './Footer'
+import Header from './Header'
+import TitleArea from './elements/TitleArea'
 
+const theme = {
+  primary: '#1B668C',
+  secondary: '#5CB0D9',
+  align: 'middle',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
+}
 class ClientTopics extends React.Component {
   state = {
     selectedTopics: []
@@ -39,10 +49,13 @@ class ClientTopics extends React.Component {
     }
 
     return (
-      <div>
+      <ThemeProvider theme={theme}>
         {error && <div>{error}</div>}
-        <h2>I need help with...</h2>
-        <ul>
+        <Header />
+        <TitleArea />
+        <br />
+        <h3 style={{ textAlign: 'center' }}>I need help with...</h3>
+        <ul style={{ textAlign: 'center' }}>
           {topics.map(topic =>
             <Topic
               key={topic.id}
@@ -51,10 +64,14 @@ class ClientTopics extends React.Component {
               toggleTopic={this.toggleTopic} />
           )}
         </ul>
-        <Link className='pure-button' to='/'>Back to main</Link>
+
+        <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
         {' '}
-        <button className='pure-button' onClick={this.handleContinue}>Continue</button>
-      </div>
+        <br />
+        <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+        <br />
+        <Footer />
+      </ThemeProvider>
     )
   }
 }

@@ -46,19 +46,11 @@ class Homepage extends React.Component {
         <Header />
         <TitleArea />
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <div style={{ textAlign: 'center', fontSize: '20px' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</div>
         <br />
         <Div>
           <br></br>
-          <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO GET HELP</Button></Link>
+          <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
 
           <br></br>
           <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
