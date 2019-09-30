@@ -1,5 +1,4 @@
 import addedTopicReducer from './topics'
-import { GET_TOPIC_SUCCESS, SELECTED_TOPICS } from '../actions/topics'
 
 describe('topicReducer reducer tests', () => {
   it('GET_TOPIC_SUCCESS action returns Depression', () => {
@@ -23,5 +22,4 @@ describe('topicReducer reducer tests', () => {
     const actual = addedTopicReducer(state, action)
     expect(actual.topic).toBe('Phobia')
   })
-
 })
