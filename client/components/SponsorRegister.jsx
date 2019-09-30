@@ -45,7 +45,7 @@ class SponsorRegister extends React.Component {
   }
 
   handleRegister = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     register({
       username: this.state.username,
       password: this.state.password
@@ -55,7 +55,7 @@ class SponsorRegister extends React.Component {
       .then((token) => {
         if (isAuthenticated()) {
           this.props.dispatch(setUsername(this.state.username))
-          this.props.history.push('/guidance')
+          this.props.history.push('/sponsor/guidance')
         }
       })
   }
@@ -80,6 +80,7 @@ class SponsorRegister extends React.Component {
         <br />
         <div className="input">
           <input type="text" value={this.state.username} onChange={this.handleChange}/>
+          <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
         </div>
         <br />
         <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
