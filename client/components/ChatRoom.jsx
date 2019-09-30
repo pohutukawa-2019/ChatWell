@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import io from 'socket.io-client'
 import Button from './elements/Button'
 
-import { 
+import {
   MessagesContainer,
   FlexContainer,
   SendMessageForm,
@@ -17,7 +17,7 @@ import {
 const socket = io.connect()
 
 class ChatRoom extends Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.textInput = React.createRef()
   }
@@ -44,15 +44,15 @@ class ChatRoom extends Component {
 
   initSocket = () => {
     socket.on('connect', () => {
-        console.log("Client connected to server")
-        this.setState({
-          id: socket.id
-        })
+      console.log('Client connected to server')
+      this.setState({
+        id: socket.id
+      })
     })
     socket.on('new message', (messagePackage) => {
       this.setState({
         messages: [
-          ...this.state.messages, 
+          ...this.state.messages,
           messagePackage
         ]
       })
@@ -163,16 +163,16 @@ class ChatRoom extends Component {
           <MessagesContainer id='scroll-container'>
             {this.state.messages.map((message, i) => {
               return (
-                <div key={i} 
+                <div key={i}
                   style={
-                    (message.username === 'System') 
-                      ? {textAlign: 'center', padding: '5px 10px', margin: '0px'} 
+                    (message.username === 'System')
+                      ? { textAlign: 'center', padding: '5px 10px', margin: '0px' }
                       : (message.id === this.state.id)
-                        ? {textAlign: 'left', padding: '5px 30px', margin: '0px'} 
-                        : {textAlign: 'right', padding: '5px 30px', margin: '0px'}
+                        ? { textAlign: 'left', padding: '5px 30px', margin: '0px' }
+                        : { textAlign: 'right', padding: '5px 30px', margin: '0px' }
                   }
                 >
-                  <p style={(message.username !== 'System') ? {marginTop: '0px'} : null }>[{message.timestamp}]<strong> {message.username}</strong></p>
+                  <p style={(message.username !== 'System') ? { marginTop: '0px' } : null }>[{message.timestamp}]<strong> {message.username}</strong></p>
                   <Message user={message.username !== 'System'}>
                     {(message.username === 'System') ? <i>{message.message}</i> : message.message}
                   </Message>
@@ -196,9 +196,9 @@ class ChatRoom extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    topics: state.topics
-    // username: state.username,
-    // usertype: state.usertype
+    topics: state.topics,
+    username: state.username,
+    usertype: state.usertype
   }
 }
 

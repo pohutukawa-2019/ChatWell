@@ -14,6 +14,7 @@ import SponsorRegister from './components/SponsorRegister'
 import Guidance from './components/Guidance'
 import SponsorGuidance from './components/SponsorGuidance'
 import Pair from './components/Pair'
+import ChatRoom from './components/ChatRoom'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(
