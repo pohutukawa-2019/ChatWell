@@ -9,7 +9,6 @@ function getTopicList (db = connection) {
 }
 
 function getTopicById (id, db = connection) {
-  console.log(id, '---')
   return db('topics')
     .where('id', id)
     .first()
