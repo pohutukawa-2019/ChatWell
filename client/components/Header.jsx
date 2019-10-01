@@ -8,6 +8,7 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import HeaderTag from './elements/HeaderTag'
 
 class Header extends React.Component {
+
   render () {
     return (
       <div className="w3-top">
@@ -20,12 +21,12 @@ class Header extends React.Component {
           <a href="#" className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
           </a>
           <IfAuthenticated>
-            <Link to='#' data-testid='logoff'
+            <Link to='/' data-testid='logoff'
               onClick={logOff}>Log off</Link>
           </IfAuthenticated>
           <IfNotAuthenticated>
-            <Link to='/sponsor/register' data-testid='register'>Register</Link>
-            <Link to='/sponsor/signin' data-testid='signin'>Sign in</Link>
+            <Link to='/sponsor/register' className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" data-testid='register'>REGISTER</Link>
+            <Link to='/sponsor/signin' className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" data-testid='signin'>SIGN IN</Link>
           </IfNotAuthenticated>
         </div>
         <HeaderTag>ChatWell</HeaderTag>
