@@ -9,15 +9,16 @@
   "scripts": {
     "client": "webpack-dev-server --hot --inline",
     "dev": "nodemon server & webpack --watch",
-    "server": "webpack && node server",
-    "start": "node server",
+    "server": "node .",
+    "start": "run-s build server",
     "test": "jest --watchAll",
     "knex": "knex --knexfile server/db/knexfile.js",
     "db:reset": "run-s db:delete db:migrate db:seed",
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run",
     "db:delete": "rm -f server/db/dev.sqlite3",
-    "postinstall": "run-s webpack db:reset"
+    "build": "webpack",
+    "postinstall": "db:reset"
   },
   "babel": {
     "presets": [
