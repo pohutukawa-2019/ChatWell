@@ -18,7 +18,7 @@
     "db:seed": "npm run knex seed:run",
     "db:delete": "rm -f server/db/dev.sqlite3",
     "build": "webpack",
-    "postinstall": "db:reset"
+    "postinstall": "npm run db:reset"
   },
   "babel": {
     "presets": [
