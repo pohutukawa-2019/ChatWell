@@ -173,18 +173,6 @@ class ChatRoom extends Component {
     })
   }
 
-  // switchUsertype = () => {
-  //   if (this.state.usertype === 'client') {
-  //     this.setState({
-  //       usertype: 'sponsor'
-  //     })
-  //   } else {
-  //     this.setState({
-  //       usertype: 'client'
-  //     })
-  //   }
-  // }
-
   render() {
     return (
       <>
@@ -192,7 +180,6 @@ class ChatRoom extends Component {
           <Header />
         </ThemeProvider>
         <FlexContainer>
-          {/* <div style={{ height: '200px' }}></div> */}
           <MessagesContainer id='scroll-container'>
             {this.state.messages.map((message, i) => {
               return (
@@ -219,7 +206,6 @@ class ChatRoom extends Component {
           </SendMessageForm>
           {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>}
           {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
-          {/* <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button> */}
           <Link onClick={this.disconnectHandler} className='pure-button' to='/'><ConnectionButton main>BACK TO MAIN</ConnectionButton></Link>
         </FlexContainer>
       </>
