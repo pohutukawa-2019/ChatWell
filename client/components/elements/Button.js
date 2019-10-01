@@ -5,7 +5,7 @@ font-family: ${(props) => props.theme.font};
 font-size: 1rem;
 font-weight: bold;
 box-shadow: 0px 5px 5px #888888;
-color: '#5CB0D9';
+color: '#db9833';
 border: none;
 width: 400px;
 height: 40px;
@@ -22,6 +22,6 @@ ${(props) => props.color && css` background: ${props => props.theme[props.color]
 `}
 color: #fff;
 &:hover {
-  background: #25769E;
+  background: #f6d8ac;
 }
 `
