@@ -1,7 +1,9 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+
 import Button from './elements/Button'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
@@ -10,11 +12,9 @@ import Topic from './Topic'
 import Footer from './Footer'
 import Nav from './Nav'
 
-// import TopicListItem from './TopicListItem'
 const theme = {
-  primary: '#1B668C',
-  secondary: '#5CB0D9',
-  alert: 'yellow',
+  primary: '#618685',
+  secondary: '#4040a1',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
@@ -53,13 +53,14 @@ class SponsorTopics extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-      <Nav />
+        <Nav />
         {error && <div>{error}</div>}
         <Header />
         <TitleArea />
         <br />
-        <h3 style={{ textAlign: 'center' }}>I can help with...</h3>
-        <ul style={{ textAlign: 'center' }}>
+        <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>I can help with...</h3>
+        <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
+        <ul className="sponsor-font" style={{ textAlign: 'center' }}>
           {topics.map(topic =>
             <Topic
               key={topic.id}

@@ -9,7 +9,7 @@ padding:26px;
 font-weight:lighter;
   text-align:center;
   display:block;
-  margin:10px;
+  margin:0px;
   background-color:#f6d8ac;
 /* background: ${props => (props.primary ? 'red' : 'green')}; */
 ${(props) => props.color && css` background: ${props => props.theme[props.color]};
