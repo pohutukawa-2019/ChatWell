@@ -10,6 +10,5 @@ export default function Topic ({ id, topic, toggleTopic }) {
         inputProps={{ 'aria-label': topic }}/>
       {topic}
     </li>
-
   )
 }
