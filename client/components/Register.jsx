@@ -49,15 +49,13 @@ class Register extends React.Component {
       <div className="hero-client flex-center">
         <ThemeProvider theme={theme}>
           <Header />
-          <TitleArea />
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Write a nickname for yourself or click the button below to randomise one:</TitleArea>
           <br />
-          <h3 className="client-font" style={{ textAlign: 'center', fontSize: '28px' }}>Write a nickname for yourself or click the button below to randomise one:</h3>
-
           <Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }} name="generateUsername" value="generateUsername"
             onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
           <br />
           <div className="input">
-            <input type="text" value={this.state.username} onChange={this.handleChange} />
+            <input className="input" type="text" value={this.state.username} onChange={this.handleChange} />
           </div>
           {(this.state.username === '') ? <p>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />

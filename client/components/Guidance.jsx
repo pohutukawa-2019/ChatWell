@@ -19,9 +19,8 @@ function Guidance (props) {
     <div className="hero-client flex-center">
       <ThemeProvider theme={theme}>
         <Header />
-        <TitleArea />
+        <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>User Responsibility</TitleArea>
         <br />
-        <h2 className="client-font" style={{ textAlign: 'center', fontSize: '28px' }}>User Responsibility</h2>
         <p className="client-font" style={{ textAlign: 'center' }}>
         This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice - remember you are speaking to another human who has been through a lot, so be kind. If you are at risk in any way, please seek the advice of healthcare professionals. (Provide helpline numbers and contacts)
         </p>

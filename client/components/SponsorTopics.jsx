@@ -12,7 +12,7 @@ import Topic from './Topic'
 import Footer from './Footer'
 
 const theme = {
-  primary: '#618685',
+  primary: '#80ced6',
   secondary: '#4040a1',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -51,29 +51,30 @@ class SponsorTopics extends React.Component {
     }
 
     return (
-      <ThemeProvider theme={theme}>
-        {error && <div>{error}</div>}
-        <Header />
-        <TitleArea />
-        <br />
-        <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>I can help with...</h3>
-        <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
-        <ul className="sponsor-font" style={{ textAlign: 'center' }}>
-          {topics.map(topic =>
-            <Topic
-              key={topic.id}
-              topic={topic.topic}
-              id={topic.id}
-              toggleTopic={this.toggleTopic} />
-          )}
-        </ul>
-        <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
-        <br />
-        <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-        {' '}
-        <br />
-        <Footer />
-      </ThemeProvider>
+      <div className="hero flex-center">
+        <ThemeProvider theme={theme}>
+          {error && <div>{error}</div>}
+          <Header />
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Select topics</TitleArea>
+          <br />
+          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>I can help with...</h4>
+          <ul className="sponsor-font" style={{ textAlign: 'center' }}>
+            {topics.map(topic =>
+              <Topic
+                key={topic.id}
+                topic={topic.topic}
+                id={topic.id}
+                toggleTopic={this.toggleTopic} />
+            )}
+          </ul>
+          <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+          <br />
+          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+          {' '}
+          <br />
+          <Footer />
+        </ThemeProvider>
+      </div>
     )
   }
 }

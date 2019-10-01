@@ -1,7 +1,7 @@
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
   height: 100%;
-  color: #777;
+  color: #092834;
   line-height: 1.8;
   min-height: 100%;
   background-position: center;
@@ -18,7 +18,6 @@ body, html {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-  background-image: url('/w3images/parallax1.jpg');
   min-height: 100%;
 }
 
@@ -26,7 +25,7 @@ body, html {
 .w3-hover-opacity {cursor: pointer;}
 
 .w3-color {
-  color: #f6d8ac
+  color: #549740
 }
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1600px) {
@@ -37,8 +36,16 @@ body, html {
 }
 
 .input {
-  width: 150px;
+  width: 400px;
+  height: 40px;
   margin: 0 auto;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  max-width: 600px;
+  /* box-shadow: 0px 5px 5px #888888; */
+
 }
 
 .flex-container {
@@ -68,6 +75,7 @@ body, html {
   position: relative;
   }
 
+   
 .hero::before {
   background-image: url('http://cdn.shopify.com/s/files/1/1192/7874/files/Minimalist_Living_-_How_to_Declutter_Your_Life_2048x2048.jpg?v=1529470251');
   background-size: cover;
@@ -101,5 +109,39 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: -2;
+  opacity: 0.5;
+ }
+
+ .section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+ }
+ .section h1 {
+  text-align: center;
+  font-size: 6rem;
+  font-family: "Cookie";
+  padding: 20px;
+  margin: 15px;
+  z-index: 1;
+  opacity: 0.7;
+ }
+ .video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+ }
+ .color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
+  width: 100%;
+  height: 100vh;
   opacity: 0.5;
  }
