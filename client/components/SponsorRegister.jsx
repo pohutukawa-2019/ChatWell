@@ -11,7 +11,7 @@ import Footer from './Footer'
 import Button from './elements/Button'
 
 const theme = {
-  primary: '#618685',
+  primary: '#80ced6',
   secondary: '#4040a1',
   margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
@@ -50,18 +50,15 @@ class SponsorRegister extends React.Component {
       <div className="hero flex-center">
         <ThemeProvider theme={theme}>
           <Header />
-          <TitleArea />
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Enter your choice of Nickname in the box below, or Click to pick a random Nickname to use</TitleArea>
           <br />
-          <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>Enter your choice of Nickname in the box below, or Click to pick a random Nickname to use</h3>
-
           <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
             onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
           <br />
           <div className="input">
             <input type="text" value={this.state.username} onChange={this.handleChange}/>
           </div>
-          {(this.state.username === '') ? <p>If this field is left empty username defaults to 'Anonymous'</p> : null}
-          <p className="sponsor-font" style={{ textAlign: 'center' }}>If the above field is left empty username defaults to 'Anonymous'</p>
+          {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />
           <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />
