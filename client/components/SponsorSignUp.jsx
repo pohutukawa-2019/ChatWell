@@ -7,7 +7,7 @@ import { isAuthenticated, register } from 'authenticare/client'
 
 import { randomName, randomAvatar } from '../utilities'
 import { setUsername } from '../actions/username'
-import { GridForm, ColOne, ColTwo } from './Styled'
+// import { GridForm, ColOne, ColTwo } from './Styled'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
 import Footer from './Footer'
@@ -62,7 +62,7 @@ class SponsorSignUp extends React.Component {
           <Header />
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Choose your nickname and password. You can also randomise a nickname by clicking the button below.</TitleArea>
           <br />
-          <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
+          <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="secondary" name="generateUsername" value="generateUsername"
             onClick={ (e) => { this.generateUsername() }}>RANDOM USERNAME</Button>
           <br />
           <div className="input">
@@ -81,7 +81,7 @@ class SponsorSignUp extends React.Component {
           </div>
           {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />
-          <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleRegister} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>REGISTER</Button></Link>
+          <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleRegister} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>REGISTER</Button></Link>
           <br />
           <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           <br />

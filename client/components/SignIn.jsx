@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components'
 
 import Button from './elements/Button'
 
-import { GridForm, ColOne, ColTwo } from './Styled'
+// import { GridForm, ColOne, ColTwo } from './Styled'
 // import Button from './elements/Button'
 
 import { isAuthenticated, signIn } from 'authenticare/client'
@@ -78,6 +78,8 @@ function SignIn (props) {
           </div>
           <br/>
           <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={handleClick} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
+          <br />
+          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           {/* </GridForm> */}
         </ThemeProvider>
   </>
