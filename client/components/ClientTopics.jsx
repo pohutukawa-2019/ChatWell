@@ -10,8 +10,8 @@ import Header from './Header'
 import TitleArea from './elements/TitleArea'
 
 const theme = {
-  primary: '#1B668C',
-  secondary: '#5CB0D9',
+  primary: '#405d27',
+  secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -49,28 +49,31 @@ class ClientTopics extends React.Component {
     }
 
     return (
-      <ThemeProvider theme={theme}>
-        {error && <div>{error}</div>}
-        <Header />
-        <TitleArea />
-        <br />
-        <h3 style={{ textAlign: 'center' }}>I need help with...</h3>
-        <ul style={{ textAlign: 'center' }}>
-          {topics.map(topic =>
-            <Topic
-              key={topic.id}
-              topic={topic.topic}
-              id={topic.id}
-              toggleTopic={this.toggleTopic} />
-          )}
-        </ul>
-        <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
-        {' '}
-        <br />
-        <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-        <br />
-        <Footer />
-      </ThemeProvider>
+      <div className="hero-client flex-center">
+        <ThemeProvider theme={theme}>
+          {error && <div>{error}</div>}
+          <Header />
+          <TitleArea />
+          <br />
+          <h3 className="client-font" style={{ textAlign: 'center', fontSize: '28px' }}>I need help with...</h3>
+          <h3 className="client-font" style={{ textAlign: 'center', fontSize: '21px' }}>(Select all that apply)</h3>
+          <ul className="client-font" style={{ textAlign: 'center', fontSize: '18px' }}>
+            {topics.map(topic =>
+              <Topic
+                key={topic.id}
+                topic={topic.topic}
+                id={topic.id}
+                toggleTopic={this.toggleTopic} />
+            )}
+          </ul>
+          <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
+          {' '}
+          <br />
+          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+          <br />
+          <Footer />
+        </ThemeProvider>
+      </div>
     )
   }
 }
