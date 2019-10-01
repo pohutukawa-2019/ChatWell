@@ -1,5 +1,4 @@
 import Topic from './Topic'
-const react = { element: 'react.element' }
 
 describe('<Topic>', () => {
   it('updates the state of a property on input change', () => {
