@@ -192,7 +192,7 @@ class ChatRoom extends Component {
           <Header />
         </ThemeProvider>
         <FlexContainer>
-          <div style={{ height: '200px' }}></div>
+          {/* <div style={{ height: '200px' }}></div> */}
           <MessagesContainer id='scroll-container'>
             {this.state.messages.map((message, i) => {
               return (
