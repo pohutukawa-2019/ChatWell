@@ -53,9 +53,9 @@ class ClientTopics extends React.Component {
         <ThemeProvider theme={theme}>
           {error && <div>{error}</div>}
           <Header />
-          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I need help with...</TitleArea>
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '30px', fontWeight: 'bold' }}>Select Topics</TitleArea>
           <br />
-          <h3 className="client-font" style={{ textAlign: 'center', fontSize: '21px' }}>(Select all that apply)</h3>
+          <h4 className="client-font" style={{ textAlign: 'center', fontSize: '24px' }}>I can help with...</h4>
           <ul className="client-font" style={{ textAlign: 'center', fontSize: '18px' }}>
             {topics.map(topic =>
               <Topic

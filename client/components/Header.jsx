@@ -15,8 +15,8 @@ class Header extends React.Component {
           <div className="w3-bar" id="myNavbar">
             <a href="/" style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hover-red">HOME</a>
             <IfAuthenticated>
-              <Link to='/' data-testid='logoff'
-                onClick={logOff}>Log off</Link>
+              <Link to='/' data-testid='logoff' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red"
+                onClick={logOff}>LOG OFF</Link>
             </IfAuthenticated>
             <IfNotAuthenticated>
               <Link to='/sponsor/register' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red" data-testid='register'>REGISTER</Link>

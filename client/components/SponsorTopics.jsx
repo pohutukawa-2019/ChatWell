@@ -55,9 +55,9 @@ class SponsorTopics extends React.Component {
         <ThemeProvider theme={theme}>
           {error && <div>{error}</div>}
           <Header />
-          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Select topics</TitleArea>
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '30px', fontWeight: 'bold' }}>Select topics</TitleArea>
           <br />
-          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>I can help with...</h4>
+          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '24px' }}>I can help with...</h4>
           <ul className="sponsor-font" style={{ textAlign: 'center' }}>
             {topics.map(topic =>
               <Topic
