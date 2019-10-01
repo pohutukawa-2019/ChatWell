@@ -11,7 +11,7 @@ import Footer from './Footer'
 
 // import TopicListItem from './TopicListItem'
 const theme = {
-  primary: '#618685',
+  primary: '#80ced6',
   secondary: '#4040a1',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -54,9 +54,8 @@ class SponsorTopics extends React.Component {
         <ThemeProvider theme={theme} >
           {error && <div>{error}</div>}
           <Header />
-          <TitleArea />
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I can help with...</TitleArea>
           <br />
-          <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>I can help with...</h3>
           <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
           <ul className="sponsor-font" style={{ textAlign: 'center' }}>
             {topics.map(topic =>

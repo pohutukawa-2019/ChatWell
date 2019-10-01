@@ -7,7 +7,7 @@ import Header from './Header'
 import TitleArea from './elements/TitleArea'
 // import TopicListItem from './TopicListItem'
 const theme = {
-  primary: '#618685',
+  primary: '#80ced6',
   secondary: '#4040a1',
   margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
@@ -18,9 +18,7 @@ function SponsorGuidance () {
     <div className="hero flex-center">
       <ThemeProvider theme={theme}>
         <Header />
-        <TitleArea />
-        <br />
-        <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>Sponsor Guidance</h3>
+        <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Sponsor Guidance</TitleArea>
         <p className="sponsor-font" style={{ textAlign: 'center' }}>Thank you for offering to provide some support and guidance to a fellow human being!</p> 
         <p className="sponsor-font" style={{ textAlign: 'center' }}>With luck, you'll make someone's day a little easier.</p>
         {' '}
