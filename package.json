@@ -17,7 +17,7 @@
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run",
     "db:delete": "rm -f server/db/dev.sqlite3",
-    "postinstall": "webpack && --knexfile server/db/knexfile.js"
+    "postinstall": "webpack && npx knex --knexfile server/db/knexfile.js"
   },
   "babel": {
     "presets": [
