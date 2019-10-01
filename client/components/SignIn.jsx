@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { GridForm, ColOne, ColTwo, Button } from './Styled'
+// import Button from './elements/Button'
 
 import { isAuthenticated, signIn } from 'authenticare/client'
 
 export default function SignIn (props) {
   const [form, setForm] = useState({
-    username: 'form',
+    username: '',
     password: ''
   })
 
@@ -46,8 +47,8 @@ export default function SignIn (props) {
       type='password'
       value={form.password}
       onChange={handleChange} />
-    
-    <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={handleClick} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
+
+<Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={handleClick} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
 
   </GridForm>
   </>
