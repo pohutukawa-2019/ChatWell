@@ -139,7 +139,7 @@ class ChatRoom extends Component {
       this.setState({
         messages: [...this.state.messages, {
           username: 'System',
-          message: 'It looks like you have refreshed the page. Please return to the main menu to pick your user type and topics again.',
+          message: 'It looks like you have refreshed the page. Please return to the main menu to set up your user again.',
           timestamp: createTimeStamp()
         }]
       }, () => {
