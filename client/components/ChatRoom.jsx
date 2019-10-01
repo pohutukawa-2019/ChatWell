@@ -25,7 +25,7 @@ const theme = {
 const socket = io.connect()
 
 class ChatRoom extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.textInput = React.createRef()
   }
@@ -43,7 +43,7 @@ class ChatRoom extends Component {
     topics: this.props.topics
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.initSocket()
   }
 
@@ -185,7 +185,7 @@ class ChatRoom extends Component {
   //   }
   // }
 
-  render() {
+  render () {
     return (
       <>
         <ThemeProvider theme={theme}>
