@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from './Header'
@@ -11,8 +11,8 @@ import TitleArea from './elements/TitleArea'
 import { getUserType } from '../actions/typeOfUser'
 
 const theme = {
-  primary: '#db9833',
-  secondary: '#db9833',
+  primary: '#82b74b;',
+  secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -41,6 +41,7 @@ class Homepage extends React.Component {
     this.props.dispatch(getUserType('sponsor'))
     // })
   }
+
   render () {
     return (
       // <div>
