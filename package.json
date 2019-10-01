@@ -17,7 +17,7 @@
     "db:migrate": "npm run knex migrate:latest",
     "db:seed": "npm run knex seed:run",
     "db:delete": "rm -f server/db/dev.sqlite3",
-    "postinstall": "webpack && npm run knex"
+    "postinstall": "run-s webpack db:reset"
   },
   "babel": {
     "presets": [
@@ -40,6 +40,7 @@
     "express": "^4.17.1",
     "knex": "^0.19.4",
     "material-ui": "^0.20.2",
+    "npm-run-all": "^4.1.5",
     "pg": "^7.12.1",
     "react-redux": "^7.1.1",
     "react-router": "^5.1.0",
