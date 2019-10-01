@@ -12,14 +12,14 @@ export const FlexContainer = styled.div`
   font-family: Avantgarde, TeX Gyre Adventor, URQW Gothic L, sans-serif;
 `
 export const MessagesContainer = styled.div`
-  width: 50vw;
-  height: 50vh;
+  width: 75vw;
+  height: 60vh;
   background: #FAFAFA;  
   overflow-y: auto;
 `
 export const SendMessageForm = styled.form`
-  width: 50vw;
-  max-width: 50vw;
+  width: 75vw;
+  max-width: 75vw;
   height: 5vh;
   flex-wrap: wrap;
 `
@@ -46,22 +46,30 @@ export const SendButton = styled.button`
 `
 export const ConnectionButton = styled.button`
   font-family: Avantgarde, TeX Gyre Adventor, URQW Gothic L, sans-serif;
-  margin: 10px;
-  height: 5vh;
-  width: 10vw;
+  margin-top: 15px;
+  margin-bottom: 5px
+  height: 40px;
+  width: 400px;
   border: none;
+  border-radius: 20px
+  color: white;
+  // font-weight: bold;
   ${props => props.connect && css`
-    background: #B6E6BD;
+    background: #5CB0D9;
     &:hover {
-      background: #4BAEA0;
-      color: white;
+      background: #25769E;
     }
   `}
   ${props => props.disconnect && css`
     background: #F66767;
     &:hover {
       background: #d93745;
-      color: white;
+    }
+  `}
+  ${props => props.main && css`
+    background: #25769E;
+    &:hover {
+      #5CB0D9;
     }
   `}
 `

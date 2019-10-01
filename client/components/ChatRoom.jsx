@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import io from 'socket.io-client'
-import Button from './elements/Button'
+import { ThemeProvider } from 'styled-components'
 
 import {
   MessagesContainer,
@@ -13,19 +13,27 @@ import {
   ConnectionButton,
   Message
 } from './ChatRoomStyles'
+import Header from './Header'
+
+const theme = {
+  primary: '#1B668C',
+  secondary: '#5CB0D9',
+  align: 'middle',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
+}
 
 const socket = io.connect()
 
 class ChatRoom extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.textInput = React.createRef()
   }
 
   state = {
     message: '',
-    username: this.props.username || 'Anonymous',
-    usertype: this.props.usertype || 'client',
+    username: this.props.username,
+    usertype: this.props.usertype,
     messages: [{
       username: 'System',
       message: 'Hit the connect button to find a pair!',
@@ -35,7 +43,7 @@ class ChatRoom extends Component {
     topics: this.props.topics
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.initSocket()
   }
 
@@ -122,12 +130,33 @@ class ChatRoom extends Component {
   }
 
   connectHandler = () => {
-    const userData = {
-      username: this.state.username,
-      usertype: this.state.usertype,
-      topics: this.state.topics
+    if (this.state.username[0] === undefined) {
+      this.setState({
+        username: 'Anonymous'
+      })
     }
-    socket.emit('subscribe', userData)
+    if (this.state.usertype[0] === undefined) {
+      this.setState({
+        messages: [...this.state.messages, {
+          username: 'System',
+          message: 'It looks like you have refreshed the page. Please return to the main menu to set up your user again.',
+          timestamp: createTimeStamp()
+        }]
+      }, () => {
+        socket.emit('unsubscribe')
+        this.setState({
+          isConnected: false
+        })
+        this.scroll()
+      })
+    } else {
+      const userData = {
+        username: this.state.username,
+        usertype: this.state.usertype,
+        topics: this.state.topics
+      }
+      socket.emit('subscribe', userData)
+    }
     this.setState({
       isConnected: true
     }, () => {
@@ -139,27 +168,31 @@ class ChatRoom extends Component {
     socket.emit('unsubscribe')
     this.setState({
       isConnected: false,
-      messages: []
+      messages: [],
+      message: ''
     })
   }
 
-  switchUsertype = () => {
-    if (this.state.usertype === 'client') {
-      this.setState({
-        usertype: 'sponsor'
-      })
-    } else {
-      this.setState({
-        usertype: 'client'
-      })
-    }
-  }
+  // switchUsertype = () => {
+  //   if (this.state.usertype === 'client') {
+  //     this.setState({
+  //       usertype: 'sponsor'
+  //     })
+  //   } else {
+  //     this.setState({
+  //       usertype: 'client'
+  //     })
+  //   }
+  // }
 
-  render () {
+  render() {
     return (
       <>
+        <ThemeProvider theme={theme}>
+          <Header />
+        </ThemeProvider>
         <FlexContainer>
-          <h2>Chat Well</h2>
+          <div style={{ height: '200px' }}></div>
           <MessagesContainer id='scroll-container'>
             {this.state.messages.map((message, i) => {
               return (
@@ -172,7 +205,7 @@ class ChatRoom extends Component {
                         : { textAlign: 'right', padding: '5px 30px', margin: '0px' }
                   }
                 >
-                  <p style={(message.username !== 'System') ? { marginTop: '0px' } : null }>[{message.timestamp}]<strong> {message.username}</strong></p>
+                  <p style={(message.username !== 'System') ? { marginTop: '0px' } : null}>[{message.timestamp}]<strong> {message.username}</strong></p>
                   <Message user={message.username !== 'System'}>
                     {(message.username === 'System') ? <i>{message.message}</i> : message.message}
                   </Message>
@@ -184,10 +217,10 @@ class ChatRoom extends Component {
             <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} ref={this.textInput} />
             <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
           </SendMessageForm>
-          {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >Connect</ConnectionButton>}
+          {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>}
           {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
-          <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button>
-          <Link onClick={this.disconnectHandler} className='pure-button' to='/'>Back to main</Link>
+          {/* <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button> */}
+          <Link onClick={this.disconnectHandler} className='pure-button' to='/'><ConnectionButton main>BACK TO MAIN</ConnectionButton></Link>
         </FlexContainer>
       </>
     )
