@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 // import Button from './elements/Button'
 import { isAuthenticated, register } from 'authenticare/client'
-// import Utilities from './Utilities'
+
 import { randomName, randomAvatar } from '../utilities'
 import { setUsername } from '../actions/username'
-// import { GridForm, ColOne, ColTwo } from './Styled'
+import { GridForm, ColOne, ColTwo } from './Styled'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
 import Footer from './Footer'
@@ -22,30 +22,17 @@ const theme = {
 
 class SponsorRegister extends React.Component {
   state = {
-    username: '',
+    username: randomName(),
     password: ''
-  }
-
-  componentDidMount () {
-    this.setState({
-      username: randomAvatar() + ' ' + randomName()
-    })
   }
 
   handleChange = (e) => {
     this.setState({
-      username: e.target.value
-    })
-  }
-
-  handlePasswordChange = (e) => {
-    this.setState({
-      password: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
   handleRegister = (event) => {
-    // event.preventDefault()
     register({
       username: this.state.username,
       password: this.state.password
@@ -62,44 +49,45 @@ class SponsorRegister extends React.Component {
 
   generateUsername = () => {
     this.setState({
-      username: randomAvatar() + ' ' + randomName()
+      username: randomName()
     })
   }
 
   render () {
     return (
-      // <GridForm>
       <ThemeProvider theme={theme}>
         <Header />
         <TitleArea />
         <br />
-        <h3 style={{ textAlign: 'center' }}>Click on the below button to pick a random Nickname to use</h3>
+        <h3 style={{ textAlign: 'center' }}>Choose your nickname and password. You can also randomise a nickname by clicking the button below.</h3>
 
+        <GridForm>
+          <ColTwo
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={this.state.username}
+            onChange={this.handleChange}/>
+          <ColTwo
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handleChange}/>
+
+        </GridForm>
+        <br />
         <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
           onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
         <br />
-        <div className="input">
-          <input type="text" value={this.state.username} onChange={this.handleChange}/>
-          <input type="text" value={this.state.password} onChange={this.handlePasswordChange}/>
-        </div>
+        <Button color="primary" onClick={this.handleRegister} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
         <br />
-        <Link to='/signin' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
-        <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
-        <br />
-        <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+
         <br />
         <Footer />
       </ThemeProvider>
-      // </GridForm>
-
     )
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    username: () => dispatch({ randomName })
-  }
-}
-
-export default connect(mapDispatchToProps)(SponsorRegister)
+export default connect()(SponsorRegister)
