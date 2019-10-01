@@ -4,13 +4,14 @@ export default styled.button`
 font-family: ${(props) => props.theme.font};
 font-size: 1rem;
 font-weight: bold;
+box-shadow: 0px 5px 5px #888888;
 color: '#5CB0D9';
 border: none;
 width: 400px;
 height: 40px;
 text-align: center;
 border-radius: 20px;
-padding: 12px 40px;
+padding: 9px;
 display: block;
 max-width: 600px;
 margin: auto;
