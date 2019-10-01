@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+
 import SponsorGuidance from './SponsorGuidance'
 
 import { shallow } from 'enzyme'

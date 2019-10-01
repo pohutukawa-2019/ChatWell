@@ -1,5 +1,4 @@
 import React from 'react'
-// import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from './Header'
@@ -44,8 +43,6 @@ class Homepage extends React.Component {
 
   render () {
     return (
-      // <div>
-      //   <ReactPlayer playing url='https://www.youtube.com/watch?v=x30YOmfeVTE' />
       <ThemeProvider theme={theme}>
         <Header />
         <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</TitleArea>
