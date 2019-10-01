@@ -2,7 +2,7 @@ const connection = require('./connection')
 
 const { generateHash } = require('authenticare/server')
 
-function createUser (username, password, db = connection) {
+function createUser ({ username, password }, db = connection) {
   return userExists(username, db)
     .then(exists => {
       if (exists) {

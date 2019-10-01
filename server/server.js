@@ -13,7 +13,8 @@ socketIO(io)
 
 app.use(express.json())
 app.use(express.static(path.join(__dirname, './public')))
-app.use('/api/', authRoutes)
+
+app.use('/api', authRoutes)
 app.use('/api/topics', topics)
 
 module.exports = server
