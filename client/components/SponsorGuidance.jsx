@@ -1,12 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { styled, ThemeProvider } from 'styled-components'
-import { logOff } from 'authenticare/client'
-import Nav from './Nav'
-
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-
 import { ThemeProvider } from 'styled-components'
+
 import Button from './elements/Button'
 import Footer from './Footer'
 import Header from './Header'
