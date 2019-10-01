@@ -12,7 +12,6 @@ export default function consume (endpoint, method = 'get', payload = {}) {
 
   return request[method](baseUrl + endpoint)
     .set(headers)[payloadMethod](payload)
-    .set({ 'Accept': 'application/json' })
     .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
     .then(res => res.body)
     .catch(err => {

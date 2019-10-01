@@ -17,7 +17,6 @@ export default function Nav () {
         <Link to='/sponsor/register' data-testid='register'>Register</Link>
         <Link to='/sponsor/signin' data-testid='signin'>Sign in</Link>
       </IfNotAuthenticated>
-      <h1>Fruit FTW!</h1>
     </React.Fragment>
   )
 }
