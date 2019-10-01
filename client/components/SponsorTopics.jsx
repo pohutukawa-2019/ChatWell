@@ -8,6 +8,7 @@ import TitleArea from './elements/TitleArea'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 import Footer from './Footer'
+import Nav from './Nav'
 
 // import TopicListItem from './TopicListItem'
 const theme = {
@@ -52,6 +53,7 @@ class SponsorTopics extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
+      <Nav />
         {error && <div>{error}</div>}
         <Header />
         <TitleArea />
