@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from './Header'
