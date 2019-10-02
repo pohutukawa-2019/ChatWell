@@ -28,21 +28,15 @@ describe('username action tests', () => {
     expect(action.type).toBe(GET_USERNAME_PENDING)
   })
 
-  // it('getUserSuccess returns a GET_USERTYPE_SUCCESS action', () => {
-  //   const userType = 'client'
-  //   const action = getUserSuccess(userType)
-  //   expect(action.type).toBe(GET_USERTYPE_SUCCESS)
-  // })
+  it('getUsernameSuccess returns a GET_USERNAME_SUCCESS action', () => {
+    const userType = 'marvin'
+    const action = getUsernameSuccess(userType)
+    expect(action.type).toBe(GET_USERNAME_SUCCESS)
+  })
 
-  // it('getUserType returns a client SELECTED_USERTYPES action', () => {
-  //   const userType = 'client'
-  //   const action = getUserSuccess(userType)
-  //   expect(action.userType).toBe('client')
-  // })
-
-  // it('getUserType returns a sponsor SELECTED_USERTYPES action', () => {
-  //   const userType = 'sponsor'
-  //   const action = getUserSuccess(userType)
-  //   expect(action.userType).toBe('sponsor')
+  // it('setUsername returns a marvin as SELECTED_USERNAME action', () => {
+  //   const userType = 'marvin'
+  //   const action = setUsername(userType)
+  //   expect(action.userType).toBe('marvin')
   // })
 })

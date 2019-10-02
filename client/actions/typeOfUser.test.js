@@ -32,13 +32,13 @@ describe('typeOfUser action tests', () => {
     expect(action.type).toBe(GET_USERTYPE_SUCCESS)
   })
 
-  it('getUserType returns a client SELECTED_USERTYPES action', () => {
+  it('getUserType returns a client as SELECTED_USERTYPES action', () => {
     const userType = 'client'
     const action = getUserSuccess(userType)
     expect(action.userType).toBe('client')
   })
 
-  it('getUserType returns a sponsor SELECTED_USERTYPES action', () => {
+  it('getUserType returns a sponsor as SELECTED_USERTYPES action', () => {
     const userType = 'sponsor'
     const action = getUserSuccess(userType)
     expect(action.userType).toBe('sponsor')
