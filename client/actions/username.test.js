@@ -1,10 +1,8 @@
 import {
   getUsernamePending,
   getUsernameSuccess,
-  setUsername,
   GET_USERNAME_PENDING,
-  GET_USERNAME_SUCCESS,
-  SELECTED_USERNAME
+  GET_USERNAME_SUCCESS
 } from './username'
 
 import { ERROR } from './error'
