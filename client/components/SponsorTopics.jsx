@@ -10,11 +10,7 @@ import TitleArea from './elements/TitleArea'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 import Footer from './Footer'
-
 // import ScrollDiv from './Styled'
-
-import Nav from './Nav'
-
 
 const theme = {
   primary: '#80ced6',
@@ -62,8 +58,8 @@ class SponsorTopics extends React.Component {
         <div style={{height: '100vh', overflow: 'hidden'}}>
           {error && <div>{error}</div>}
           <Header />
-          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I can help with...</TitleArea>
-          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Select topics</TitleArea>
+          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>I can help with...</h4>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <ul className="sponsor-font" style={{ background: 'transparent', width: '30vw', height: '45vh', textAlign: 'left', overflowY: 'scroll', marginBottom: '25px' }}>
               {topics.map(topic =>
@@ -75,11 +71,9 @@ class SponsorTopics extends React.Component {
               )}
             </ul>
           </div>
-          <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
-
           <br />
-          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-          {' '}
+          <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+          <br />
           <br />
           <Footer />
           </div>

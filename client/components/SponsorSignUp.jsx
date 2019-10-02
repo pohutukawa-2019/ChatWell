@@ -65,8 +65,6 @@ class SponsorSignUp extends React.Component {
           <Header />
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Choose your nickname and password. You can also randomise a nickname by clicking the button below.</TitleArea>
           <br />
-          <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
-            onClick={ (e) => { this.generateUsername() }}>RANDOM USERNAME</Button>
           <br />
           <div className="input">
             <input className="input" type="text"
@@ -85,9 +83,11 @@ class SponsorSignUp extends React.Component {
           </div>
           {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />
-          <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleRegister} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>REGISTER</Button></Link>
+          <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
+            onClick={ (e) => { this.generateUsername() }}>RANDOM USERNAME</Button>
+            <br/>
+          <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleRegister} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>REGISTER</Button></Link>
           <br />
-          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           <br />
           <Footer />
           </div>
