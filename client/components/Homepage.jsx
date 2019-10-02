@@ -10,8 +10,8 @@ import TitleArea from './elements/TitleArea'
 import { getUserType } from '../actions/typeOfUser'
 
 const theme = {
-  primary: '#db9833',
-  secondary: '#db9833',
+  primary: '#82b74b;',
+  secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -40,10 +40,9 @@ class Homepage extends React.Component {
     this.props.dispatch(getUserType('sponsor'))
     // })
   }
+
   render () {
     return (
-      // <div>
-      //   <ReactPlayer playing url='https://www.youtube.com/watch?v=x30YOmfeVTE' />
       <ThemeProvider theme={theme}>
         <div style={{height: '100vh', overflow: 'hidden'}}>
           <Header />

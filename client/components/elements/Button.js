@@ -11,7 +11,7 @@ width: 400px;
 height: 40px;
 text-align: center;
 border-radius: 20px;
-padding: 9px;
+padding: 10px;
 display: block;
 max-width: 600px;
 margin: auto;
