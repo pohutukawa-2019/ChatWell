@@ -8,7 +8,7 @@ import TitleArea from './elements/TitleArea'
 
 // import TopicListItem from './TopicListItem'
 const theme = {
-  primary: '#405d27',
+  primary: '#009999',
   secondary: '#82b74b',
   alert: 'yellow',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'

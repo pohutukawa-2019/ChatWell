@@ -11,7 +11,7 @@ import TitleArea from './elements/TitleArea'
 import Footer from './Footer'
 
 const theme = {
-  primary: '#405d27',
+  primary: '#009999',
   secondary: '#82b74b',
   margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
