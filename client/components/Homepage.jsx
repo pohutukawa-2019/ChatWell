@@ -10,8 +10,8 @@ import TitleArea from './elements/TitleArea'
 import { getUserType } from '../actions/typeOfUser'
 
 const theme = {
-  primary: '#db9833',
-  secondary: '#db9833',
+  primary: '#82b74b;',
+  secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -40,6 +40,7 @@ class Homepage extends React.Component {
     this.props.dispatch(getUserType('sponsor'))
     // })
   }
+
   render () {
     return (
       <div className="div">
@@ -52,8 +53,6 @@ class Homepage extends React.Component {
 
             <br></br>
             <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
-
-            <div><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/></div>
           </Div>
           <Footer />
         </ThemeProvider>
