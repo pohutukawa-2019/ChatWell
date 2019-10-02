@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
+
 import { randomName, randomAvatar } from '../utilities'
 import { setUsername } from '../actions/username'
-// import { GridForm, ColOne, ColTwo } from './Styled'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
 import Footer from './Footer'
@@ -50,19 +50,18 @@ class SponsorRegister extends React.Component {
       <div className="hero flex-center">
         <ThemeProvider theme={theme}>
           <Header />
-          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Enter your choice of Nickname in the box below, or Click to pick a random Nickname to use</TitleArea>
-          <br />
-          <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
-            onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Write a nickname for yourself or click the button below to randomise one:</TitleArea>
           <br />
           <div className="input">
             <input type="text" value={this.state.username} onChange={this.handleChange}/>
           </div>
+          <br />
+          <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
+            onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
           {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />
           <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />
-          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           <br />
           <Footer />
         </ThemeProvider>
