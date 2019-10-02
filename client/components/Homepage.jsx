@@ -1,17 +1,16 @@
 import React from 'react'
-// import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import { ThemeProvider } from 'styled-components'
-import Button from './elements/Button'
+import BigButton from './elements/BigButton'
 import Div from './elements/Div'
 import TitleArea from './elements/TitleArea'
 import { getUserType } from '../actions/typeOfUser'
 
 const theme = {
-  primary: '#405d27;',
+  primary: '#009999',
   secondary: '#80ced6',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
@@ -49,15 +48,14 @@ class Homepage extends React.Component {
           <div style={{ height: '100vh', overflow: 'hidden' }}>
           <Header />
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>Sometimes you just need to talk to someone. We can help with that.</TitleArea>
-          <Div>
-            
-            <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
+          <Div> 
+            <Link to='/topics' style={{ textDecoration: 'none' }}><BigButton color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</BigButton></Link>
 
-            <div style={{height: '100px'}}></div>
-            
-            <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
+            <div style={{ height: '100px' }}></div>
+
+            <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><BigButton color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</BigButton></Link>
           </Div>
-          <Footer />
+            <Footer />
           </div>
         </ThemeProvider>
       </div>

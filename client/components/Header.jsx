@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 import { logOff } from 'authenticare/client'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
@@ -11,7 +11,8 @@ class Header extends React.Component {
   render () {
     return (
       <div >
-        <HeaderTag style={{ color: '#090934', fontWeight: 'bold' }}>ChatWell</HeaderTag>
+        <HeaderTag style={{ color: '#090934' }}>ChatWell</HeaderTag>
+        <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"></link>
         <div className="w3-top">
           <div className="w3-bar" id="myNavbar">
             <IfAuthenticated>

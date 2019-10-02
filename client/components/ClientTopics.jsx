@@ -10,7 +10,7 @@ import Header from './Header'
 import TitleArea from './elements/TitleArea'
 
 const theme = {
-  primary: '#405d27',
+  primary: '#009999',
   secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'

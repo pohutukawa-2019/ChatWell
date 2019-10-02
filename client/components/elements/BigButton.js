@@ -7,10 +7,10 @@ font-weight: bold;
 box-shadow: 0px 5px 5px #888888;
 color: '#db9833';
 border: none;
-/* width: 1000px;
-/* height: 80px; */
-width: 400px;
-height: 40px; 
+width: 1000px;
+height: 80px;
+/* width: 400px;
+height: 40px;  */
 text-align: center;
 border-radius: 40px;
 padding: 10px;
