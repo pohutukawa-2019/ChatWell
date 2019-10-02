@@ -48,6 +48,8 @@ class Register extends React.Component {
     return (
       <div className="hero-client flex-center">
         <ThemeProvider theme={theme}>
+          <div style={{height: '100vh', overflow: 'hidden'}}>
+
           <Header />
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Write a nickname for yourself or click the button below to randomise one:</TitleArea>
           <br />
@@ -64,6 +66,8 @@ class Register extends React.Component {
           <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           <br />
           <Footer />
+          </div>
+
         </ThemeProvider>
       </div>
     )

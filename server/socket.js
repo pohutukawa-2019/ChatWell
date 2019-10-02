@@ -59,7 +59,7 @@ const socket = (io) => {
           socket.emit('system message', 'Waiting for a user to connect...')
         }
       }
-      // as a sponsor:
+      // as a sponsor (or registered sponsor):
       else {
         // if an available client exists
         if (availableClients.length > 0) {
