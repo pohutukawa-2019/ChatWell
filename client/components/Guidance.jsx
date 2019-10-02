@@ -6,9 +6,8 @@ import Footer from './Footer'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
 
-// import TopicListItem from './TopicListItem'
 const theme = {
-  primary: '#405d27',
+  primary: '#009999',
   secondary: '#82b74b',
   alert: 'yellow',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
@@ -18,20 +17,32 @@ function Guidance (props) {
   return (
     <div className="hero-client flex-center">
       <ThemeProvider theme={theme}>
-        <div style={{ height: '100vh', overflow: 'hidden' }}>
+      <div style={{ height: '100vh', overflow: 'hidden' }}>
+        <Header />
+        <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Please keep in mind...</TitleArea>
+        <br/>
+        <p className="client-font" style={{ paddingLeft: "200px", paddingRight: "200px", fontSize: "18px", textAlign: 'center' }}>
+        This app is for support purposes only. Remember you are speaking to another human who has been through a lot. <br/><br/> 
+        This is not a professional counselling service, simply a way to connect with others who may share your experiences in a safe, completely anonymous environment. <br/><br/>
 
-          <Header />
-          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>User Responsibility</TitleArea>
-          <br />
-          <p className="client-font" style={{ textAlign: 'center' }}>
-        This app is intended for support purposes only. It is not intended for use in the diagnosis of conditions or for providing professional advice - remember you are speaking to another human who has been through a lot, so be kind. If you are at risk in any way, please seek the advice of healthcare professionals. (Provide helpline numbers and contacts)
-          </p>
-          {' '}
-          <Link to='/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
-          <br />
-          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-          <br />
-          <Footer />
+        If you are at risk in any way, please seek the advice of healthcare professionals.
+        </p>
+        <br/>
+        <h5 className="client-font" style={{ textAlign: 'center', fontSize: '24px' }}>Resources</h5>
+        <ul className="client-font" style={{ textAlign: 'center', fontSize: '14px' }}>
+          <li><a href="https://www.mentalhealth.org.nz/get-help/in-crisis/">Mental Health Foundation of New Zealand</a></li>
+          <li><a href="https://www.lifeline.org.nz/">Lifeline Aotearoa</a></li>
+          <li><a href="https://www.youthline.co.nz/">Youthline</a></li>
+          <li><a href="http://www.samaritans.org.nz/">Samaritans</a></li>
+          <li><a href="https://www.talkingworks.co.nz/dir.html">Talking Works Counselling Service</a></li>
+          <li><a href="https://onlinetherapy.co.nz/">Online Therapy</a></li>
+        </ul>
+        <br />
+        <Link to='/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+        <br/>
+        <br/>
+        <br/>
+        <Footer />
         </div>
       </ThemeProvider>
     </div>

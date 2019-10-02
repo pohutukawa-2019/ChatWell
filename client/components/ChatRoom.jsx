@@ -16,11 +16,11 @@ import {
 import Header from './Header'
 import Button from './elements/Button'
 
-
 const theme = {
   primary: '#80ced6',
   secondary: '#4040a1',
-  client: '#82b74b',
+  client: '#009999',
+  clientSecondary: '#82b74b',
   margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -28,7 +28,7 @@ const theme = {
 const socket = io.connect()
 
 class ChatRoom extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.textInput = React.createRef()
   }
@@ -46,7 +46,7 @@ class ChatRoom extends Component {
     topics: this.props.topics
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.initSocket()
   }
 
@@ -176,47 +176,51 @@ class ChatRoom extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <>
         <ThemeProvider theme={theme}>
           <Header />
-        <FlexContainer>
-          <MessagesContainer id='scroll-container'>
-            {this.state.messages.map((message, i) => {
-              return (
-                <div key={i}
-                  style={
-                    (message.username === 'System')
-                      ? { textAlign: 'center', padding: '5px 10px', margin: '0px' }
-                      : (message.id === this.state.id)
-                        ? { textAlign: 'left', padding: '5px 30px', margin: '0px' }
-                        : { textAlign: 'right', padding: '5px 30px', margin: '0px' }
-                  }
-                >
-                  <p style={(message.username !== 'System') ? { marginTop: '0px' } : null}>[{message.timestamp}]<strong> {message.username}</strong></p>
-                  <Message user={message.username !== 'System'}>
-                    {(message.username === 'System') ? <i>{message.message}</i> : message.message}
-                  </Message>
-                </div>
-              )
-            })}
-          </MessagesContainer>
-          <SendMessageForm onSubmit={this.messageSendHandler}>
-            <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} ref={this.textInput} />
-            <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
-          </SendMessageForm>
-          {/* {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>} */}
-          {/* {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>} */}
-        </FlexContainer>
-            {(this.state.usertype === 'client') 
-              ? !this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="client" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>
-              : !this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button> 
-            }
+          <FlexContainer>
+            <MessagesContainer id='scroll-container'>
+              {this.state.messages.map((message, i) => {
+                return (
+                  <div key={i}
+                    style={
+                      (message.username === 'System')
+                        ? { textAlign: 'center', padding: '5px 10px', margin: '0px' }
+                        : (message.id === this.state.id)
+                          ? { textAlign: 'left', padding: '5px 30px', margin: '0px' }
+                          : { textAlign: 'right', padding: '5px 30px', margin: '0px' }
+                    }
+                  >
+                    <p style={(message.username !== 'System') ? { marginTop: '0px' } : null}>[{message.timestamp}]<strong> {message.username}</strong></p>
+                    <Message user={message.username !== 'System'}>
+                      {(message.username === 'System') ? <i>{message.message}</i> : message.message}
+                    </Message>
+                  </div>
+                )
+              })}
+            </MessagesContainer>
+            <SendMessageForm onSubmit={this.messageSendHandler}>
+              <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} ref={this.textInput} />
+              <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
+            </SendMessageForm>
+            {/* {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>} */}
+            {/* {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>} */}
+          </FlexContainer>
+          {(this.state.usertype === 'client')
+            ? !this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="client" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>
+            : !this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>
+          }
           {/* {!this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>} */}
           {this.state.isConnected && <Button type="button" onClick={this.disconnectHandler} style={{ fontFamily: 'Lato', fontWeight: 'bold', backgroundColor: '#F66767' }}>DISCONNECT</Button>}
           <br />
-          <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+          {(this.state.usertype === 'client')
+            ? <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="clientSecondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+            :  <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+          }
+          {/* <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link> */}
         </ThemeProvider>
       </>
     )

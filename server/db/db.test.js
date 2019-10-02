@@ -35,5 +35,4 @@ describe('Database functions for Topic', () => {
         expect(actual).toBe(expected)
       })
   })
-
 })

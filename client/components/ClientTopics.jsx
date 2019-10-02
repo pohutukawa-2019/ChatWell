@@ -10,7 +10,7 @@ import Header from './Header'
 import TitleArea from './elements/TitleArea'
 
 const theme = {
-  primary: '#405d27',
+  primary: '#009999',
   secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
@@ -51,28 +51,26 @@ class ClientTopics extends React.Component {
     return (
       <div className="hero-client flex-center">
         <ThemeProvider theme={theme}>
-        <div style={{height: '100vh', overflow: 'hidden'}}>          
-          {error && <div>{error}</div>}
-          <Header />
-          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I need help with...</TitleArea>
-          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <ul className="sponsor-font" style={{ background: 'transparent', width: '30vw', height: '45vh', textAlign: 'left', overflowY: 'scroll', marginBottom: '25px' }}>
-            {topics.map(topic =>
-              <Topic
-                key={topic.id}
-                topic={topic.topic}
-                id={topic.id}
-                toggleTopic={this.toggleTopic} />
-            )}
-          </ul>
-          </div>
-          <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
-          {' '}
-          <br />
-          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-          <br />
-          <Footer />
+          <div style={{ height: '100vh', overflow: 'hidden' }}>
+            {error && <div>{error}</div>}
+            <Header />
+            <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Select Topics</TitleArea>
+            <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>I need help with...</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <ul className="sponsor-font" style={{ background: 'transparent', width: '30vw', height: '45vh', textAlign: 'left', overflowY: 'scroll', marginBottom: '25px' }}>
+                {topics.map(topic =>
+                  <Topic
+                    key={topic.id}
+                    topic={topic.topic}
+                    id={topic.id}
+                    toggleTopic={this.toggleTopic} />
+                )}
+              </ul>
+              <br />
+            </div>
+            <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
+            <br />
+            <Footer />
           </div>
         </ThemeProvider>
       </div>
