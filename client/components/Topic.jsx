@@ -3,7 +3,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 
 export default function Topic ({ id, topic, toggleTopic }) {
   return (
-    <li className="flex-container" style={{ listStyleType: 'none' }}>
+    <li style={{ listStyleType: 'none' }}>
       <Checkbox
         value={id}
         onChange={() => toggleTopic(topic)}

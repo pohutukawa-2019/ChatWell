@@ -8,6 +8,7 @@ import TitleArea from './elements/TitleArea'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 import Footer from './Footer'
+// import ScrollDiv from './Styled'
 
 // import TopicListItem from './TopicListItem'
 const theme = {
@@ -57,15 +58,19 @@ class SponsorTopics extends React.Component {
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I can help with...</TitleArea>
           <br />
           <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
-          <ul className="sponsor-font" style={{ textAlign: 'center' }}>
-            {topics.map(topic =>
-              <Topic
-                key={topic.id}
-                topic={topic.topic}
-                id={topic.id}
-                toggleTopic={this.toggleTopic} />
-            )}
-          </ul>
+
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <ul className="sponsor-font" style={{ background: 'transparent', width: '30vw', height: '70vh', textAlign: 'left', overflowY: 'scroll' }}>
+              {topics.map(topic =>
+                <Topic
+                  key={topic.id}
+                  topic={topic.topic}
+                  id={topic.id}
+                  toggleTopic={this.toggleTopic} />
+              )}
+            </ul>
+          </div>
+
           <Link to='/sponsor/register' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />
           <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>

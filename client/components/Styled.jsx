@@ -15,7 +15,12 @@ export const ColTwo = styled.input`
   grid-column: 2;
 `
 
-// export const Button = styled.button`
-//   grid-column: 2;
-//   width: 50%;
-// `
+export const ScrollDiv = styled.div`
+ background: #5cb0d9;
+ color: white;
+ padding: 15px;
+ width: 30%;
+ height: 70vh;
+ overflow: scroll;
+ margin-inline-start: 35vw;
+ `
