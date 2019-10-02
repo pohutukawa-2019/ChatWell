@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 export default styled.h1`
+background-image: url('/images/images8.jpg');
 font-family: ${(props) => props.theme.font};
 font-size: 3.3rem;
 border: none;
@@ -10,7 +11,8 @@ font-weight:lighter;
   text-align:center;
   display:block;
   margin:0px;
-  background-color:#f6d8ac;
+  opacity: 5px;
+  /* background-color:#f6d8ac; */
 /* background: ${props => (props.primary ? 'red' : 'green')}; */
 ${(props) => props.color && css` background: ${props => props.theme[props.color]};
 `}
