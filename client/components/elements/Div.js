@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components'
 
 export default styled.div`
-background-image: url('https://this.deakin.edu.au/wp-content/uploads/2018/11/empty-room-with-chair.jpg');
-/* transaparentise?? opacity: 0.5; */
-height: 650px;
+background-image: url('/images/images7.jpg');
+height: 100vh;
+background-repeat: no-repeat;
+background-size: cover;
+background-transparency: 50%
 
 /* background: ${props => (props.primary ? 'red' : 'green')}; */
 /* ${(props) => props.color && css` background: ${props => props.theme[props.background]};
