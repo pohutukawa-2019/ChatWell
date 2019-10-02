@@ -10,7 +10,7 @@ import HeaderTag from './elements/HeaderTag'
 class Header extends React.Component {
   render () {
     return (
-      <div>
+      <div >
         <HeaderTag style={{ color: '#090934', fontWeight: 'bold' }}>ChatWell</HeaderTag>
         <div className="w3-top">
           <div className="w3-bar" id="myNavbar">

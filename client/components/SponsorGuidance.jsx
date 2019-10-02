@@ -19,9 +19,9 @@ function SponsorGuidance () {
       <ThemeProvider theme={theme}>
         <div style={{ height: '100vh', overflow: 'hidden' }}>
         <Header />
-        <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Sponsor Guidance</TitleArea>
+        <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Your responsibilities</TitleArea>
         <p className="sponsor-font" style={{ paddingTop: "20px",paddingLeft: "200px", paddingRight: "200px", fontSize: "18px", textAlign: 'center' }}>Thank you for offering to provide some support and guidance to a fellow human being! <br />You're awesome. Hopefully, you'll make someone's day a little easier.<br /><br />
-        While you are stepping into a supporting role as a Sponsor, please remember to keep yourself safe. <br />If a conversation becomes too intense or triggering, you are 100% free to leave that conversation and look after your own wellbeing.<br /><br />
+        While you are stepping into a supporting role, please remember to keep yourself safe. <br />If a conversation becomes too intense or triggering, you are 100% free to leave that conversation and look after your own wellbeing.<br /><br />
         Your role is not to fix everyon's problems, or offer medical advice. Instead, we ask you to be a compassionate, listening ear, and only share as much of your own experience as you want. That part is completely up to you.
         </p>
         <h5 className="client-font" style={{ textAlign: 'center', fontSize: '24px' }}>Resources</h5>
