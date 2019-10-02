@@ -14,18 +14,15 @@ class Header extends React.Component {
         <HeaderTag style={{ color: '#090934', fontWeight: 'bold' }}>ChatWell</HeaderTag>
         <div className="w3-top">
           <div className="w3-bar" id="myNavbar">
-            {/* <a className="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="#" title="Toggle Navigation Menu">
-            <i className="fa fa-bars"></i>
-          <IfAuthenticated>
-            <Link to='#' data-testid='logoff'
-              onClick={logOff}>Log off</Link>
-          </IfAuthenticated>
-          <IfNotAuthenticated>
-            <Link to='/sponsor/register' data-testid='register'>Register</Link>
-            <Link to='/sponsor/signin' data-testid='signin'>Sign in</Link>
-          </IfNotAuthenticated>
-          </a> */}
-            <a href="/" style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button">HOME</a>
+            <IfAuthenticated>
+              <Link to='/' data-testid='logoff' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-green"
+                onClick={logOff}>LOG OFF</Link>
+            </IfAuthenticated>
+            <IfNotAuthenticated>
+              <Link to='/sponsor/register' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-green" data-testid='register'>REGISTER</Link>
+              <Link to='/sponsor/signin' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-green" data-testid='signin'>SIGN IN</Link>
+            </IfNotAuthenticated>
+            <a href="/" style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hover-green">HOME</a>
           </div>
         </div>
       </div>
