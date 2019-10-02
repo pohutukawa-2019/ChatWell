@@ -10,8 +10,8 @@ import TitleArea from './elements/TitleArea'
 import { getUserType } from '../actions/typeOfUser'
 
 const theme = {
-  primary: '#1B668C',
-  secondary: '#5CB0D9',
+  primary: '#82b74b;',
+  secondary: '#82b74b',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -40,26 +40,22 @@ class Homepage extends React.Component {
     this.props.dispatch(getUserType('sponsor'))
     // })
   }
+
   render () {
     return (
       <ThemeProvider theme={theme}>
-        <Header />
-        <TitleArea />
-        <br />
-        <div style={{ textAlign: 'center', fontSize: '20px' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</div>
-        <br />
-        <Div>
-          <br></br>
-          <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
-
-          <br></br>
-          <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
-          <div><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/></div>
-          {/* <ChatRoom /> */}
-
-        </Div>
-
-        <Footer />
+        <div style={{height: '100vh', overflow: 'hidden'}}>
+          <Header />
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</TitleArea>
+          <Div>
+            <br></br>
+            <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
+            <br style={{margin: '100px'}} />
+            <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
+          </Div>
+          <Footer />
+        </div>
+        
       </ThemeProvider>
     )
   }

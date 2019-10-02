@@ -1,12 +1,27 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { ThemeProvider } from 'styled-components'
 
-import { GridForm, ColOne, ColTwo, Button } from './Styled'
+import Button from './elements/Button'
+// import Div from './elements/Div'
+import Footer from './Footer'
+import Header from './Header'
+
+// import { GridForm, ColOne, ColTwo } from './Styled'
 // import Button from './elements/Button'
 
 import { isAuthenticated, signIn } from 'authenticare/client'
+import { getUserType } from '../actions/typeOfUser'
 
-export default function SignIn (props) {
+const theme = {
+  primary: '#80ced6',
+  secondary: '#4040a1',
+  margin: 'auto',
+  font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
+}
+
+function SignIn (props) {
   const [form, setForm] = useState({
     username: '',
     password: ''
@@ -20,6 +35,7 @@ export default function SignIn (props) {
   }
 
   const handleClick = () => {
+    props.dispatch(getUserType('registeredSponsor'))
     signIn({
       username: form.username,
       password: form.password
@@ -35,22 +51,49 @@ export default function SignIn (props) {
 
   return (
   <>
-  <h2>Sign in</h2>
-  <GridForm>
-    <ColOne>Username:</ColOne>
-    <ColTwo name='username'
-      value={form.username}
-      onChange={handleChange} />
-
-    <ColOne>Password:</ColOne>
-    <ColTwo name='password'
-      type='password'
-      value={form.password}
-      onChange={handleChange} />
-
-<Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={handleClick} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
-
-  </GridForm>
+  <div className="hero flex-center">
+    <ThemeProvider theme={theme}>
+      <div style={{ height: '100vh', overflow: 'hidden' }}>
+        <Header />
+        <h1 style={{ textAlign: 'center' }}>Sign In</h1>
+        {/* <GridForm> */}
+        <h2 style={{ textAlign: 'center' }}>Username:</h2>
+        <div className="input">
+          <input className="input" name='username'
+            placeholder='Username'
+            value={form.username}
+            onChange={handleChange}
+          />
+        </div>
+        {/* <ColOne>Username:</ColOne>
+          <ColTwo name='username'
+            value={form.username}
+            onChange={handleChange} /> */}
+        {/* <ColOne>Password:</ColOne> */}
+        {/* <ColTwo name='password'
+            type='password'
+            value={form.password}
+            onChange={handleChange} /> */}
+        <h2 style={{ textAlign: 'center' }}>Password:</h2>
+        <div className="input">
+          <input className="input" name='password'
+            placeholder='Password'
+            type='password'
+            value={form.password}
+            onChange={handleChange}
+          />
+        </div>
+        <br/>
+        <Link to='/sponsor/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={handleClick} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>SIGN IN</Button></Link>
+        <br />
+        <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+        {/* </GridForm> */}
+        <Footer />
+      </div>
+    </ThemeProvider>
+  </div>
   </>
   )
 }
+
+export default connect()(SignIn)
