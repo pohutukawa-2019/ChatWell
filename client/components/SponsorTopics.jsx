@@ -1,19 +1,25 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+
 import Button from './elements/Button'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 import Footer from './Footer'
+
 // import ScrollDiv from './Styled'
 
-// import TopicListItem from './TopicListItem'
+import Nav from './Nav'
+
+
 const theme = {
   primary: '#80ced6',
   secondary: '#4040a1',
+  margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
@@ -41,7 +47,7 @@ class SponsorTopics extends React.Component {
 
   handleContinue = () => {
     this.props.dispatch(saveTopics(this.state.selectedTopics))
-    this.props.history.push('/sponsor/register')
+    this.props.history.push('/sponsor/pair')
   }
 
   render () {
@@ -70,8 +76,8 @@ class SponsorTopics extends React.Component {
               )}
             </ul>
           </div>
+          <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
 
-          <Link to='/sponsor/register' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />
           <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           {' '}
