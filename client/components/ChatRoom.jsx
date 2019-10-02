@@ -18,8 +18,9 @@ import Button from './elements/Button'
 
 
 const theme = {
-  primary: '#618685',
+  primary: '#80ced6',
   secondary: '#4040a1',
+  margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 

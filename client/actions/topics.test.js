@@ -7,7 +7,7 @@ import {
   GET_TOPIC_SUCCESS,
   SELECTED_TOPICS
 } from './topics'
-//test
+
 jest.mock('../api/requestor', () => {
   return (endpoint, method, payload) => {
     const id = Number(endpoint.split('/').pop())
@@ -22,7 +22,7 @@ jest.mock('../api/requestor', () => {
 })
 
 describe('topics action tests', () => {
-  it('getTopicsPending returns a GET_USERTYPE_PENDING action', () => {
+  it('getTopicsPending returns a GET_TOPIC_PENDING action', () => {
     const action = getTopicsPending()
     expect(action.type).toBe(GET_TOPIC_PENDING)
   })
@@ -32,7 +32,7 @@ describe('topics action tests', () => {
     expect(action.type).toBe(GET_TOPIC_SUCCESS)
   })
 
-  it('saveTopics returns a GET_TOPIC_SUCCESS action', () => {
+  it('saveTopics returns a SELECTED_TOPICS action', () => {
     const action = saveTopics()
     expect(action.type).toBe(SELECTED_TOPICS)
   })

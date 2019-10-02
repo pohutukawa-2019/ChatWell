@@ -15,6 +15,7 @@ import Nav from './Nav'
 const theme = {
   primary: '#80ced6',
   secondary: '#4040a1',
+  margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
@@ -68,7 +69,7 @@ class SponsorTopics extends React.Component {
                 toggleTopic={this.toggleTopic} />
             )}
           </ul>
-          <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+          <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />
           <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           {' '}

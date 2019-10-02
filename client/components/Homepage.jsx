@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from './Header'
@@ -46,17 +45,18 @@ class Homepage extends React.Component {
       // <div>
       //   <ReactPlayer playing url='https://www.youtube.com/watch?v=x30YOmfeVTE' />
       <ThemeProvider theme={theme}>
-        <Header />
-        <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</TitleArea>
-        <Div>
-          <br></br>
-          <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
-
-          <br></br>
-          <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
-          <div><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/></div>
-        </Div>
-        <Footer />
+        <div style={{height: '100vh', overflow: 'hidden'}}>
+          <Header />
+          <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</TitleArea>
+          <Div>
+            <br></br>
+            <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
+            <br style={{margin: '100px'}} />
+            <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
+          </Div>
+          <Footer />
+        </div>
+        
       </ThemeProvider>
     )
   }
