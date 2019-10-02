@@ -11,7 +11,8 @@ class Header extends React.Component {
   render () {
     return (
       <div>
-        <HeaderTag style={{ color: '#090934', fontWeight: 'bold' }}>ChatWell</HeaderTag>
+        <HeaderTag style={{ color: '#090934' }}>ChatWell</HeaderTag>
+        <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"></link>
         <div className="w3-top">
           <div className="w3-bar" id="myNavbar">
             <a className="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="#" title="Toggle Navigation Menu">

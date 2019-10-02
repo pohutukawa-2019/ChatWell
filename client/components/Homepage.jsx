@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import { ThemeProvider } from 'styled-components'
-import Button from './elements/Button'
+import BigButton from './elements/BigButton'
 import Div from './elements/Div'
 import TitleArea from './elements/TitleArea'
 import { getUserType } from '../actions/typeOfUser'
@@ -50,11 +50,11 @@ class Homepage extends React.Component {
             <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>If you think you are experiencing a mental health problem chat to someone who can help here.</TitleArea>
             <Div>
 
-              <Link to='/topics' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</Button></Link>
+              <Link to='/topics' style={{ textDecoration: 'none' }}><BigButton color="primary" onClick={this.handleClient} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I NEED HELP</BigButton></Link>
 
               <div style={{ height: '100px' }}></div>
 
-              <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</Button></Link>
+              <Link to='/sponsor/login' style={{ textDecoration: 'none' }}><BigButton color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>I WANT TO HELP</BigButton></Link>
             </Div>
             <Footer />
           </div>

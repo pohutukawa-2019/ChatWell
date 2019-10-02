@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components'
 
 export default styled.h1`
 background-image: url('/images/images8.jpg');
-font-family: ${(props) => props.theme.font};
-font-size: 3.3rem;
+font-family: 'Liu Jian Mao Cao', cursive;
+font-size: 5.3rem;
 border: none;
 border-radius: none;
-padding:26px;
+padding:21px;
 font-weight:lighter;
   text-align:center;
   display:block;
