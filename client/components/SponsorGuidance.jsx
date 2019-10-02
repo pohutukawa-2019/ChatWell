@@ -34,9 +34,11 @@ function SponsorGuidance () {
           <li><a href="https://onlinetherapy.co.nz/">Online Therapy</a></li>
         </ul>
         <br/>
+        </div>
         <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
         <br />
         <Footer />
+        
       </ThemeProvider>
     </div>
   )

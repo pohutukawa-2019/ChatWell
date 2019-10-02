@@ -70,6 +70,7 @@ class SponsorTopics extends React.Component {
                 toggleTopic={this.toggleTopic} />
             )}
           </ul>
+          </div>
           <br />
           <Link to='/sponsor/register' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />

@@ -43,6 +43,7 @@ function Guidance (props) {
         <br/>
         <br/>
         <Footer />
+        </div>
       </ThemeProvider>
     </div>
   )
