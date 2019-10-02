@@ -1,15 +1,17 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+
 import Button from './elements/Button'
 import Header from './Header'
 import TitleArea from './elements/TitleArea'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 import Footer from './Footer'
+import Nav from './Nav'
 
-// import TopicListItem from './TopicListItem'
 const theme = {
   primary: '#618685',
   secondary: '#4040a1',
@@ -40,7 +42,7 @@ class SponsorTopics extends React.Component {
 
   handleContinue = () => {
     this.props.dispatch(saveTopics(this.state.selectedTopics))
-    this.props.history.push('/sponsor/register')
+    this.props.history.push('/sponsor/pair')
   }
 
   render () {
@@ -50,31 +52,30 @@ class SponsorTopics extends React.Component {
     }
 
     return (
-      <div className="hero flex-center">
-        <ThemeProvider theme={theme} >
-          {error && <div>{error}</div>}
-          <Header />
-          <TitleArea />
-          <br />
-          <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>I can help with...</h3>
-          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
-          <ul className="sponsor-font" style={{ textAlign: 'center' }}>
-            {topics.map(topic =>
-              <Topic
-                key={topic.id}
-                topic={topic.topic}
-                id={topic.id}
-                toggleTopic={this.toggleTopic} />
-            )}
-          </ul>
-          <Link to='/sponsor/register' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
-          <br />
-          <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
-          {' '}
-          <br />
-          <Footer />
-        </ThemeProvider>
-      </div>
+      <ThemeProvider theme={theme}>
+        <Nav />
+        {error && <div>{error}</div>}
+        <Header />
+        <TitleArea />
+        <br />
+        <h3 className="sponsor-font" style={{ textAlign: 'center', fontSize: '28px' }}>I can help with...</h3>
+        <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
+        <ul className="sponsor-font" style={{ textAlign: 'center' }}>
+          {topics.map(topic =>
+            <Topic
+              key={topic.id}
+              topic={topic.topic}
+              id={topic.id}
+              toggleTopic={this.toggleTopic} />
+          )}
+        </ul>
+        <Link to='/sponsor/pair' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+        <br />
+        <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+        {' '}
+        <br />
+        <Footer />
+      </ThemeProvider>
     )
   }
 }
