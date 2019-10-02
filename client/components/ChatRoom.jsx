@@ -20,6 +20,7 @@ import Button from './elements/Button'
 const theme = {
   primary: '#80ced6',
   secondary: '#4040a1',
+  client: '#82b74b',
   margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -208,7 +209,11 @@ class ChatRoom extends Component {
           {/* {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>} */}
           {/* {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>} */}
         </FlexContainer>
-          {!this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>}
+            {(this.state.usertype === 'client') 
+              ? !this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="client" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>
+              : !this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button> 
+            }
+          {/* {!this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>} */}
           {this.state.isConnected && <Button type="button" onClick={this.disconnectHandler} style={{ fontFamily: 'Lato', fontWeight: 'bold', backgroundColor: '#F66767' }}>DISCONNECT</Button>}
           <br />
           <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>

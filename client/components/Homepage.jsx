@@ -11,7 +11,7 @@ import { getUserType } from '../actions/typeOfUser'
 
 const theme = {
   primary: '#82b74b;',
-  secondary: '#82b74b',
+  secondary: '#80ced6',
   align: 'middle',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
