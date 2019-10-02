@@ -3,10 +3,14 @@ const db = require('./db')
 
 let testDb = null
 
+jest.setTimeout(20000)
+
 beforeEach(() => {
   testDb = env.getTestDb()
   return env.initialise(testDb)
 })
+
+jest.setTimeout(20000) 
 
 afterEach(() => env.cleanup(testDb))
 
@@ -31,5 +35,4 @@ describe('Database functions for Topic', () => {
         expect(actual).toBe(expected)
       })
   })
-
 })
