@@ -1,56 +1,19 @@
+require('babel-polyfill')
 const request = require('supertest')
 
-const server = require('../server')
-const db = require('../db/db')
+const server = require('../../../server/server')
+const db = require('./db') // the mock
 
-jest.mock('../db/db')
+jest.mock('./db')
 
 beforeEach(() => {
   db.reset()
 })
 
-describe('topics routes', () => {
-  it('GET / returns main or home page', () => {
-    const expected = 1
-
-    return request(server)
-      .get('/')
-      .then(res => {
-        const count = res.body.length
-        expect(count).toBe(expected)
-      })
-  })
+test('GET / returns all the fruits', () => {
+  return request(server)
+    .get('/')
+    .then(res => {
+      expect(res.body.fruits).toHaveLength(3)
+    })
 })
-
-// describe('Food routes', () => {
-//   it('POST / new food add + return id of new food', () => {
-//     const expected = 7
-
-//     const newFoodItem = {
-//       name: 'Pizza',
-//       category_id: 5,
-//       carbonOutput: 19.76,
-//       waterUsage: 420,
-//       id: expected
-//     }
-
-//     return request(server)
-//       .post('/api/v1/foods')
-//       .send(newFoodItem)
-//       .then(res => {
-//         const id = res.body
-//         expect(id).toBe(expected)
-//       })
-//   })
-
-//   it('DEL / deletes a food', () => {
-//     const expected = 6
-
-//     return request(server)
-//       .delete('/api/v1/foods/2')
-//       .then(res => {
-//         const count = res.body.length
-//         expect(count).toBe(expected)
-//       })
-//   })
-// })
