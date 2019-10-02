@@ -17,6 +17,7 @@ function Guidance (props) {
   return (
     <div className="hero-client flex-center">
       <ThemeProvider theme={theme}>
+      <div style={{ height: '100vh', overflow: 'hidden' }}>
         <Header />
         <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Please keep in mind...</TitleArea>
         <br/>
@@ -38,6 +39,7 @@ function Guidance (props) {
         </ul>
         <br />
         <Link to='/pair' style={{ textDecoration: 'none' }}><Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
+        <br/>
         <br/>
         <br/>
         <Footer />

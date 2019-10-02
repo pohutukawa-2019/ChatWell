@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
@@ -9,10 +10,12 @@ import TitleArea from './elements/TitleArea'
 import { getTopics, saveTopics } from '../actions/topics'
 import Topic from './Topic'
 import Footer from './Footer'
+// import ScrollDiv from './Styled'
 
 const theme = {
   primary: '#80ced6',
   secondary: '#4040a1',
+  margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
@@ -40,7 +43,7 @@ class SponsorTopics extends React.Component {
 
   handleContinue = () => {
     this.props.dispatch(saveTopics(this.state.selectedTopics))
-    this.props.history.push('/sponsor/register')
+    this.props.history.push('/sponsor/pair')
   }
 
   render () {
@@ -57,7 +60,8 @@ class SponsorTopics extends React.Component {
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I can help with...</TitleArea>
           <br />
           <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
-          <ul className="sponsor-font" style={{ textAlign: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <ul className="sponsor-font" style={{ background: 'transparent', width: '30vw', height: '70vh', textAlign: 'left', overflowY: 'scroll' }}>
             {topics.map(topic =>
               <Topic
                 key={topic.id}
