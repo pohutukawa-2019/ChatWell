@@ -20,6 +20,7 @@ const theme = {
   primary: '#80ced6',
   secondary: '#4040a1',
   client: '#009999',
+  clientSecondary: '#82b74b',
   margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
@@ -215,7 +216,11 @@ class ChatRoom extends Component {
           {/* {!this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>} */}
           {this.state.isConnected && <Button type="button" onClick={this.disconnectHandler} style={{ fontFamily: 'Lato', fontWeight: 'bold', backgroundColor: '#F66767' }}>DISCONNECT</Button>}
           <br />
-          <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+          {(this.state.usertype === 'client')
+            ? <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="clientSecondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+            :  <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+          }
+          {/* <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link> */}
         </ThemeProvider>
       </>
     )
