@@ -14,11 +14,13 @@ import {
   Message
 } from './ChatRoomStyles'
 import Header from './Header'
+import Button from './elements/Button'
+
 
 const theme = {
-  primary: '#1B668C',
-  secondary: '#5CB0D9',
-  align: 'middle',
+  primary: '#80ced6',
+  secondary: '#4040a1',
+  margin: 'auto',
   font: 'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif'
 }
 
@@ -173,26 +175,12 @@ class ChatRoom extends Component {
     })
   }
 
-  // switchUsertype = () => {
-  //   if (this.state.usertype === 'client') {
-  //     this.setState({
-  //       usertype: 'sponsor'
-  //     })
-  //   } else {
-  //     this.setState({
-  //       usertype: 'client'
-  //     })
-  //   }
-  // }
-
   render() {
     return (
       <>
         <ThemeProvider theme={theme}>
           <Header />
-        </ThemeProvider>
         <FlexContainer>
-          <div style={{ height: '200px' }}></div>
           <MessagesContainer id='scroll-container'>
             {this.state.messages.map((message, i) => {
               return (
@@ -217,11 +205,14 @@ class ChatRoom extends Component {
             <MessageInput type="text" value={this.state.message} onChange={this.messageInputHandler} disabled={!this.state.isConnected} ref={this.textInput} />
             <SendButton type='submit' disabled={!this.state.isConnected} >Send</SendButton>
           </SendMessageForm>
-          {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>}
-          {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>}
-          {/* <button type='button' onClick={this.switchUsertype}>Current State: {this.state.usertype}</button> */}
-          <Link onClick={this.disconnectHandler} className='pure-button' to='/'><ConnectionButton main>BACK TO MAIN</ConnectionButton></Link>
+          {/* {!this.state.isConnected && < ConnectionButton type="button" onClick={this.connectHandler} connect >CONNECT</ConnectionButton>} */}
+          {/* {this.state.isConnected && < ConnectionButton type="button" onClick={this.disconnectHandler} disconnect >Disconnect</ConnectionButton>} */}
         </FlexContainer>
+          {!this.state.isConnected && <Button type="button" onClick={this.connectHandler} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONNECT</Button>}
+          {this.state.isConnected && <Button type="button" onClick={this.disconnectHandler} style={{ fontFamily: 'Lato', fontWeight: 'bold', backgroundColor: '#F66767' }}>DISCONNECT</Button>}
+          <br />
+          <Link to='/' onClick={this.disconnectHandler} style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
+        </ThemeProvider>
       </>
     )
   }

@@ -1,5 +1,7 @@
 import request from 'superagent'
 
+import { getEncodedToken } from 'authenticare/client'
+
 const baseUrl = '/api'
 
 export default function consume (endpoint, method = 'get', payload = {}) {
@@ -10,6 +12,7 @@ export default function consume (endpoint, method = 'get', payload = {}) {
 
   return request[method](baseUrl + endpoint)
     .set(headers)[payloadMethod](payload)
+    .set({ 'Authorization': `Bearer ${getEncodedToken()}` })
     .then(res => res.body)
     .catch(err => {
       throw err
