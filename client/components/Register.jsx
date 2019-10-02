@@ -49,23 +49,22 @@ class Register extends React.Component {
       <div className="hero-client flex-center">
         <ThemeProvider theme={theme}>
           <div style={{ height: '100vh', overflow: 'hidden' }}>
-
             <Header />
             <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Write a nickname for yourself or click the button below to randomise one:</TitleArea>
-            <br />
-            <Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }} name="generateUsername" value="generateUsername"
-              onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
             <br />
             <div className="input">
               <input className="input" type="text" value={this.state.username} onChange={this.handleChange} />
             </div>
             {(this.state.username === '') ? <p>If this field is left empty username defaults to 'Anonymous'</p> : null}
             <br />
+            <Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }} name="generateUsername" value="generateUsername"
+              onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
+            <br />
             <Link to='/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
             <br />
-            <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" onClick={this.handleSponsor} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
             <br />
             <Footer />
+
           </div>
 
         </ThemeProvider>

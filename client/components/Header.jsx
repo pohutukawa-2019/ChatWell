@@ -22,7 +22,7 @@ class Header extends React.Component {
               <Link to='/sponsor/register' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-green" data-testid='register'>REGISTER</Link>
               <Link to='/sponsor/signin' style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hide-small w3-right w3-hover-green" data-testid='signin'>SIGN IN</Link>
             </IfNotAuthenticated>
-            <a href="/" style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button">HOME</a>
+            <a href="/" style={{ color: '#090934', fontWeight: 'bold' }} className="w3-bar-item w3-button w3-hover-green">HOME</a>
           </div>
         </div>
       </div>
