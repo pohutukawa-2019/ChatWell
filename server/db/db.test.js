@@ -10,6 +10,8 @@ beforeEach(() => {
   return env.initialise(testDb)
 })
 
+jest.setTimeout(20000) 
+
 afterEach(() => env.cleanup(testDb))
 
 describe('Database functions for Topic', () => {
