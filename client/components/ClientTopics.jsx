@@ -67,6 +67,7 @@ class ClientTopics extends React.Component {
             )}
           </ul>
           <br />
+          </div>
           <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
           <br />
           <Footer />

@@ -22,7 +22,7 @@ function Guidance (props) {
         <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>Please keep in mind...</TitleArea>
         <br/>
         <p className="client-font" style={{ paddingLeft: "200px", paddingRight: "200px", fontSize: "18px", textAlign: 'center' }}>
-        This app is for support purposes only. Remember you are speaking to another human who has been through a lot, so be kind. <br/><br/> 
+        This app is for support purposes only. Remember you are speaking to another human who has been through a lot. <br/><br/> 
         This is not a professional counselling service, simply a way to connect with others who may share your experiences in a safe, completely anonymous environment. <br/><br/>
 
         If you are at risk in any way, please seek the advice of healthcare professionals.
