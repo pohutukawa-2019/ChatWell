@@ -51,12 +51,13 @@ class ClientTopics extends React.Component {
     return (
       <div className="hero-client flex-center">
         <ThemeProvider theme={theme}>
+        <div style={{height: '100vh', overflow: 'hidden'}}>          
           {error && <div>{error}</div>}
           <Header />
           <TitleArea style={{ fontColor: '#6262B2', textAlign: 'center', fontSize: '28px', fontWeight: 'bold' }}>I need help with...</TitleArea>
-          <br />
-          <h3 className="client-font" style={{ textAlign: 'center', fontSize: '21px' }}>(Select all that apply)</h3>
-          <ul className="client-font" style={{ textAlign: 'center', fontSize: '18px' }}>
+          <h4 className="sponsor-font" style={{ textAlign: 'center', fontSize: '18px' }}>(Select all that apply)</h4>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+          <ul className="sponsor-font" style={{ background: 'transparent', width: '30vw', height: '45vh', textAlign: 'left', overflowY: 'scroll', marginBottom: '25px' }}>
             {topics.map(topic =>
               <Topic
                 key={topic.id}
@@ -65,12 +66,14 @@ class ClientTopics extends React.Component {
                 toggleTopic={this.toggleTopic} />
             )}
           </ul>
+          </div>
           <Button onClick={this.handleContinue} color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button>
           {' '}
           <br />
           <Link to='/' style={{ textDecoration: 'none' }}><Button color="secondary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>BACK TO MAIN</Button></Link>
           <br />
           <Footer />
+          </div>
         </ThemeProvider>
       </div>
     )
