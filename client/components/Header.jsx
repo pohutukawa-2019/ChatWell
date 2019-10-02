@@ -11,7 +11,7 @@ class Header extends React.Component {
   render () {
     return (
       <div>
-        <HeaderTag style={{ color: '#090934' }}>ChatWell</HeaderTag>
+        <HeaderTag style={{ color: '#090934', padding: '0px' }}>ChatWell</HeaderTag>
         <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet"></link>
         <div className="w3-top">
           <div className="w3-bar" id="myNavbar">
