@@ -55,7 +55,7 @@ class Register extends React.Component {
             <div className="input">
               <input className="input" type="text" value={this.state.username} onChange={this.handleChange} />
             </div>
-            {(this.state.username === '') ? <p>If this field is left empty username defaults to 'Anonymous'</p> : null}
+            {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
             <br />
             <Button color="primary" style={{ fontFamily: 'Lato', fontWeight: 'bold' }} name="generateUsername" value="generateUsername"
               onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>

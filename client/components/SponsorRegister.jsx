@@ -56,10 +56,10 @@ class SponsorRegister extends React.Component {
           <div className="input">
             <input className='input' type="text" value={this.state.username} onChange={this.handleChange}/>
           </div>
+          {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />
           <Button style={{ fontFamily: 'Lato', fontWeight: 'bold' }} color="primary" name="generateUsername" value="generateUsername"
             onClick={ (e) => { this.generateUsername() }}>RANDOM NICKNAME</Button>
-          {(this.state.username === '') ? <p className="sponsor-font" style={{ textAlign: 'center' }}>If this field is left empty username defaults to 'Anonymous'</p> : null}
           <br />
           <Link to='/sponsor/guidance' style={{ textDecoration: 'none' }}><Button color="primary" onClick={this.handleContinue} style={{ fontFamily: 'Lato', fontWeight: 'bold' }}>CONTINUE</Button></Link>
           <br />
